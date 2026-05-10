@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #__next { height: 100%; }
+  body {
+    background:
+      radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.12), transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(168, 85, 247, 0.10), transparent 60%),
+      #0a0e1a;
+    color: rgba(255, 255, 255, 0.94);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Liquid glass — iOS 26 / macOS Tahoe style */
+  .glass {
+    @apply backdrop-blur-glass border border-white/10 shadow-glass;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.04) 100%);
+  }
+
+  .glass-deep {
+    @apply backdrop-blur-deep border border-white/10 shadow-glass-deep;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%);
+  }
+
+  .glass-hover {
+    transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+  }
+  .glass-hover:hover {
+    @apply shadow-glass-hover border-white/20;
+    transform: translateY(-1px);
+  }
+
+  /* Risk band chips */
+  .chip {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .chip-critical { @apply bg-risk-critical/20 text-risk-critical border border-risk-critical/40; }
+  .chip-high     { @apply bg-risk-high/20     text-risk-high     border border-risk-high/40; }
+  .chip-moderate { @apply bg-risk-moderate/20 text-risk-moderate border border-risk-moderate/40; }
+  .chip-low      { @apply bg-risk-low/20      text-risk-low      border border-risk-low/40; }
+
+  .chip-stable   { @apply bg-white/10 text-white/70 border border-white/20; }
+
+  /* Stagger entrance — applied via inline style animationDelay */
+  .stagger-in {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+    animation: staggerIn 380ms cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+  }
+
+  @keyframes staggerIn {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Subtle scrollbars */
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+}

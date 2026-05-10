@@ -1,0 +1,40 @@
+# Env & secrets
+.env
+.env.local
+*.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# DuckDB (rebuilt from CSVs)
+*.duckdb
+*.duckdb.wal
+
+# Runtime artifacts
+backend/outputs/
+backend/cache/
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

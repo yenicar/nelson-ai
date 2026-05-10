@@ -1,0 +1,1199 @@
+adjustment_id,customer_id,source_customer_id,customer_full_name,ticket_id,adjustment_type,amount,reason,status,created_date
+ADJ000001,C000037,2723,Mary Brady,T5001,Credit,77.19,Technical issue,Pending Approval,2026-05-06
+ADJ000002,C000325,291,John Smith,T5002,Credit,60.29,Technical issue,Pending Approval,2026-05-06
+ADJ000003,C001906,2825,Sarah Smith,T5007,Credit,42.77,Product inquiry,Pending Approval,2026-05-06
+ADJ000004,C000346,12235,Jane Smith,T5008,Credit,59.80,Refund request,Pending Approval,2026-05-06
+ADJ000005,C001299,7099,Mary Smith,T5010,Credit,46.94,Refund request,Pending Approval,2026-05-06
+ADJ000006,C000369,9153,Sharon Jenkins,T5011,Credit,59.39,Cancellation request,Approved,2026-05-06
+ADJ000007,C001041,7974,Mary Shaw,T5012,Credit,49.35,Product inquiry,Approved,2026-05-06
+ADJ000008,C001472,7738,Mary Smith,T5015,Credit,45.60,Billing inquiry,Approved,2026-05-06
+ADJ000009,C001597,6834,Mary Smith,T5016,Credit,44.74,Billing inquiry,Approved,2026-05-06
+ADJ000010,C001662,1116,Mary Henderson,T5017,Credit,44.39,Product inquiry,Pending Approval,2026-05-06
+ADJ000011,C000163,230,Kimberly Smith,T5018,Credit,66.48,Product inquiry,Approved,2026-05-06
+ADJ000012,C000393,6959,Joan Lin,T5019,Credit,58.90,Product inquiry,Approved,2026-05-06
+ADJ000013,C000534,1512,Mary Rowe,T5020,Refund,56.14,Refund request,Approved,2026-05-06
+ADJ000014,C001426,8294,Mary Smith,T5021,Refund,45.99,Refund request,Approved,2026-05-06
+ADJ000015,C001801,2467,Keith Smith,T5022,Credit,43.54,Cancellation request,Pending Approval,2026-05-06
+ADJ000016,C000926,2083,Mary Smith,T5025,Credit,50.70,Product inquiry,Pending Approval,2026-05-06
+ADJ000017,C001258,1478,Anna Sanchez,T5028,Credit,47.34,Cancellation request,Approved,2026-05-06
+ADJ000018,C001320,6003,Mary Smith,T5029,Credit,46.80,Technical issue,Pending Approval,2026-05-06
+ADJ000019,C000551,10490,Brenda Ramirez,T5034,Credit,55.89,Refund request,Pending Approval,2026-05-06
+ADJ000020,C000751,2087,Mary Burton,T5035,Refund,52.87,Refund request,Approved,2026-05-06
+ADJ000021,C001046,9721,Mary Smith,T5036,Credit,49.29,Cancellation request,Approved,2026-05-06
+ADJ000022,C001338,4308,William Smith,T5037,Refund,46.66,Refund request,Approved,2026-05-06
+ADJ000023,C000127,4022,Mary Harding,T5039,Credit,68.49,Technical issue,Pending Approval,2026-05-06
+ADJ000024,C000947,5296,Evelyn Jefferson,T5042,Credit,50.47,Billing inquiry,Pending Approval,2026-05-06
+ADJ000025,C000972,8542,Jane Rich,T5045,Credit,50.10,Refund request,Pending Approval,2026-05-06
+ADJ000026,C001576,4838,Mark Frank,T5047,Refund,44.89,Refund request,Approved,2026-05-06
+ADJ000027,C000264,10610,Nancy Bryant,T5049,Credit,62.43,Cancellation request,Approved,2026-05-06
+ADJ000028,C000675,1373,Mary Smith,T5051,Refund,53.89,Refund request,Approved,2026-05-06
+ADJ000029,C000880,2600,Deborah Smith,T5052,Refund,51.25,Refund request,Approved,2026-05-06
+ADJ000030,C001077,5660,Mary Maldonado,T5053,Refund,48.98,Refund request,Approved,2026-05-06
+ADJ000031,C000562,2540,Patricia Smith,T5056,Credit,55.77,Cancellation request,Pending Approval,2026-05-06
+ADJ000032,C000846,2609,Mary Smith,T5058,Credit,51.59,Refund request,Pending Approval,2026-05-06
+ADJ000033,C001460,1961,Mary Holt,T5062,Credit,45.69,Product inquiry,Pending Approval,2026-05-06
+ADJ000034,C001910,4107,Larry Franklin,T5063,Credit,42.74,Billing inquiry,Approved,2026-05-06
+ADJ000035,C000389,9377,Carol Leach,T5064,Credit,58.99,Billing inquiry,Approved,2026-05-06
+ADJ000036,C000692,972,Mary Smith,T5067,Credit,53.64,Billing inquiry,Approved,2026-05-06
+ADJ000037,C000994,10778,Mary Mercado,T5069,Credit,49.90,Technical issue,Pending Approval,2026-05-06
+ADJ000038,C001066,647,Mary Rios,T5070,Refund,49.04,Refund request,Approved,2026-05-06
+ADJ000039,C001271,8167,Betty Roberts,T5072,Refund,47.22,Refund request,Approved,2026-05-06
+ADJ000040,C001410,8038,Donald Smith,T5074,Credit,46.14,Cancellation request,Pending Approval,2026-05-06
+ADJ000041,C001646,4040,Harold Hart,T5075,Credit,44.45,Billing inquiry,Pending Approval,2026-05-06
+ADJ000042,C001693,4279,Jack Meyer,T5076,Credit,44.22,Product inquiry,Pending Approval,2026-05-06
+ADJ000043,C001701,917,Andrew Glenn,T5077,Credit,44.19,Cancellation request,Pending Approval,2026-05-06
+ADJ000044,C000099,2851,Mary Huffman,T5080,Credit,70.37,Technical issue,Pending Approval,2026-05-06
+ADJ000045,C000687,3754,Mary Sims,T5081,Credit,53.69,Technical issue,Pending Approval,2026-05-06
+ADJ000046,C001413,1175,Mary Gray,T5083,Refund,46.10,Refund request,Approved,2026-05-06
+ADJ000047,C001495,9683,Mary Ray,T5084,Credit,45.45,Technical issue,Pending Approval,2026-05-06
+ADJ000048,C001634,9972,William Serrano,T5086,Credit,44.50,Product inquiry,Approved,2026-05-06
+ADJ000049,C001747,10018,Gregory Rodriguez,T5087,Credit,43.90,Technical issue,Pending Approval,2026-05-06
+ADJ000050,C001963,10570,William Moore,T5088,Credit,42.49,Technical issue,Approved,2026-05-06
+ADJ000051,C000162,3889,Mary Smith,T5089,Credit,66.70,Billing inquiry,Pending Approval,2026-05-06
+ADJ000052,C000313,4454,Robert Smith,T5091,Refund,60.69,Refund request,Approved,2026-05-06
+ADJ000053,C000540,4187,Jesse Mack,T5094,Refund,56.04,Refund request,Approved,2026-05-06
+ADJ000054,C000772,40,Mary Smith,T5095,Credit,52.54,Product inquiry,Pending Approval,2026-05-06
+ADJ000055,C001352,12061,Ruth Huffman,T5096,Credit,46.59,Product inquiry,Approved,2026-05-06
+ADJ000056,C001537,4494,Mary Smith,T5097,Credit,45.15,Cancellation request,Approved,2026-05-06
+ADJ000057,C001599,8853,Richard Ali,T5098,Credit,44.74,Product inquiry,Approved,2026-05-06
+ADJ000058,C000114,3979,Mary Wagner,T5099,Credit,69.39,Billing inquiry,Approved,2026-05-06
+ADJ000059,C000228,123,Mary Mann,T5101,Credit,63.89,Cancellation request,Approved,2026-05-06
+ADJ000060,C000261,6643,Nicholas Smith,T5102,Credit,62.49,Billing inquiry,Pending Approval,2026-05-06
+ADJ000061,C000730,11777,Melissa Marsh,T5103,Credit,53.09,Refund request,Pending Approval,2026-05-06
+ADJ000062,C000822,3272,Julie Smith,T5104,Refund,51.89,Refund request,Approved,2026-05-06
+ADJ000063,C000970,11262,Laura Lopez,T5105,Refund,50.11,Refund request,Approved,2026-05-06
+ADJ000064,C001000,9191,Marie Smith,T5106,Credit,49.79,Product inquiry,Pending Approval,2026-05-06
+ADJ000065,C001238,12322,Mary Cain,T5108,Credit,47.50,Technical issue,Approved,2026-05-06
+ADJ000066,C001289,6179,Samuel Henderson,T5109,Credit,47.06,Technical issue,Pending Approval,2026-05-06
+ADJ000067,C001489,1172,Marie Morales,T5110,Credit,45.49,Product inquiry,Approved,2026-05-06
+ADJ000068,C001667,6584,Mary Smith,T5111,Credit,44.38,Cancellation request,Approved,2026-05-06
+ADJ000069,C001775,9542,Mary Smith,T5112,Refund,43.69,Refund request,Approved,2026-05-06
+ADJ000070,C001889,8180,Albert Smith,T5114,Credit,42.85,Cancellation request,Approved,2026-05-06
+ADJ000071,C000125,3879,Melissa Davis,T5115,Credit,68.79,Cancellation request,Approved,2026-05-06
+ADJ000072,C000354,10013,Jessica Smith,T5116,Credit,59.69,Technical issue,Pending Approval,2026-05-06
+ADJ000073,C000570,6553,Larry House,T5117,Credit,55.59,Cancellation request,Approved,2026-05-06
+ADJ000074,C000760,8420,Gregory Fitzpatrick,T5119,Refund,52.64,Refund request,Approved,2026-05-06
+ADJ000075,C000938,5413,Mary Smith,T5122,Credit,50.56,Product inquiry,Pending Approval,2026-05-06
+ADJ000076,C001058,7771,Janice Jackson,T5123,Refund,49.14,Refund request,Approved,2026-05-06
+ADJ000077,C001254,846,Mary Powell,T5125,Credit,47.37,Technical issue,Approved,2026-05-06
+ADJ000078,C001508,10807,Benjamin Wilson,T5126,Refund,45.36,Refund request,Approved,2026-05-06
+ADJ000079,C001726,4536,Mary Griffin,T5128,Refund,44.06,Refund request,Approved,2026-05-06
+ADJ000080,C000053,9883,Michelle Waters,T5132,Credit,74.99,Product inquiry,Pending Approval,2026-05-06
+ADJ000081,C000204,10699,Mary Lee,T5134,Credit,64.74,Refund request,Pending Approval,2026-05-06
+ADJ000082,C000292,10707,Mary Hansen,T5135,Credit,61.43,Cancellation request,Pending Approval,2026-05-06
+ADJ000083,C000896,1688,Mary Blake,T5137,Credit,51.11,Cancellation request,Pending Approval,2026-05-06
+ADJ000084,C000997,4698,Mary Collier,T5139,Credit,49.80,Product inquiry,Pending Approval,2026-05-06
+ADJ000085,C001125,4815,Jerry Smith,T5141,Credit,48.55,Cancellation request,Pending Approval,2026-05-06
+ADJ000086,C001253,4875,Edward Peters,T5142,Credit,47.37,Technical issue,Approved,2026-05-06
+ADJ000087,C001296,11039,Mary Torres,T5143,Credit,46.98,Billing inquiry,Approved,2026-05-06
+ADJ000088,C001411,11895,Timothy Walter,T5144,Credit,46.11,Cancellation request,Pending Approval,2026-05-06
+ADJ000089,C001550,8381,Mary Anderson,T5145,Refund,45.01,Refund request,Approved,2026-05-06
+ADJ000090,C001940,6767,Brenda Carey,T5149,Refund,42.56,Refund request,Approved,2026-05-06
+ADJ000091,C002000,5781,Jack Stanley,T5150,Credit,42.30,Technical issue,Pending Approval,2026-05-06
+ADJ000092,C000009,5654,Jerry Smith,T5151,Credit,89.05,Refund request,Pending Approval,2026-05-06
+ADJ000093,C000017,4663,Paul Smith,T5152,Refund,82.80,Refund request,Approved,2026-05-06
+ADJ000094,C001234,9823,Mary Camacho,T5160,Credit,47.52,Billing inquiry,Approved,2026-05-06
+ADJ000095,C001264,3021,Nancy Alvarado,T5161,Refund,47.30,Refund request,Approved,2026-05-06
+ADJ000096,C001353,5300,Joseph Smith,T5162,Refund,46.59,Refund request,Approved,2026-05-06
+ADJ000097,C001422,642,Timothy Vasquez,T5163,Credit,46.00,Refund request,Pending Approval,2026-05-06
+ADJ000098,C001972,11866,Mary Smith,T5167,Refund,42.40,Refund request,Approved,2026-05-06
+ADJ000099,C000386,688,Kathy Gross,T5169,Credit,59.09,Billing inquiry,Approved,2026-05-06
+ADJ000100,C000763,847,Jerry Ferguson,T5172,Refund,52.60,Refund request,Approved,2026-05-06
+ADJ000101,C001309,11341,Mary Meyer,T5174,Refund,46.89,Refund request,Approved,2026-05-06
+ADJ000102,C001312,7864,Alice Smith,T5175,Credit,46.85,Technical issue,Pending Approval,2026-05-06
+ADJ000103,C000041,12285,Patrick Mcgee,T5178,Credit,76.59,Cancellation request,Approved,2026-05-06
+ADJ000104,C000448,6789,Jessica Mcintosh,T5180,Credit,57.59,Billing inquiry,Pending Approval,2026-05-06
+ADJ000105,C000468,2872,Mary Ortiz,T5181,Refund,57.29,Refund request,Approved,2026-05-06
+ADJ000106,C000473,6125,Jeremy Pennington,T5182,Credit,57.20,Cancellation request,Pending Approval,2026-05-06
+ADJ000107,C000478,5579,Mary Hurley,T5183,Credit,57.09,Product inquiry,Approved,2026-05-06
+ADJ000108,C000680,2893,Russell Wyatt,T5185,Refund,53.84,Refund request,Approved,2026-05-06
+ADJ000109,C001051,10170,Mary Tyler,T5189,Refund,49.24,Refund request,Approved,2026-05-06
+ADJ000110,C001120,11407,Steven Powers,T5190,Credit,48.59,Technical issue,Pending Approval,2026-05-06
+ADJ000111,C001149,956,Karen Smith,T5191,Credit,48.34,Refund request,Pending Approval,2026-05-06
+ADJ000112,C001283,8260,Teresa Berg,T5194,Credit,47.09,Cancellation request,Pending Approval,2026-05-06
+ADJ000113,C001483,12187,Mary Smith,T5196,Refund,45.50,Refund request,Approved,2026-05-06
+ADJ000114,C001540,5859,Ronald Wilson,T5197,Refund,45.11,Refund request,Approved,2026-05-06
+ADJ000115,C001650,5585,Mary Wilson,T5198,Refund,44.44,Refund request,Approved,2026-05-06
+ADJ000116,C001699,4877,Mary Greene,T5199,Credit,44.20,Cancellation request,Pending Approval,2026-05-06
+ADJ000117,C001703,9552,Richard Wilkerson,T5201,Credit,44.19,Product inquiry,Pending Approval,2026-05-06
+ADJ000118,C001840,2857,Eric Smith,T5202,Refund,43.20,Refund request,Approved,2026-05-06
+ADJ000119,C000035,6375,Mary Smith,T5205,Credit,77.40,Cancellation request,Approved,2026-05-06
+ADJ000120,C000051,341,Mary Smith,T5206,Refund,75.16,Refund request,Approved,2026-05-06
+ADJ000121,C000151,4491,Mary Banks,T5207,Credit,67.19,Billing inquiry,Approved,2026-05-06
+ADJ000122,C000181,10111,Mary Garcia,T5208,Credit,65.85,Billing inquiry,Pending Approval,2026-05-06
+ADJ000123,C000356,12329,Scott Norman,T5209,Refund,59.59,Refund request,Approved,2026-05-06
+ADJ000124,C000637,8954,Mary Hayden,T5214,Credit,54.39,Billing inquiry,Approved,2026-05-06
+ADJ000125,C000703,465,Shawn Smith,T5216,Credit,53.49,Billing inquiry,Pending Approval,2026-05-06
+ADJ000126,C000712,5824,James Smith,T5217,Credit,53.34,Technical issue,Approved,2026-05-06
+ADJ000127,C000736,3365,William Crawford,T5219,Credit,53.01,Billing inquiry,Pending Approval,2026-05-06
+ADJ000128,C000778,12341,Roy Fields,T5220,Credit,52.42,Technical issue,Pending Approval,2026-05-06
+ADJ000129,C000922,9589,Jacqueline Arroyo,T5222,Credit,50.78,Billing inquiry,Pending Approval,2026-05-06
+ADJ000130,C000967,5727,Mary Smith,T5223,Credit,50.15,Cancellation request,Pending Approval,2026-05-06
+ADJ000131,C000974,2250,Amanda Smith,T5224,Refund,50.09,Refund request,Approved,2026-05-06
+ADJ000132,C001037,254,Diana Hale,T5225,Refund,49.39,Refund request,Approved,2026-05-06
+ADJ000133,C001153,5564,Mary Smith,T5226,Credit,48.29,Technical issue,Approved,2026-05-06
+ADJ000134,C001201,8529,Mary Watts,T5227,Credit,47.83,Billing inquiry,Approved,2026-05-06
+ADJ000135,C001349,9302,Melissa Smith,T5230,Credit,46.60,Technical issue,Pending Approval,2026-05-06
+ADJ000136,C001414,1735,Mary Gill,T5231,Refund,46.09,Refund request,Approved,2026-05-06
+ADJ000137,C001534,2319,Mary Holland,T5232,Credit,45.18,Technical issue,Approved,2026-05-06
+ADJ000138,C001642,11957,Mary Norman,T5233,Credit,44.49,Technical issue,Approved,2026-05-06
+ADJ000139,C001656,6089,Laura Blair,T5234,Refund,44.41,Refund request,Approved,2026-05-06
+ADJ000140,C001915,359,Mary Pena,T5235,Credit,42.70,Cancellation request,Pending Approval,2026-05-06
+ADJ000141,C001965,3807,Mary Huang,T5236,Credit,42.45,Billing inquiry,Pending Approval,2026-05-06
+ADJ000142,C000015,10351,Teresa Gray,T5237,Credit,83.39,Refund request,Pending Approval,2026-05-06
+ADJ000143,C000036,4781,Janet Smith,T5238,Credit,77.19,Product inquiry,Approved,2026-05-06
+ADJ000144,C000059,9962,Diana Smith,T5239,Credit,74.19,Refund request,Pending Approval,2026-05-06
+ADJ000145,C000323,4980,Mary Wilson,T5243,Credit,60.38,Technical issue,Pending Approval,2026-05-06
+ADJ000146,C000327,7190,Mary Mckinney,T5244,Credit,60.21,Technical issue,Pending Approval,2026-05-06
+ADJ000147,C000927,2680,Jennifer Ferguson,T5249,Credit,50.70,Refund request,Pending Approval,2026-05-06
+ADJ000148,C001065,5548,Michael Crawford,T5250,Refund,49.05,Refund request,Approved,2026-05-06
+ADJ000149,C001119,6023,Shirley Webb,T5251,Credit,48.59,Technical issue,Pending Approval,2026-05-06
+ADJ000150,C001157,436,Mary Smith,T5252,Credit,48.20,Technical issue,Pending Approval,2026-05-06
+ADJ000151,C001226,12101,Samantha Smith,T5253,Credit,47.59,Cancellation request,Approved,2026-05-06
+ADJ000152,C001310,8889,Evelyn Brown,T5254,Credit,46.87,Technical issue,Approved,2026-05-06
+ADJ000153,C001402,6088,Mary Brooks,T5255,Refund,46.20,Refund request,Approved,2026-05-06
+ADJ000154,C001451,6287,Mary Smith,T5256,Refund,45.77,Refund request,Approved,2026-05-06
+ADJ000155,C001500,10062,Judith Smith,T5257,Credit,45.40,Cancellation request,Approved,2026-05-06
+ADJ000156,C001618,285,Shirley Smith,T5258,Credit,44.60,Cancellation request,Approved,2026-05-06
+ADJ000157,C001632,9575,John Richards,T5259,Credit,44.50,Product inquiry,Approved,2026-05-06
+ADJ000158,C001671,12069,Brittany Gardner,T5261,Credit,44.36,Billing inquiry,Approved,2026-05-06
+ADJ000159,C001707,10883,Catherine Zamora,T5262,Credit,44.17,Billing inquiry,Pending Approval,2026-05-06
+ADJ000160,C001774,2174,Rachel Fuentes,T5265,Credit,43.69,Refund request,Pending Approval,2026-05-06
+ADJ000161,C001966,7634,Pamela Ray,T5267,Credit,42.44,Technical issue,Approved,2026-05-06
+ADJ000162,C000164,1025,Megan Todd,T5270,Refund,66.40,Refund request,Approved,2026-05-06
+ADJ000163,C000263,6137,Eric Smith,T5271,Credit,62.45,Billing inquiry,Pending Approval,2026-05-06
+ADJ000164,C000270,6474,Madison Smith,T5272,Credit,62.24,Refund request,Pending Approval,2026-05-06
+ADJ000165,C000278,4599,Mary Smith,T5273,Credit,61.97,Technical issue,Pending Approval,2026-05-06
+ADJ000166,C000287,1824,Julia Tucker,T5274,Credit,61.51,Technical issue,Approved,2026-05-06
+ADJ000167,C000581,10071,Mary Lawrence,T5276,Refund,55.36,Refund request,Approved,2026-05-06
+ADJ000168,C000893,5186,Jason Robinson,T5280,Credit,51.14,Billing inquiry,Approved,2026-05-06
+ADJ000169,C001030,1990,Kathryn Smith,T5281,Credit,49.43,Product inquiry,Pending Approval,2026-05-06
+ADJ000170,C001188,11116,Mary Wu,T5284,Credit,47.99,Technical issue,Pending Approval,2026-05-06
+ADJ000171,C001404,3493,Joseph Simmons,T5287,Credit,46.19,Technical issue,Pending Approval,2026-05-06
+ADJ000172,C001444,7234,Mary Bowers,T5289,Refund,45.85,Refund request,Approved,2026-05-06
+ADJ000173,C001547,7333,Julia Smith,T5290,Credit,45.05,Refund request,Pending Approval,2026-05-06
+ADJ000174,C001748,1385,Catherine Smith,T5292,Credit,43.89,Cancellation request,Approved,2026-05-06
+ADJ000175,C001752,4456,Evelyn Spencer,T5293,Credit,43.85,Billing inquiry,Approved,2026-05-06
+ADJ000176,C001764,5999,Randy Smith,T5294,Credit,43.79,Product inquiry,Pending Approval,2026-05-06
+ADJ000177,C001833,1249,Donald Odom,T5295,Credit,43.29,Product inquiry,Pending Approval,2026-05-06
+ADJ000178,C001847,3046,Mary Newman,T5296,Refund,43.19,Refund request,Approved,2026-05-06
+ADJ000179,C001948,5637,Mary Wong,T5298,Credit,42.54,Cancellation request,Pending Approval,2026-05-06
+ADJ000180,C000086,3938,Mary Smith,T5301,Credit,71.63,Cancellation request,Approved,2026-05-06
+ADJ000181,C000383,5395,Mary Bell,T5306,Credit,59.19,Cancellation request,Pending Approval,2026-05-06
+ADJ000182,C000429,10612,Anna Smith,T5307,Refund,58.04,Refund request,Approved,2026-05-06
+ADJ000183,C000451,238,Charles Turner,T5308,Credit,57.56,Technical issue,Pending Approval,2026-05-06
+ADJ000184,C000457,8666,Mary Smith,T5309,Credit,57.44,Product inquiry,Approved,2026-05-06
+ADJ000185,C000587,7575,Mary Romero,T5310,Credit,55.24,Technical issue,Approved,2026-05-06
+ADJ000186,C000590,10258,Joyce Gonzalez,T5311,Credit,55.20,Technical issue,Approved,2026-05-06
+ADJ000187,C000655,7176,Mary Hudson,T5312,Credit,54.19,Refund request,Pending Approval,2026-05-06
+ADJ000188,C000980,639,Elizabeth Pittman,T5315,Credit,50.05,Cancellation request,Approved,2026-05-06
+ADJ000189,C001101,2157,Danielle Holt,T5316,Credit,48.74,Cancellation request,Pending Approval,2026-05-06
+ADJ000190,C001227,1812,Mary Smith,T5317,Credit,47.59,Cancellation request,Approved,2026-05-06
+ADJ000191,C001357,8768,Evelyn Bradford,T5320,Credit,46.55,Refund request,Pending Approval,2026-05-06
+ADJ000192,C001369,10296,Mary Ramos,T5322,Credit,46.49,Billing inquiry,Approved,2026-05-06
+ADJ000193,C001441,10165,Joan Buckley,T5323,Credit,45.89,Refund request,Pending Approval,2026-05-06
+ADJ000194,C001496,11473,Mary Smith,T5324,Credit,45.43,Technical issue,Pending Approval,2026-05-06
+ADJ000195,C001665,4795,Mary Smith,T5326,Refund,44.39,Refund request,Approved,2026-05-06
+ADJ000196,C001694,6187,Mary Hess,T5327,Credit,44.22,Product inquiry,Pending Approval,2026-05-06
+ADJ000197,C001722,9813,Mary Roth,T5328,Refund,44.08,Refund request,Approved,2026-05-06
+ADJ000198,C001820,5719,Mary Smith,T5330,Refund,43.39,Refund request,Approved,2026-05-06
+ADJ000199,C001882,5276,Mary Martin,T5331,Refund,42.90,Refund request,Approved,2026-05-06
+ADJ000200,C000169,9073,Thomas Skinner,T5335,Credit,66.19,Product inquiry,Approved,2026-05-06
+ADJ000201,C000387,8090,Mary Martinez,T5336,Credit,58.99,Cancellation request,Approved,2026-05-06
+ADJ000202,C000405,3816,Dorothy Smith,T5337,Credit,58.49,Technical issue,Pending Approval,2026-05-06
+ADJ000203,C000503,1802,Cynthia Smith,T5338,Credit,56.68,Technical issue,Approved,2026-05-06
+ADJ000204,C000556,9636,Mary Cruz,T5339,Credit,55.84,Technical issue,Pending Approval,2026-05-06
+ADJ000205,C000674,5936,Michael Davis,T5342,Credit,53.90,Cancellation request,Pending Approval,2026-05-06
+ADJ000206,C001022,907,Samantha Kline,T5345,Credit,49.55,Technical issue,Approved,2026-05-06
+ADJ000207,C001098,4707,Victoria Smith,T5346,Credit,48.77,Technical issue,Approved,2026-05-06
+ADJ000208,C001506,8605,Johnny Morse,T5348,Refund,45.38,Refund request,Approved,2026-05-06
+ADJ000209,C001705,10952,Mary Suarez,T5350,Credit,44.19,Billing inquiry,Pending Approval,2026-05-06
+ADJ000210,C001723,10138,Louis Kennedy,T5351,Credit,44.08,Cancellation request,Pending Approval,2026-05-06
+ADJ000211,C001878,1232,Betty Smith,T5353,Refund,42.90,Refund request,Approved,2026-05-06
+ADJ000212,C001914,12115,Lawrence Smith,T5354,Credit,42.70,Cancellation request,Pending Approval,2026-05-06
+ADJ000213,C001945,9338,James Davis,T5356,Credit,42.54,Billing inquiry,Approved,2026-05-06
+ADJ000214,C000014,664,Bobby Jimenez,T5357,Credit,83.94,Technical issue,Approved,2026-05-06
+ADJ000215,C000128,9743,David Smith,T5358,Credit,68.28,Refund request,Pending Approval,2026-05-06
+ADJ000216,C000137,5168,Mary Smith,T5360,Credit,67.81,Billing inquiry,Pending Approval,2026-05-06
+ADJ000217,C000348,1782,Robert Smith,T5364,Credit,59.79,Refund request,Pending Approval,2026-05-06
+ADJ000218,C000364,10982,Joan Harris,T5365,Credit,59.46,Cancellation request,Approved,2026-05-06
+ADJ000219,C000459,10653,Mary Smith,T5367,Credit,57.39,Cancellation request,Pending Approval,2026-05-06
+ADJ000220,C000559,5190,Mary Smith,T5368,Credit,55.83,Billing inquiry,Pending Approval,2026-05-06
+ADJ000221,C000677,4667,Cheryl Gonzalez,T5371,Refund,53.85,Refund request,Approved,2026-05-06
+ADJ000222,C000847,4159,Mary Castillo,T5373,Refund,51.59,Refund request,Approved,2026-05-06
+ADJ000223,C001329,6649,Mary Smith,T5374,Credit,46.70,Technical issue,Pending Approval,2026-05-06
+ADJ000224,C001431,9195,George Johns,T5377,Refund,45.97,Refund request,Approved,2026-05-06
+ADJ000225,C001498,2255,Cheryl Kline,T5379,Refund,45.40,Refund request,Approved,2026-05-06
+ADJ000226,C001527,6417,Helen Gomez,T5380,Refund,45.20,Refund request,Approved,2026-05-06
+ADJ000227,C001623,11491,David Smith,T5382,Credit,44.55,Product inquiry,Approved,2026-05-06
+ADJ000228,C001624,1126,Mary Thompson,T5383,Credit,44.55,Billing inquiry,Pending Approval,2026-05-06
+ADJ000229,C001652,4547,Mary Molina,T5384,Refund,44.44,Refund request,Approved,2026-05-06
+ADJ000230,C001717,11836,Mary Clayton,T5385,Credit,44.10,Product inquiry,Pending Approval,2026-05-06
+ADJ000231,C001869,4229,Barbara Smith,T5387,Credit,42.99,Cancellation request,Pending Approval,2026-05-06
+ADJ000232,C001927,7687,Evelyn Valencia,T5388,Credit,42.62,Billing inquiry,Approved,2026-05-06
+ADJ000233,C001936,6425,Ruth Smith,T5389,Refund,42.60,Refund request,Approved,2026-05-06
+ADJ000234,C000025,12431,Mary Rios,T5391,Credit,80.73,Technical issue,Approved,2026-05-06
+ADJ000235,C000047,5691,James Brown,T5392,Refund,76.09,Refund request,Approved,2026-05-06
+ADJ000236,C000065,11888,Frank Barrett,T5393,Credit,73.44,Billing inquiry,Pending Approval,2026-05-06
+ADJ000237,C000066,450,Kathryn Carter,T5394,Credit,73.31,Billing inquiry,Approved,2026-05-06
+ADJ000238,C000097,11645,Mary Ward,T5395,Credit,70.62,Product inquiry,Pending Approval,2026-05-06
+ADJ000239,C000117,6696,Mary Spencer,T5397,Refund,69.27,Refund request,Approved,2026-05-06
+ADJ000240,C000212,4659,Paul Smith,T5398,Refund,64.59,Refund request,Approved,2026-05-06
+ADJ000241,C000242,685,Crystal Smith,T5399,Credit,63.13,Billing inquiry,Pending Approval,2026-05-06
+ADJ000242,C000298,9107,Mark Nunez,T5400,Credit,61.29,Product inquiry,Approved,2026-05-06
+ADJ000243,C000776,8587,James Roy,T5405,Credit,52.46,Cancellation request,Pending Approval,2026-05-06
+ADJ000244,C000788,3020,Mary Smith,T5407,Refund,52.35,Refund request,Approved,2026-05-06
+ADJ000245,C000959,8948,Russell Smith,T5409,Credit,50.29,Product inquiry,Pending Approval,2026-05-06
+ADJ000246,C001107,12382,Jennifer Smith,T5412,Refund,48.69,Refund request,Approved,2026-05-06
+ADJ000247,C001111,5198,Mary Smith,T5413,Refund,48.65,Refund request,Approved,2026-05-06
+ADJ000248,C001183,6025,Mary Smith,T5415,Credit,48.04,Technical issue,Pending Approval,2026-05-06
+ADJ000249,C001260,9352,Mary Lewis,T5416,Credit,47.32,Refund request,Pending Approval,2026-05-06
+ADJ000250,C001358,2325,Mary Johnson,T5418,Credit,46.55,Refund request,Pending Approval,2026-05-06
+ADJ000251,C001467,6566,David Beck,T5420,Credit,45.62,Product inquiry,Pending Approval,2026-05-06
+ADJ000252,C001571,2320,Katherine Smith,T5421,Credit,44.89,Billing inquiry,Pending Approval,2026-05-06
+ADJ000253,C001712,7893,Lisa Smith,T5424,Credit,44.13,Product inquiry,Approved,2026-05-06
+ADJ000254,C001800,6585,Andrew Turner,T5425,Credit,43.54,Product inquiry,Approved,2026-05-06
+ADJ000255,C001826,4477,Jonathan Smith,T5427,Credit,43.37,Billing inquiry,Approved,2026-05-06
+ADJ000256,C000121,3554,Michael Smith,T5429,Refund,68.92,Refund request,Approved,2026-05-06
+ADJ000257,C000136,8170,Rachel Smith,T5430,Refund,67.83,Refund request,Approved,2026-05-06
+ADJ000258,C000520,6514,Crystal Contreras,T5436,Credit,56.36,Billing inquiry,Pending Approval,2026-05-06
+ADJ000259,C000533,4943,Paul Sosa,T5438,Credit,56.19,Cancellation request,Pending Approval,2026-05-06
+ADJ000260,C000998,8790,Mary Keller,T5443,Refund,49.80,Refund request,Approved,2026-05-06
+ADJ000261,C001004,1494,Rebecca Ortiz,T5444,Refund,49.72,Refund request,Approved,2026-05-06
+ADJ000262,C001042,5878,Sharon Smith,T5448,Credit,49.30,Billing inquiry,Approved,2026-05-06
+ADJ000263,C001168,11512,Mary Randall,T5450,Credit,48.10,Refund request,Pending Approval,2026-05-06
+ADJ000264,C001288,927,Diana Smith,T5451,Credit,47.07,Refund request,Pending Approval,2026-05-06
+ADJ000265,C001417,10951,Austin Weiss,T5453,Credit,46.04,Billing inquiry,Pending Approval,2026-05-06
+ADJ000266,C001522,11504,Mary Smith,T5454,Credit,45.25,Billing inquiry,Approved,2026-05-06
+ADJ000267,C001643,12178,Mary Mcgee,T5455,Credit,44.47,Billing inquiry,Pending Approval,2026-05-06
+ADJ000268,C001663,929,Alan Smith,T5456,Refund,44.39,Refund request,Approved,2026-05-06
+ADJ000269,C001687,12261,Mary Harris,T5457,Refund,44.29,Refund request,Approved,2026-05-06
+ADJ000270,C001695,203,Madison Blankenship,T5458,Credit,44.20,Refund request,Pending Approval,2026-05-06
+ADJ000271,C001708,937,Daniel Cole,T5459,Refund,44.16,Refund request,Approved,2026-05-06
+ADJ000272,C001798,1793,Mary Burke,T5462,Credit,43.54,Billing inquiry,Pending Approval,2026-05-06
+ADJ000273,C000107,9490,Mary Glass,T5465,Credit,69.84,Cancellation request,Pending Approval,2026-05-06
+ADJ000274,C000189,7597,Catherine Smith,T5466,Credit,65.55,Product inquiry,Approved,2026-05-06
+ADJ000275,C000294,1578,Lisa Harper,T5468,Credit,61.34,Billing inquiry,Pending Approval,2026-05-06
+ADJ000276,C000440,2755,Andrew Smith,T5471,Credit,57.79,Refund request,Pending Approval,2026-05-06
+ADJ000277,C000543,1901,Jacob Smith,T5472,Credit,56.01,Product inquiry,Approved,2026-05-06
+ADJ000278,C000688,2969,Mary Fernandez,T5476,Credit,53.67,Billing inquiry,Approved,2026-05-06
+ADJ000279,C000706,6256,Mary Murray,T5477,Refund,53.41,Refund request,Approved,2026-05-06
+ADJ000280,C000713,7327,Tammy Hood,T5478,Credit,53.33,Cancellation request,Pending Approval,2026-05-06
+ADJ000281,C000821,3074,Mary Smith,T5480,Credit,51.89,Refund request,Pending Approval,2026-05-06
+ADJ000282,C000838,5741,Mary Spencer,T5482,Credit,51.70,Cancellation request,Approved,2026-05-06
+ADJ000283,C000929,9992,Mary Smith,T5485,Credit,50.70,Technical issue,Pending Approval,2026-05-06
+ADJ000284,C000963,7042,Mary Hudson,T5487,Refund,50.20,Refund request,Approved,2026-05-06
+ADJ000285,C001071,8365,Matthew Norman,T5488,Credit,49.00,Technical issue,Pending Approval,2026-05-06
+ADJ000286,C001154,3926,Ann Allison,T5490,Credit,48.27,Cancellation request,Approved,2026-05-06
+ADJ000287,C001328,8298,Theresa Russell,T5492,Credit,46.70,Technical issue,Approved,2026-05-06
+ADJ000288,C001334,10925,Marie Abbott,T5493,Credit,46.69,Billing inquiry,Pending Approval,2026-05-06
+ADJ000289,C001598,2321,Mary Patel,T5494,Credit,44.74,Refund request,Pending Approval,2026-05-06
+ADJ000290,C001918,5236,Jessica Roberts,T5499,Credit,42.69,Product inquiry,Pending Approval,2026-05-06
+ADJ000291,C001953,2676,Jeffrey Smith,T5500,Credit,42.52,Billing inquiry,Pending Approval,2026-05-06
+ADJ000292,C000004,1657,Betty Phillips,T5501,Credit,92.24,Cancellation request,Approved,2026-05-06
+ADJ000293,C000034,9557,Mary Figueroa,T5502,Credit,77.82,Billing inquiry,Pending Approval,2026-05-06
+ADJ000294,C000093,1540,Mary Mckee,T5503,Credit,70.94,Technical issue,Approved,2026-05-06
+ADJ000295,C000399,8368,Susan Smith,T5506,Credit,58.74,Billing inquiry,Pending Approval,2026-05-06
+ADJ000296,C000462,3295,Maria Joseph,T5507,Credit,57.34,Cancellation request,Pending Approval,2026-05-06
+ADJ000297,C000553,10253,Kyle Smith,T5508,Credit,55.88,Cancellation request,Pending Approval,2026-05-06
+ADJ000298,C000710,744,Gary Hodges,T5510,Credit,53.39,Product inquiry,Approved,2026-05-06
+ADJ000299,C000727,10543,Jonathan Smith,T5511,Refund,53.11,Refund request,Approved,2026-05-06
+ADJ000300,C000781,4991,Mary Krause,T5513,Refund,52.40,Refund request,Approved,2026-05-06
+ADJ000301,C000795,9819,Crystal Smith,T5514,Credit,52.26,Product inquiry,Pending Approval,2026-05-06
+ADJ000302,C000800,12210,Mary Smith,T5515,Credit,52.19,Technical issue,Pending Approval,2026-05-06
+ADJ000303,C000849,3676,Mary Smith,T5517,Credit,51.56,Billing inquiry,Pending Approval,2026-05-06
+ADJ000304,C000863,4931,Arthur Smith,T5518,Credit,51.44,Billing inquiry,Approved,2026-05-06
+ADJ000305,C000892,9847,Mary Smith,T5519,Credit,51.16,Product inquiry,Pending Approval,2026-05-06
+ADJ000306,C000923,4238,Bryan Griffin,T5520,Credit,50.77,Technical issue,Pending Approval,2026-05-06
+ADJ000307,C000971,242,Mary Stein,T5521,Credit,50.10,Cancellation request,Pending Approval,2026-05-06
+ADJ000308,C001087,376,Grace Sanchez,T5523,Credit,48.87,Product inquiry,Approved,2026-05-06
+ADJ000309,C001110,4109,Scott Shaffer,T5524,Credit,48.65,Cancellation request,Approved,2026-05-06
+ADJ000310,C001152,5388,David Ashley,T5525,Refund,48.29,Refund request,Approved,2026-05-06
+ADJ000311,C001172,7593,Roger Bowman,T5526,Refund,48.09,Refund request,Approved,2026-05-06
+ADJ000312,C001249,383,Evelyn Smith,T5527,Credit,47.40,Refund request,Pending Approval,2026-05-06
+ADJ000313,C001274,8674,Mary Rhodes,T5528,Credit,47.19,Refund request,Pending Approval,2026-05-06
+ADJ000314,C001463,6671,Randy Chambers,T5533,Refund,45.68,Refund request,Approved,2026-05-06
+ADJ000315,C001725,1460,George Williams,T5536,Refund,44.07,Refund request,Approved,2026-05-06
+ADJ000316,C001829,8403,Joseph Smith,T5538,Credit,43.30,Technical issue,Approved,2026-05-06
+ADJ000317,C001907,12288,Karen Smith,T5541,Credit,42.75,Product inquiry,Pending Approval,2026-05-06
+ADJ000318,C000195,11337,Mary Howell,T5544,Refund,65.25,Refund request,Approved,2026-05-06
+ADJ000319,C000265,9928,Mary Smith,T5545,Credit,62.41,Cancellation request,Pending Approval,2026-05-06
+ADJ000320,C000317,4290,Lori Davis,T5547,Credit,60.59,Technical issue,Approved,2026-05-06
+ADJ000321,C000420,6230,Kenneth Cameron,T5548,Refund,58.26,Refund request,Approved,2026-05-06
+ADJ000322,C000456,11741,Mary Smith,T5549,Refund,57.46,Refund request,Approved,2026-05-06
+ADJ000323,C000588,10849,Hannah Simpson,T5552,Credit,55.24,Technical issue,Pending Approval,2026-05-06
+ADJ000324,C000613,3180,Raymond Smith,T5553,Credit,54.73,Technical issue,Pending Approval,2026-05-06
+ADJ000325,C000663,4399,Richard Smith,T5554,Credit,54.04,Billing inquiry,Approved,2026-05-06
+ADJ000326,C000733,364,Jason Mcmahon,T5555,Credit,53.04,Product inquiry,Pending Approval,2026-05-06
+ADJ000327,C000752,1627,Mary Gonzales,T5556,Credit,52.85,Billing inquiry,Pending Approval,2026-05-06
+ADJ000328,C000888,11678,Olivia Smith,T5559,Credit,51.19,Product inquiry,Pending Approval,2026-05-06
+ADJ000329,C001019,10934,Tiffany Walker,T5561,Credit,49.59,Technical issue,Pending Approval,2026-05-06
+ADJ000330,C001268,7216,Mary Hendrix,T5565,Credit,47.29,Cancellation request,Approved,2026-05-06
+ADJ000331,C001403,3375,Mary Sanchez,T5568,Credit,46.19,Billing inquiry,Approved,2026-05-06
+ADJ000332,C001442,1273,Maria Evans,T5570,Credit,45.89,Cancellation request,Pending Approval,2026-05-06
+ADJ000333,C001593,10257,Michael Smith,T5574,Credit,44.75,Cancellation request,Pending Approval,2026-05-06
+ADJ000334,C001964,8136,Charles Smith,T5578,Credit,42.45,Billing inquiry,Approved,2026-05-06
+ADJ000335,C000170,6303,Mary Smith,T5581,Credit,66.17,Cancellation request,Pending Approval,2026-05-06
+ADJ000336,C000186,10601,Patrick Mayo,T5582,Refund,65.74,Refund request,Approved,2026-05-06
+ADJ000337,C000222,11733,Christopher Chan,T5583,Credit,64.20,Cancellation request,Approved,2026-05-06
+ADJ000338,C000237,938,Cheryl Smith,T5584,Credit,63.64,Cancellation request,Approved,2026-05-06
+ADJ000339,C000260,3303,Mary Robinson,T5585,Credit,62.51,Cancellation request,Pending Approval,2026-05-06
+ADJ000340,C000297,1636,Julie Petersen,T5586,Credit,61.29,Refund request,Pending Approval,2026-05-06
+ADJ000341,C000482,8895,Mary Ferguson,T5587,Credit,56.95,Refund request,Pending Approval,2026-05-06
+ADJ000342,C000487,4013,Gloria Thornton,T5588,Refund,56.89,Refund request,Approved,2026-05-06
+ADJ000343,C000521,640,Jean Smith,T5589,Credit,56.34,Billing inquiry,Pending Approval,2026-05-06
+ADJ000344,C000644,12238,Rebecca Gallagher,T5590,Credit,54.30,Technical issue,Approved,2026-05-06
+ADJ000345,C000656,11224,Mary Smith,T5591,Refund,54.18,Refund request,Approved,2026-05-06
+ADJ000346,C000719,6350,Mary Wilson,T5592,Refund,53.29,Refund request,Approved,2026-05-06
+ADJ000347,C000725,5490,Mary Richardson,T5593,Credit,53.12,Technical issue,Pending Approval,2026-05-06
+ADJ000348,C000758,502,Jennifer May,T5595,Credit,52.69,Billing inquiry,Approved,2026-05-06
+ADJ000349,C000785,12013,Katherine Kramer,T5597,Credit,52.39,Cancellation request,Pending Approval,2026-05-06
+ADJ000350,C000814,9375,George Smith,T5598,Credit,51.92,Technical issue,Approved,2026-05-06
+ADJ000351,C000825,6342,Kimberly Blair,T5599,Credit,51.89,Technical issue,Pending Approval,2026-05-06
+ADJ000352,C000855,7677,Mary Bonilla,T5600,Credit,51.50,Technical issue,Approved,2026-05-06
+ADJ000353,C000911,4901,Brenda Smith,T5602,Credit,50.89,Technical issue,Approved,2026-05-06
+ADJ000354,C000991,888,Mary Smith,T5603,Credit,49.94,Billing inquiry,Pending Approval,2026-05-06
+ADJ000355,C001009,10567,Diana Smith,T5604,Credit,49.70,Refund request,Pending Approval,2026-05-06
+ADJ000356,C001031,6405,Mary Anderson,T5605,Credit,49.41,Product inquiry,Pending Approval,2026-05-06
+ADJ000357,C001237,1848,Mary Brown,T5608,Refund,47.50,Refund request,Approved,2026-05-06
+ADJ000358,C001279,3316,Mary Oconnor,T5609,Credit,47.14,Technical issue,Pending Approval,2026-05-06
+ADJ000359,C001367,4479,Billy Mooney,T5610,Refund,46.49,Refund request,Approved,2026-05-06
+ADJ000360,C001476,6253,Mary Peterson,T5613,Refund,45.55,Refund request,Approved,2026-05-06
+ADJ000361,C001477,1882,Jacob Wood,T5614,Refund,45.55,Refund request,Approved,2026-05-06
+ADJ000362,C001827,8692,Vincent Smith,T5619,Credit,43.34,Product inquiry,Approved,2026-05-06
+ADJ000363,C001994,1164,Mary Hahn,T5623,Credit,42.32,Cancellation request,Approved,2026-05-06
+ADJ000364,C000023,1443,Denise Cohen,T5624,Credit,81.50,Technical issue,Pending Approval,2026-05-06
+ADJ000365,C000159,5493,Mary Cochran,T5627,Credit,66.84,Technical issue,Pending Approval,2026-05-06
+ADJ000366,C000236,1826,Matthew Smith,T5628,Credit,63.67,Billing inquiry,Approved,2026-05-06
+ADJ000367,C000238,2330,Sharon Sellers,T5629,Credit,63.56,Billing inquiry,Approved,2026-05-06
+ADJ000368,C000279,8052,Pamela Smith,T5630,Credit,61.89,Product inquiry,Pending Approval,2026-05-06
+ADJ000369,C000334,8847,Ruth Brown,T5631,Refund,60.07,Refund request,Approved,2026-05-06
+ADJ000370,C000410,7082,Adam Blair,T5633,Credit,58.44,Cancellation request,Pending Approval,2026-05-06
+ADJ000371,C000601,801,Elizabeth Parker,T5637,Credit,55.04,Cancellation request,Pending Approval,2026-05-06
+ADJ000372,C000659,4212,Robert Mendez,T5639,Credit,54.12,Product inquiry,Pending Approval,2026-05-06
+ADJ000373,C000676,6288,Catherine Johnson,T5640,Refund,53.89,Refund request,Approved,2026-05-06
+ADJ000374,C000789,7988,Mary Rice,T5642,Credit,52.34,Billing inquiry,Pending Approval,2026-05-06
+ADJ000375,C000828,5946,Daniel Smith,T5643,Credit,51.84,Billing inquiry,Approved,2026-05-06
+ADJ000376,C000936,11694,Margaret Rios,T5644,Credit,50.64,Cancellation request,Pending Approval,2026-05-06
+ADJ000377,C001033,3033,Kevin Larsen,T5645,Refund,49.40,Refund request,Approved,2026-05-06
+ADJ000378,C001062,4861,Rebecca Smith,T5646,Refund,49.10,Refund request,Approved,2026-05-06
+ADJ000379,C001362,2367,Sean Smith,T5649,Refund,46.53,Refund request,Approved,2026-05-06
+ADJ000380,C001546,512,Mary Harris,T5650,Credit,45.05,Technical issue,Pending Approval,2026-05-06
+ADJ000381,C001554,4941,Mary Smith,T5651,Credit,45.00,Technical issue,Approved,2026-05-06
+ADJ000382,C001601,377,Mary Smith,T5652,Credit,44.73,Product inquiry,Approved,2026-05-06
+ADJ000383,C001883,9176,Theresa Smith,T5654,Credit,42.90,Billing inquiry,Pending Approval,2026-05-06
+ADJ000384,C001886,5913,Cynthia Daniel,T5655,Refund,42.88,Refund request,Approved,2026-05-06
+ADJ000385,C001911,1677,Virginia Robles,T5656,Refund,42.70,Refund request,Approved,2026-05-06
+ADJ000386,C001920,1651,Stephanie Smith,T5657,Credit,42.68,Refund request,Pending Approval,2026-05-06
+ADJ000387,C001997,8684,Tiffany Brown,T5658,Credit,42.30,Technical issue,Approved,2026-05-06
+ADJ000388,C000100,11378,Mary Foster,T5660,Refund,70.34,Refund request,Approved,2026-05-06
+ADJ000389,C000241,7211,Kathleen Smith,T5663,Credit,63.14,Billing inquiry,Approved,2026-05-06
+ADJ000390,C000403,194,Mary Bates,T5667,Credit,58.51,Technical issue,Pending Approval,2026-05-06
+ADJ000391,C000414,5570,Mary Smith,T5668,Credit,58.39,Refund request,Pending Approval,2026-05-06
+ADJ000392,C000915,1430,Henry Smith,T5675,Credit,50.85,Product inquiry,Approved,2026-05-06
+ADJ000393,C000966,4320,Jordan Taylor,T5676,Credit,50.16,Product inquiry,Approved,2026-05-06
+ADJ000394,C000986,11668,Jean Smith,T5677,Refund,49.99,Refund request,Approved,2026-05-06
+ADJ000395,C001067,6759,Matthew Smith,T5678,Credit,49.04,Technical issue,Approved,2026-05-06
+ADJ000396,C001121,10928,Sharon Smith,T5680,Credit,48.59,Technical issue,Pending Approval,2026-05-06
+ADJ000397,C001205,5989,Kathleen Becker,T5683,Refund,47.80,Refund request,Approved,2026-05-06
+ADJ000398,C001242,2469,Shawn Smith,T5684,Credit,47.49,Product inquiry,Pending Approval,2026-05-06
+ADJ000399,C001265,5805,Raymond Bray,T5685,Credit,47.29,Technical issue,Pending Approval,2026-05-06
+ADJ000400,C001286,5280,Mary Day,T5686,Credit,47.09,Billing inquiry,Approved,2026-05-06
+ADJ000401,C001381,1038,Christine Briggs,T5687,Refund,46.36,Refund request,Approved,2026-05-06
+ADJ000402,C001519,6279,Gary Lewis,T5692,Credit,45.30,Product inquiry,Approved,2026-05-06
+ADJ000403,C001524,3985,Debra Gates,T5693,Credit,45.20,Cancellation request,Pending Approval,2026-05-06
+ADJ000404,C001583,11618,Tammy Smith,T5695,Refund,44.80,Refund request,Approved,2026-05-06
+ADJ000405,C001670,5731,Jennifer Smith,T5697,Credit,44.36,Cancellation request,Approved,2026-05-06
+ADJ000406,C001768,2586,Mary Little,T5698,Credit,43.75,Billing inquiry,Pending Approval,2026-05-06
+ADJ000407,C001771,4730,Karen Smith,T5699,Refund,43.70,Refund request,Approved,2026-05-06
+ADJ000408,C001803,3890,Gregory Snyder,T5701,Credit,43.50,Product inquiry,Pending Approval,2026-05-06
+ADJ000409,C001834,6915,Robert Whitney,T5702,Credit,43.28,Technical issue,Pending Approval,2026-05-06
+ADJ000410,C001932,2668,Mary Davis,T5703,Credit,42.60,Product inquiry,Approved,2026-05-06
+ADJ000411,C001971,12045,Jeffrey Ryan,T5704,Credit,42.44,Product inquiry,Approved,2026-05-06
+ADJ000412,C000013,10235,Joseph Singh,T5705,Refund,84.04,Refund request,Approved,2026-05-06
+ADJ000413,C000016,2292,Ashley Smith,T5706,Credit,82.93,Product inquiry,Approved,2026-05-06
+ADJ000414,C000067,9821,Deborah Smith,T5707,Credit,73.28,Technical issue,Approved,2026-05-06
+ADJ000415,C000078,468,Mary Stone,T5708,Credit,72.11,Cancellation request,Pending Approval,2026-05-06
+ADJ000416,C000122,8314,Angela Walsh,T5710,Credit,68.91,Billing inquiry,Pending Approval,2026-05-06
+ADJ000417,C000153,5371,Emma Robinson,T5711,Credit,67.04,Refund request,Pending Approval,2026-05-06
+ADJ000418,C000240,1948,Peter Smith,T5712,Credit,63.19,Technical issue,Approved,2026-05-06
+ADJ000419,C000299,7060,Virginia Carroll,T5713,Credit,61.28,Product inquiry,Approved,2026-05-06
+ADJ000420,C000373,2205,Wayne Rodriguez,T5715,Credit,59.26,Refund request,Pending Approval,2026-05-06
+ADJ000421,C000418,1222,Michael Garcia,T5716,Refund,58.33,Refund request,Approved,2026-05-06
+ADJ000422,C000475,10307,Bobby Miller,T5717,Credit,57.16,Technical issue,Pending Approval,2026-05-06
+ADJ000423,C000576,6430,Mary Jackson,T5719,Credit,55.41,Product inquiry,Pending Approval,2026-05-06
+ADJ000424,C000664,6393,Mary Smith,T5720,Credit,54.04,Cancellation request,Pending Approval,2026-05-06
+ADJ000425,C000691,7282,Jennifer Clark,T5721,Credit,53.64,Billing inquiry,Pending Approval,2026-05-06
+ADJ000426,C000983,6969,Mary Smith,T5726,Refund,50.01,Refund request,Approved,2026-05-06
+ADJ000427,C001003,1715,Mary Henson,T5727,Refund,49.74,Refund request,Approved,2026-05-06
+ADJ000428,C001005,10457,Elizabeth Watkins,T5728,Credit,49.71,Cancellation request,Pending Approval,2026-05-06
+ADJ000429,C001043,3580,Jessica Larson,T5729,Credit,49.30,Cancellation request,Approved,2026-05-06
+ADJ000430,C001182,11689,Samantha Parker,T5733,Credit,48.04,Refund request,Pending Approval,2026-05-06
+ADJ000431,C001195,8892,Russell Dennis,T5735,Credit,47.89,Technical issue,Pending Approval,2026-05-06
+ADJ000432,C001282,5427,Betty Lester,T5736,Credit,47.10,Cancellation request,Approved,2026-05-06
+ADJ000433,C001305,4876,Harry Smith,T5737,Credit,46.90,Billing inquiry,Approved,2026-05-06
+ADJ000434,C001429,3656,Willie Smith,T5739,Credit,45.99,Technical issue,Approved,2026-05-06
+ADJ000435,C001532,7958,Jessica Cochran,T5741,Credit,45.19,Technical issue,Pending Approval,2026-05-06
+ADJ000436,C001585,8013,Mary Adams,T5742,Credit,44.80,Cancellation request,Pending Approval,2026-05-06
+ADJ000437,C001602,8602,Timothy Gilbert,T5743,Credit,44.72,Technical issue,Pending Approval,2026-05-06
+ADJ000438,C001609,5431,Judith Peck,T5744,Credit,44.69,Cancellation request,Pending Approval,2026-05-06
+ADJ000439,C001728,440,Mary Skinner,T5745,Refund,44.05,Refund request,Approved,2026-05-06
+ADJ000440,C001835,9093,Andrew Flores,T5747,Credit,43.26,Technical issue,Approved,2026-05-06
+ADJ000441,C000008,4249,Mary Butler,T5749,Credit,89.19,Technical issue,Pending Approval,2026-05-06
+ADJ000442,C000032,10591,Deborah Humphrey,T5750,Credit,78.89,Cancellation request,Pending Approval,2026-05-06
+ADJ000443,C000044,749,Jesse Matthews,T5751,Credit,76.49,Technical issue,Pending Approval,2026-05-06
+ADJ000444,C000074,11048,Randy Ball,T5753,Credit,72.39,Cancellation request,Pending Approval,2026-05-06
+ADJ000445,C000083,9358,Mary Smith,T5756,Refund,71.83,Refund request,Approved,2026-05-06
+ADJ000446,C000193,11132,Jonathan Washington,T5757,Refund,65.33,Refund request,Approved,2026-05-06
+ADJ000447,C000322,5752,Barbara Smith,T5760,Refund,60.44,Refund request,Approved,2026-05-06
+ADJ000448,C000330,2462,Lawrence Kent,T5761,Credit,60.15,Technical issue,Pending Approval,2026-05-06
+ADJ000449,C000463,4257,William Smith,T5762,Refund,57.34,Refund request,Approved,2026-05-06
+ADJ000450,C000646,7616,Mary Mason,T5766,Credit,54.29,Refund request,Pending Approval,2026-05-06
+ADJ000451,C000761,3501,Rachel Davila,T5770,Credit,52.64,Product inquiry,Approved,2026-05-06
+ADJ000452,C000988,11861,Brittany Bentley,T5777,Credit,49.95,Cancellation request,Pending Approval,2026-05-06
+ADJ000453,C001070,4916,Larry Smith,T5780,Credit,49.01,Billing inquiry,Pending Approval,2026-05-06
+ADJ000454,C001233,10631,Frances Smith,T5781,Refund,47.53,Refund request,Approved,2026-05-06
+ADJ000455,C001284,8929,David Smith,T5783,Credit,47.09,Cancellation request,Approved,2026-05-06
+ADJ000456,C001295,3925,Mary Hicks,T5784,Credit,46.99,Refund request,Pending Approval,2026-05-06
+ADJ000457,C001340,10022,Alice Smith,T5786,Credit,46.65,Billing inquiry,Pending Approval,2026-05-06
+ADJ000458,C001383,8949,Mary Thompson,T5787,Credit,46.34,Refund request,Pending Approval,2026-05-06
+ADJ000459,C001407,11311,Julie White,T5788,Credit,46.17,Product inquiry,Pending Approval,2026-05-06
+ADJ000460,C001409,11801,Shirley Smith,T5789,Credit,46.14,Product inquiry,Pending Approval,2026-05-06
+ADJ000461,C001711,5665,Mary Smith,T5790,Credit,44.14,Billing inquiry,Pending Approval,2026-05-06
+ADJ000462,C001799,8845,Robert Deleon,T5791,Credit,43.54,Product inquiry,Approved,2026-05-06
+ADJ000463,C001808,3155,Mary Haas,T5792,Credit,43.49,Cancellation request,Pending Approval,2026-05-06
+ADJ000464,C001861,3499,Mildred Cole,T5793,Credit,43.00,Technical issue,Pending Approval,2026-05-06
+ADJ000465,C001879,11954,Mary Smith,T5794,Credit,42.90,Product inquiry,Pending Approval,2026-05-06
+ADJ000466,C000028,1011,Mary Smith,T5796,Credit,80.24,Refund request,Pending Approval,2026-05-06
+ADJ000467,C000069,1577,Mary Smith,T5797,Credit,73.09,Technical issue,Approved,2026-05-06
+ADJ000468,C000098,7670,Anna Smith,T5798,Credit,70.49,Refund request,Pending Approval,2026-05-06
+ADJ000469,C000131,2074,Mary Gross,T5799,Credit,68.21,Product inquiry,Approved,2026-05-06
+ADJ000470,C000145,437,Cynthia Benjamin,T5800,Refund,67.50,Refund request,Approved,2026-05-06
+ADJ000471,C000258,8016,Patricia Smith,T5802,Credit,62.59,Technical issue,Pending Approval,2026-05-06
+ADJ000472,C000284,3031,Carol Smith,T5804,Credit,61.60,Product inquiry,Pending Approval,2026-05-06
+ADJ000473,C000350,1054,Barbara Cooley,T5807,Credit,59.74,Technical issue,Approved,2026-05-06
+ADJ000474,C000425,6110,Mary Smith,T5808,Refund,58.23,Refund request,Approved,2026-05-06
+ADJ000475,C000525,142,Heather Smith,T5810,Refund,56.25,Refund request,Approved,2026-05-06
+ADJ000476,C000584,3830,William Smith,T5812,Credit,55.29,Billing inquiry,Approved,2026-05-06
+ADJ000477,C000621,4704,Henry James,T5813,Refund,54.59,Refund request,Approved,2026-05-06
+ADJ000478,C000709,5440,Mary Malone,T5815,Credit,53.39,Refund request,Pending Approval,2026-05-06
+ADJ000479,C000867,7186,Mary Meadows,T5819,Refund,51.38,Refund request,Approved,2026-05-06
+ADJ000480,C000890,11061,Joseph Webster,T5821,Credit,51.19,Product inquiry,Pending Approval,2026-05-06
+ADJ000481,C000899,1685,Cheryl Buchanan,T5822,Credit,51.09,Cancellation request,Pending Approval,2026-05-06
+ADJ000482,C001064,11077,Andrew Smith,T5827,Refund,49.05,Refund request,Approved,2026-05-06
+ADJ000483,C001197,6883,Mary Smith,T5829,Credit,47.86,Billing inquiry,Approved,2026-05-06
+ADJ000484,C001215,6942,Jordan Moran,T5830,Credit,47.65,Refund request,Pending Approval,2026-05-06
+ADJ000485,C001453,6338,Sharon Snyder,T5831,Credit,45.76,Billing inquiry,Pending Approval,2026-05-06
+ADJ000486,C001461,2301,Mary Smith,T5832,Refund,45.69,Refund request,Approved,2026-05-06
+ADJ000487,C001462,10518,Jesse Dawson,T5833,Credit,45.69,Technical issue,Approved,2026-05-06
+ADJ000488,C001481,7967,Samuel Jones,T5835,Credit,45.52,Refund request,Pending Approval,2026-05-06
+ADJ000489,C001491,10454,Anthony Leblanc,T5836,Credit,45.46,Billing inquiry,Pending Approval,2026-05-06
+ADJ000490,C001611,1889,Mary West,T5837,Credit,44.67,Cancellation request,Pending Approval,2026-05-06
+ADJ000491,C001647,4153,Kathleen Torres,T5838,Credit,44.45,Billing inquiry,Pending Approval,2026-05-06
+ADJ000492,C001762,98,William Smith,T5841,Credit,43.79,Product inquiry,Pending Approval,2026-05-06
+ADJ000493,C001824,9949,Ashley Smith,T5844,Credit,43.39,Product inquiry,Approved,2026-05-06
+ADJ000494,C001880,787,Amanda Ochoa,T5845,Refund,42.90,Refund request,Approved,2026-05-06
+ADJ000495,C001937,3508,Randy Smith,T5847,Credit,42.59,Billing inquiry,Approved,2026-05-06
+ADJ000496,C000089,4116,Mary Smith,T5850,Credit,71.14,Cancellation request,Pending Approval,2026-05-06
+ADJ000497,C000108,7417,Mary Soto,T5851,Refund,69.84,Refund request,Approved,2026-05-06
+ADJ000498,C000190,7717,Terry Smith,T5853,Refund,65.49,Refund request,Approved,2026-05-06
+ADJ000499,C000224,1417,Rachel Smith,T5855,Credit,64.09,Billing inquiry,Approved,2026-05-06
+ADJ000500,C000235,7926,Bobby Castillo,T5856,Credit,63.69,Billing inquiry,Approved,2026-05-06
+ADJ000501,C000288,5519,Deborah Archer,T5857,Credit,61.51,Billing inquiry,Approved,2026-05-06
+ADJ000502,C000300,9597,Lori Perez,T5859,Credit,61.23,Product inquiry,Pending Approval,2026-05-06
+ADJ000503,C000338,1014,Mary Maxwell,T5861,Credit,59.99,Billing inquiry,Approved,2026-05-06
+ADJ000504,C000400,3373,Mary Willis,T5862,Refund,58.59,Refund request,Approved,2026-05-06
+ADJ000505,C000467,1658,Dylan Conner,T5863,Refund,57.29,Refund request,Approved,2026-05-06
+ADJ000506,C000472,9692,Carolyn Price,T5865,Credit,57.22,Billing inquiry,Approved,2026-05-06
+ADJ000507,C000483,578,Dylan Knapp,T5866,Credit,56.94,Cancellation request,Approved,2026-05-06
+ADJ000508,C000509,6092,Mary Smith,T5867,Credit,56.55,Refund request,Pending Approval,2026-05-06
+ADJ000509,C000544,1853,Mary Austin,T5869,Credit,56.00,Cancellation request,Pending Approval,2026-05-06
+ADJ000510,C000585,11056,Larry Booker,T5870,Refund,55.25,Refund request,Approved,2026-05-06
+ADJ000511,C000609,11516,Kevin Smith,T5871,Credit,54.94,Technical issue,Pending Approval,2026-05-06
+ADJ000512,C000658,10916,Randy Smith,T5875,Credit,54.14,Product inquiry,Approved,2026-05-06
+ADJ000513,C000802,10803,Laura Carey,T5877,Credit,52.15,Technical issue,Approved,2026-05-06
+ADJ000514,C000860,12207,Jose Smith,T5879,Credit,51.45,Billing inquiry,Pending Approval,2026-05-06
+ADJ000515,C000905,6168,Arthur Li,T5881,Credit,51.00,Billing inquiry,Approved,2026-05-06
+ADJ000516,C000981,1092,George Garcia,T5882,Refund,50.04,Refund request,Approved,2026-05-06
+ADJ000517,C001028,10891,Mary Smith,T5883,Refund,49.45,Refund request,Approved,2026-05-06
+ADJ000518,C001056,3678,Alice Castro,T5884,Credit,49.18,Product inquiry,Pending Approval,2026-05-06
+ADJ000519,C001090,8754,Paul Sanchez,T5886,Refund,48.84,Refund request,Approved,2026-05-06
+ADJ000520,C001213,1567,Danielle Smith,T5887,Refund,47.69,Refund request,Approved,2026-05-06
+ADJ000521,C001267,8447,Michael Smith,T5888,Credit,47.29,Billing inquiry,Pending Approval,2026-05-06
+ADJ000522,C001380,5234,Shirley Humphrey,T5891,Credit,46.36,Cancellation request,Pending Approval,2026-05-06
+ADJ000523,C001480,5683,Rachel Smith,T5894,Refund,45.52,Refund request,Approved,2026-05-06
+ADJ000524,C001488,4202,Kimberly Griffin,T5895,Credit,45.49,Refund request,Pending Approval,2026-05-06
+ADJ000525,C001525,9384,Mary Anderson,T5897,Credit,45.20,Cancellation request,Approved,2026-05-06
+ADJ000526,C001660,4750,Mary Smith,T5899,Credit,44.39,Refund request,Pending Approval,2026-05-06
+ADJ000527,C001810,1788,Timothy Smith,T5901,Credit,43.46,Technical issue,Approved,2026-05-06
+ADJ000528,C001884,4778,Amy Campbell,T5904,Credit,42.90,Billing inquiry,Pending Approval,2026-05-06
+ADJ000529,C001917,3951,Michael Smith,T5905,Credit,42.69,Billing inquiry,Approved,2026-05-06
+ADJ000530,C001938,7879,Michelle Powell,T5906,Credit,42.59,Technical issue,Pending Approval,2026-05-06
+ADJ000531,C000001,791,Mary Smith,T5907,Credit,105.24,Technical issue,Approved,2026-05-06
+ADJ000532,C000010,5624,Mary Mata,T5908,Credit,87.62,Cancellation request,Pending Approval,2026-05-06
+ADJ000533,C000144,7358,Michael Simpson,T5910,Credit,67.54,Cancellation request,Approved,2026-05-06
+ADJ000534,C000178,172,Lauren Rush,T5911,Credit,65.91,Product inquiry,Approved,2026-05-06
+ADJ000535,C000230,5583,Mary Skinner,T5912,Credit,63.84,Refund request,Pending Approval,2026-05-06
+ADJ000536,C000245,1747,Mary Booker,T5913,Credit,62.99,Refund request,Pending Approval,2026-05-06
+ADJ000537,C000368,3257,Julia Mcconnell,T5914,Credit,59.39,Product inquiry,Approved,2026-05-06
+ADJ000538,C000375,634,Jack Edwards,T5915,Credit,59.24,Refund request,Pending Approval,2026-05-06
+ADJ000539,C000434,8171,Benjamin Cole,T5916,Credit,57.97,Cancellation request,Pending Approval,2026-05-06
+ADJ000540,C000464,10967,Alexander Cunningham,T5917,Credit,57.34,Technical issue,Pending Approval,2026-05-06
+ADJ000541,C000538,1804,Kathleen Lee,T5919,Credit,56.08,Cancellation request,Pending Approval,2026-05-06
+ADJ000542,C000566,10500,Mary Smith,T5920,Credit,55.68,Technical issue,Approved,2026-05-06
+ADJ000543,C000649,9077,Sean Smith,T5923,Credit,54.29,Product inquiry,Approved,2026-05-06
+ADJ000544,C000797,5672,Mary Smith,T5924,Credit,52.24,Refund request,Pending Approval,2026-05-06
+ADJ000545,C000876,7960,Ethan Thomas,T5926,Credit,51.28,Refund request,Pending Approval,2026-05-06
+ADJ000546,C000877,7590,Robert Johnson,T5927,Credit,51.27,Billing inquiry,Approved,2026-05-06
+ADJ000547,C001016,4967,Mary Maldonado,T5929,Credit,49.61,Cancellation request,Approved,2026-05-06
+ADJ000548,C001034,326,Shirley Stafford,T5930,Credit,49.39,Billing inquiry,Pending Approval,2026-05-06
+ADJ000549,C001040,1624,Walter Huerta,T5931,Credit,49.36,Refund request,Pending Approval,2026-05-06
+ADJ000550,C001045,9879,Linda Ibarra,T5932,Credit,49.30,Cancellation request,Pending Approval,2026-05-06
+ADJ000551,C001053,11677,Christine Smith,T5933,Credit,49.20,Technical issue,Approved,2026-05-06
+ADJ000552,C001252,9862,Mary Decker,T5935,Credit,47.39,Technical issue,Pending Approval,2026-05-06
+ADJ000553,C001306,9739,Sara Rich,T5936,Credit,46.89,Cancellation request,Pending Approval,2026-05-06
+ADJ000554,C001405,259,Mary Bates,T5938,Credit,46.18,Product inquiry,Approved,2026-05-06
+ADJ000555,C001438,9305,Mary Evans,T5939,Credit,45.90,Technical issue,Pending Approval,2026-05-06
+ADJ000556,C001507,8781,Mary Chan,T5942,Credit,45.36,Product inquiry,Pending Approval,2026-05-06
+ADJ000557,C001513,3980,Frances Smith,T5943,Credit,45.34,Technical issue,Approved,2026-05-06
+ADJ000558,C001608,4275,Sandra Allen,T5946,Credit,44.69,Technical issue,Pending Approval,2026-05-06
+ADJ000559,C001622,656,Julie Smith,T5947,Credit,44.55,Billing inquiry,Approved,2026-05-06
+ADJ000560,C001654,8506,Elizabeth Smith,T5948,Credit,44.43,Cancellation request,Pending Approval,2026-05-06
+ADJ000561,C001863,1618,Mary Davidson,T5952,Credit,43.00,Technical issue,Pending Approval,2026-05-06
+ADJ000562,C000054,9494,Robert Gilmore,T5956,Credit,74.95,Cancellation request,Pending Approval,2026-05-06
+ADJ000563,C000197,4394,Christopher Smith,T5958,Credit,65.14,Cancellation request,Approved,2026-05-06
+ADJ000564,C000220,2220,James Smith,T5959,Credit,64.27,Technical issue,Pending Approval,2026-05-06
+ADJ000565,C000259,2389,Mary Smith,T5961,Refund,62.57,Refund request,Approved,2026-05-06
+ADJ000566,C000273,2303,Brittany Smith,T5962,Refund,62.19,Refund request,Approved,2026-05-06
+ADJ000567,C000301,7435,Susan Smith,T5963,Credit,61.20,Product inquiry,Pending Approval,2026-05-06
+ADJ000568,C000374,12106,Mary Smith,T5965,Credit,59.24,Billing inquiry,Approved,2026-05-06
+ADJ000569,C000379,3603,Susan Smith,T5966,Credit,59.20,Product inquiry,Pending Approval,2026-05-06
+ADJ000570,C000458,6156,Mary Hernandez,T5968,Credit,57.43,Cancellation request,Pending Approval,2026-05-06
+ADJ000571,C000501,4930,Mary Preston,T5969,Credit,56.69,Product inquiry,Pending Approval,2026-05-06
+ADJ000572,C000515,4444,Russell Sullivan,T5970,Credit,56.49,Cancellation request,Pending Approval,2026-05-06
+ADJ000573,C000518,6898,Nathan Butler,T5971,Credit,56.39,Technical issue,Approved,2026-05-06
+ADJ000574,C000522,10650,Donna Carter,T5972,Credit,56.31,Product inquiry,Approved,2026-05-06
+ADJ000575,C000593,4318,Mary Fletcher,T5973,Credit,55.15,Billing inquiry,Pending Approval,2026-05-06
+ADJ000576,C000651,2071,Walter Howard,T5976,Credit,54.21,Billing inquiry,Approved,2026-05-06
+ADJ000577,C000662,12075,Aaron Carr,T5977,Credit,54.09,Cancellation request,Pending Approval,2026-05-06
+ADJ000578,C000673,1906,Raymond Smith,T5978,Refund,53.92,Refund request,Approved,2026-05-06
+ADJ000579,C000701,4939,Carol Jackson,T5979,Credit,53.51,Cancellation request,Approved,2026-05-06
+ADJ000580,C000887,2365,Sara Smith,T5984,Credit,51.20,Billing inquiry,Pending Approval,2026-05-06
+ADJ000581,C000917,2769,Mary Hendricks,T5985,Credit,50.84,Cancellation request,Pending Approval,2026-05-06
+ADJ000582,C001014,10348,Alice Barnes,T5987,Credit,49.64,Technical issue,Pending Approval,2026-05-06
+ADJ000583,C001044,3167,Janice Ward,T5988,Credit,49.30,Product inquiry,Pending Approval,2026-05-06
+ADJ000584,C001217,11816,Tammy Cannon,T5992,Credit,47.64,Product inquiry,Pending Approval,2026-05-06
+ADJ000585,C001243,1733,Margaret Smith,T5994,Credit,47.48,Billing inquiry,Pending Approval,2026-05-06
+ADJ000586,C001326,3224,Kevin Bowers,T5995,Refund,46.72,Refund request,Approved,2026-05-06
+ADJ000587,C001336,1383,Catherine Smith,T5996,Credit,46.68,Cancellation request,Pending Approval,2026-05-06
+ADJ000588,C001482,10277,Ann Smith,T5997,Refund,45.51,Refund request,Approved,2026-05-06
+ADJ000589,C001584,8539,John Smith,T6000,Credit,44.80,Billing inquiry,Approved,2026-05-06
+ADJ000590,C001721,8086,Paul Moon,T6001,Credit,44.09,Cancellation request,Pending Approval,2026-05-06
+ADJ000591,C001733,8905,Donna Smith,T6002,Credit,43.99,Billing inquiry,Pending Approval,2026-05-06
+ADJ000592,C001892,5227,Madison Mcfarland,T6004,Refund,42.84,Refund request,Approved,2026-05-06
+ADJ000593,C001939,11962,Diana Smith,T6005,Refund,42.59,Refund request,Approved,2026-05-06
+ADJ000594,C000006,1288,Evelyn Thompson,T6006,Credit,90.19,Technical issue,Pending Approval,2026-05-06
+ADJ000595,C000139,2224,Ann Mercado,T6007,Credit,67.74,Billing inquiry,Pending Approval,2026-05-06
+ADJ000596,C000187,1537,Linda Murray,T6009,Refund,65.67,Refund request,Approved,2026-05-06
+ADJ000597,C000207,1445,Linda Ortiz,T6010,Credit,64.73,Billing inquiry,Approved,2026-05-06
+ADJ000598,C000223,6587,Heather Henson,T6011,Refund,64.09,Refund request,Approved,2026-05-06
+ADJ000599,C000226,3556,Mary Lane,T6012,Refund,63.94,Refund request,Approved,2026-05-06
+ADJ000600,C000254,11738,Samuel Bryan,T6013,Refund,62.69,Refund request,Approved,2026-05-06
+ADJ000601,C000326,10185,Austin Buck,T6014,Refund,60.23,Refund request,Approved,2026-05-06
+ADJ000602,C000361,1149,Cynthia Harper,T6015,Credit,59.54,Product inquiry,Pending Approval,2026-05-06
+ADJ000603,C000430,10845,John Smith,T6016,Credit,58.01,Product inquiry,Pending Approval,2026-05-06
+ADJ000604,C000507,12107,Sharon Patterson,T6019,Refund,56.62,Refund request,Approved,2026-05-06
+ADJ000605,C000514,2581,Mary Smith,T6020,Credit,56.49,Cancellation request,Pending Approval,2026-05-06
+ADJ000606,C000527,9971,Mary Smith,T6021,Credit,56.24,Cancellation request,Pending Approval,2026-05-06
+ADJ000607,C000571,8370,Mary Smith,T6022,Credit,55.57,Product inquiry,Pending Approval,2026-05-06
+ADJ000608,C000602,1607,Mary Ortiz,T6023,Credit,55.04,Cancellation request,Approved,2026-05-06
+ADJ000609,C000765,8065,Margaret Smith,T6025,Credit,52.59,Billing inquiry,Pending Approval,2026-05-06
+ADJ000610,C000812,4863,Elizabeth Smith,T6027,Credit,51.94,Billing inquiry,Approved,2026-05-06
+ADJ000611,C000815,6529,Aaron Smith,T6028,Refund,51.91,Refund request,Approved,2026-05-06
+ADJ000612,C000835,1731,Michelle Bennett,T6029,Refund,51.74,Refund request,Approved,2026-05-06
+ADJ000613,C000898,6236,Mary Martinez,T6030,Credit,51.09,Cancellation request,Pending Approval,2026-05-06
+ADJ000614,C001020,11058,Charles Wright,T6032,Credit,49.59,Cancellation request,Pending Approval,2026-05-06
+ADJ000615,C001038,9607,Mary Smith,T6033,Refund,49.39,Refund request,Approved,2026-05-06
+ADJ000616,C001092,12117,Helen Smith,T6036,Credit,48.84,Cancellation request,Approved,2026-05-06
+ADJ000617,C001108,7143,Mary Burnett,T6037,Credit,48.69,Technical issue,Approved,2026-05-06
+ADJ000618,C001229,4462,Mary Dillon,T6040,Credit,47.55,Billing inquiry,Approved,2026-05-06
+ADJ000619,C001250,12321,Helen Christensen,T6041,Refund,47.39,Refund request,Approved,2026-05-06
+ADJ000620,C001251,6672,Mary Conrad,T6042,Credit,47.39,Product inquiry,Approved,2026-05-06
+ADJ000621,C001368,7492,Vincent Smith,T6043,Credit,46.49,Product inquiry,Approved,2026-05-06
+ADJ000622,C001379,5612,Mary Huang,T6044,Credit,46.39,Cancellation request,Pending Approval,2026-05-06
+ADJ000623,C001493,10799,Jane Smith,T6046,Credit,45.45,Product inquiry,Approved,2026-05-06
+ADJ000624,C001562,12031,Ashley Benitez,T6048,Credit,44.94,Product inquiry,Approved,2026-05-06
+ADJ000625,C001613,2110,Cynthia Myers,T6049,Credit,44.64,Refund request,Pending Approval,2026-05-06
+ADJ000626,C001655,8211,Ronald Mcneil,T6050,Refund,44.43,Refund request,Approved,2026-05-06
+ADJ000627,C001672,9754,Mary Matthews,T6051,Credit,44.34,Product inquiry,Approved,2026-05-06
+ADJ000628,C001777,6346,Mary Cooley,T6056,Credit,43.69,Billing inquiry,Approved,2026-05-06
+ADJ000629,C001809,2069,Alice Ellison,T6057,Refund,43.49,Refund request,Approved,2026-05-06
+ADJ000630,C001841,739,Daniel Golden,T6058,Credit,43.20,Technical issue,Approved,2026-05-06
+ADJ000631,C001877,4674,Mary Lynn,T6060,Credit,42.91,Technical issue,Approved,2026-05-06
+ADJ000632,C001913,11856,Helen Smith,T6061,Credit,42.70,Product inquiry,Approved,2026-05-06
+ADJ000633,C000229,2860,George Smith,T6067,Refund,63.87,Refund request,Approved,2026-05-06
+ADJ000634,C000377,3498,Elizabeth Ramos,T6068,Refund,59.22,Refund request,Approved,2026-05-06
+ADJ000635,C000471,679,Grace Smith,T6069,Refund,57.24,Refund request,Approved,2026-05-06
+ADJ000636,C000567,5267,Mary Smith,T6073,Refund,55.62,Refund request,Approved,2026-05-06
+ADJ000637,C000580,6255,Joshua Smith,T6075,Credit,55.39,Cancellation request,Approved,2026-05-06
+ADJ000638,C000749,11766,Mary Mason,T6079,Refund,52.89,Refund request,Approved,2026-05-06
+ADJ000639,C000755,2833,Eric Vega,T6080,Credit,52.77,Billing inquiry,Approved,2026-05-06
+ADJ000640,C000805,8697,Gerald Smith,T6082,Credit,52.11,Refund request,Pending Approval,2026-05-06
+ADJ000641,C000862,4618,Andrea Smith,T6085,Refund,51.44,Refund request,Approved,2026-05-06
+ADJ000642,C000875,7158,Mary Todd,T6086,Credit,51.29,Cancellation request,Approved,2026-05-06
+ADJ000643,C000919,7887,Mary Keller,T6088,Refund,50.80,Refund request,Approved,2026-05-06
+ADJ000644,C000928,5657,Mary James,T6089,Credit,50.70,Product inquiry,Approved,2026-05-06
+ADJ000645,C001027,7005,James Carpenter,T6093,Credit,49.49,Product inquiry,Pending Approval,2026-05-06
+ADJ000646,C001049,434,Michael Torres,T6094,Credit,49.26,Refund request,Pending Approval,2026-05-06
+ADJ000647,C001074,9074,Margaret Smith,T6095,Refund,48.99,Refund request,Approved,2026-05-06
+ADJ000648,C001155,8808,Kenneth Smith,T6098,Credit,48.27,Cancellation request,Pending Approval,2026-05-06
+ADJ000649,C001335,10406,Michael Smith,T6100,Refund,46.69,Refund request,Approved,2026-05-06
+ADJ000650,C001343,3296,Mary Smith,T6102,Credit,46.64,Cancellation request,Pending Approval,2026-05-06
+ADJ000651,C001354,2078,Roger Morales,T6104,Credit,46.59,Product inquiry,Pending Approval,2026-05-06
+ADJ000652,C001366,6199,Mary Jacobs,T6105,Credit,46.49,Product inquiry,Pending Approval,2026-05-06
+ADJ000653,C001465,8328,Donna Smith,T6108,Credit,45.64,Billing inquiry,Approved,2026-05-06
+ADJ000654,C001539,51,Jessica Smith,T6109,Credit,45.13,Billing inquiry,Pending Approval,2026-05-06
+ADJ000655,C001574,4191,Kimberly Salazar,T6112,Refund,44.89,Refund request,Approved,2026-05-06
+ADJ000656,C001595,5229,Thomas Butler,T6114,Credit,44.75,Product inquiry,Pending Approval,2026-05-06
+ADJ000657,C001653,11789,Mary Smith,T6115,Credit,44.43,Billing inquiry,Approved,2026-05-06
+ADJ000658,C001784,2873,Joyce Padilla,T6116,Credit,43.60,Billing inquiry,Approved,2026-05-06
+ADJ000659,C001894,10390,Anthony Stevenson,T6118,Credit,42.80,Technical issue,Pending Approval,2026-05-06
+ADJ000660,C001902,7383,Catherine Washington,T6119,Credit,42.80,Technical issue,Pending Approval,2026-05-06
+ADJ000661,C001928,1094,Sean Smith,T6120,Credit,42.62,Product inquiry,Approved,2026-05-06
+ADJ000662,C000019,12284,Mary Smith,T6122,Credit,82.59,Technical issue,Pending Approval,2026-05-06
+ADJ000663,C000079,5293,Michelle Callahan,T6123,Credit,72.09,Technical issue,Pending Approval,2026-05-06
+ADJ000664,C000092,7962,Justin Smith,T6124,Credit,70.97,Technical issue,Pending Approval,2026-05-06
+ADJ000665,C000152,2113,David Smith,T6125,Refund,67.13,Refund request,Approved,2026-05-06
+ADJ000666,C000221,197,Ruth Smith,T6127,Credit,64.23,Technical issue,Approved,2026-05-06
+ADJ000667,C000243,9504,Mary Smith,T6128,Credit,63.09,Cancellation request,Approved,2026-05-06
+ADJ000668,C000272,8652,Kenneth Newman,T6130,Refund,62.22,Refund request,Approved,2026-05-06
+ADJ000669,C000516,1989,Richard Leach,T6134,Credit,56.49,Refund request,Pending Approval,2026-05-06
+ADJ000670,C000523,1962,Marie Smith,T6135,Credit,56.30,Technical issue,Pending Approval,2026-05-06
+ADJ000671,C000728,3138,Barbara Nelson,T6139,Credit,53.11,Billing inquiry,Pending Approval,2026-05-06
+ADJ000672,C000786,9459,Stephen Bond,T6140,Refund,52.38,Refund request,Approved,2026-05-06
+ADJ000673,C000826,11263,Mary Keller,T6141,Credit,51.87,Refund request,Pending Approval,2026-05-06
+ADJ000674,C000861,1806,Roger Smith,T6142,Credit,51.44,Product inquiry,Approved,2026-05-06
+ADJ000675,C000940,11630,Mary Clark,T6143,Credit,50.52,Technical issue,Pending Approval,2026-05-06
+ADJ000676,C001025,9356,Nancy Johnson,T6144,Credit,49.53,Billing inquiry,Pending Approval,2026-05-06
+ADJ000677,C001116,8300,Mary Reynolds,T6146,Credit,48.59,Product inquiry,Approved,2026-05-06
+ADJ000678,C001128,3509,Mary Perry,T6147,Refund,48.50,Refund request,Approved,2026-05-06
+ADJ000679,C001138,2298,Elizabeth Smith,T6148,Credit,48.39,Cancellation request,Approved,2026-05-06
+ADJ000680,C001221,2156,Mary Smith,T6150,Credit,47.60,Billing inquiry,Pending Approval,2026-05-06
+ADJ000681,C001228,2618,Nicole Jones,T6151,Credit,47.57,Billing inquiry,Approved,2026-05-06
+ADJ000682,C001314,290,Mary Garza,T6153,Credit,46.84,Cancellation request,Approved,2026-05-06
+ADJ000683,C001324,11897,Virginia Herrera,T6154,Refund,46.77,Refund request,Approved,2026-05-06
+ADJ000684,C001363,990,Mary Ellison,T6155,Credit,46.50,Refund request,Pending Approval,2026-05-06
+ADJ000685,C001364,10954,Mary White,T6156,Refund,46.50,Refund request,Approved,2026-05-06
+ADJ000686,C001456,3197,Mary Holloway,T6159,Credit,45.72,Billing inquiry,Pending Approval,2026-05-06
+ADJ000687,C001572,704,Mary Mccullough,T6162,Credit,44.89,Cancellation request,Pending Approval,2026-05-06
+ADJ000688,C001615,2257,Matthew Burgess,T6164,Credit,44.62,Billing inquiry,Pending Approval,2026-05-06
+ADJ000689,C001640,10220,Gerald Mason,T6165,Credit,44.49,Refund request,Pending Approval,2026-05-06
+ADJ000690,C001813,9605,Mary Smith,T6168,Credit,43.42,Cancellation request,Approved,2026-05-06
+ADJ000691,C001855,10823,Angela Oconnell,T6170,Credit,43.10,Technical issue,Pending Approval,2026-05-06
+ADJ000692,C001941,8938,Raymond Gould,T6172,Credit,42.55,Technical issue,Approved,2026-05-06
+ADJ000693,C000088,3420,Kenneth Price,T6173,Credit,71.29,Refund request,Pending Approval,2026-05-06
+ADJ000694,C000105,6285,Mary Garcia,T6175,Credit,70.18,Cancellation request,Approved,2026-05-06
+ADJ000695,C000110,9697,Stephen Williams,T6176,Refund,69.58,Refund request,Approved,2026-05-06
+ADJ000696,C000209,7633,Emily Smith,T6180,Refund,64.68,Refund request,Approved,2026-05-06
+ADJ000697,C000211,11985,Jennifer Moss,T6181,Credit,64.64,Technical issue,Pending Approval,2026-05-06
+ADJ000698,C000443,3051,John Johnson,T6184,Credit,57.79,Technical issue,Approved,2026-05-06
+ADJ000699,C000454,2508,Brandon Adkins,T6185,Credit,57.53,Technical issue,Approved,2026-05-06
+ADJ000700,C000575,1810,James Miller,T6186,Credit,55.42,Billing inquiry,Approved,2026-05-06
+ADJ000701,C000661,12019,Mary Walters,T6187,Credit,54.12,Refund request,Pending Approval,2026-05-06
+ADJ000702,C000829,5301,Mary Ward,T6189,Credit,51.81,Refund request,Pending Approval,2026-05-06
+ADJ000703,C000939,11448,Mary Tucker,T6192,Credit,50.55,Technical issue,Pending Approval,2026-05-06
+ADJ000704,C001029,7980,Jennifer Ortiz,T6194,Credit,49.45,Cancellation request,Pending Approval,2026-05-06
+ADJ000705,C001100,10273,Mary Smith,T6196,Refund,48.75,Refund request,Approved,2026-05-06
+ADJ000706,C001230,11862,Mary Smith,T6199,Refund,47.54,Refund request,Approved,2026-05-06
+ADJ000707,C001232,9924,Christine Smith,T6200,Credit,47.53,Technical issue,Pending Approval,2026-05-06
+ADJ000708,C001270,3595,Joshua Lewis,T6203,Credit,47.26,Product inquiry,Approved,2026-05-06
+ADJ000709,C001323,8999,Paul Smith,T6204,Credit,46.77,Technical issue,Pending Approval,2026-05-06
+ADJ000710,C001423,6178,Mary Smith,T6206,Refund,46.00,Refund request,Approved,2026-05-06
+ADJ000711,C001497,5762,Crystal Foster,T6207,Credit,45.41,Technical issue,Approved,2026-05-06
+ADJ000712,C001754,10134,Mary Stuart,T6212,Credit,43.85,Cancellation request,Approved,2026-05-06
+ADJ000713,C001812,2589,Nathan Taylor,T6213,Credit,43.45,Billing inquiry,Approved,2026-05-06
+ADJ000714,C001931,11427,Deborah Martin,T6215,Credit,42.60,Product inquiry,Approved,2026-05-06
+ADJ000715,C001979,6071,Mary Wu,T6217,Credit,42.40,Refund request,Pending Approval,2026-05-06
+ADJ000716,C000062,11431,Willie Sanders,T6220,Credit,73.84,Technical issue,Approved,2026-05-06
+ADJ000717,C000155,9515,Victoria Smith,T6222,Credit,66.90,Product inquiry,Pending Approval,2026-05-06
+ADJ000718,C000158,6812,Sharon Smith,T6223,Credit,66.85,Product inquiry,Pending Approval,2026-05-06
+ADJ000719,C000216,7001,Mary Weeks,T6225,Credit,64.44,Billing inquiry,Pending Approval,2026-05-06
+ADJ000720,C000308,8664,Mary Smith,T6226,Refund,60.95,Refund request,Approved,2026-05-06
+ADJ000721,C000329,3735,Mary Lewis,T6228,Credit,60.19,Billing inquiry,Approved,2026-05-06
+ADJ000722,C000336,2537,Mary Smith,T6229,Credit,60.00,Cancellation request,Pending Approval,2026-05-06
+ADJ000723,C000347,9213,Jennifer Williamson,T6230,Refund,59.80,Refund request,Approved,2026-05-06
+ADJ000724,C000359,7432,Betty Smith,T6232,Credit,59.54,Cancellation request,Pending Approval,2026-05-06
+ADJ000725,C000407,4770,Andrea Malone,T6234,Credit,58.49,Product inquiry,Approved,2026-05-06
+ADJ000726,C000416,8290,Benjamin Jennings,T6235,Refund,58.36,Refund request,Approved,2026-05-06
+ADJ000727,C000421,7123,Carl Smith,T6236,Credit,58.24,Technical issue,Approved,2026-05-06
+ADJ000728,C000426,8971,Mary Gill,T6237,Credit,58.19,Technical issue,Pending Approval,2026-05-06
+ADJ000729,C000485,5311,Mary Smith,T6238,Refund,56.90,Refund request,Approved,2026-05-06
+ADJ000730,C000524,2826,Lisa Wallace,T6239,Refund,56.27,Refund request,Approved,2026-05-06
+ADJ000731,C000608,1927,Laura Stevens,T6240,Credit,54.95,Cancellation request,Pending Approval,2026-05-06
+ADJ000732,C000650,3304,Amanda Gibson,T6241,Credit,54.24,Product inquiry,Pending Approval,2026-05-06
+ADJ000733,C000689,6086,Mary Hutchinson,T6242,Credit,53.66,Cancellation request,Pending Approval,2026-05-06
+ADJ000734,C000865,5971,Philip Johnson,T6245,Credit,51.39,Product inquiry,Approved,2026-05-06
+ADJ000735,C000925,8084,Mary Smith,T6246,Refund,50.72,Refund request,Approved,2026-05-06
+ADJ000736,C000978,11388,Mary Rangel,T6248,Refund,50.06,Refund request,Approved,2026-05-06
+ADJ000737,C001113,9581,Deborah Smith,T6249,Credit,48.60,Technical issue,Pending Approval,2026-05-06
+ADJ000738,C001122,859,Dorothy Hawkins,T6250,Credit,48.59,Billing inquiry,Approved,2026-05-06
+ADJ000739,C001246,10453,Elizabeth Brewer,T6252,Credit,47.42,Billing inquiry,Approved,2026-05-06
+ADJ000740,C001255,3677,Sandra Edwards,T6253,Credit,47.36,Cancellation request,Pending Approval,2026-05-06
+ADJ000741,C001303,3660,Roger Smith,T6254,Credit,46.90,Product inquiry,Pending Approval,2026-05-06
+ADJ000742,C001346,5797,Roy Smith,T6255,Credit,46.62,Billing inquiry,Approved,2026-05-06
+ADJ000743,C001355,2717,Mary Smith,T6256,Credit,46.59,Technical issue,Approved,2026-05-06
+ADJ000744,C001385,4016,Mary Smith,T6257,Refund,46.33,Refund request,Approved,2026-05-06
+ADJ000745,C001589,5052,Larry Meyer,T6261,Refund,44.79,Refund request,Approved,2026-05-06
+ADJ000746,C001638,8704,Mary Mclean,T6262,Credit,44.49,Billing inquiry,Approved,2026-05-06
+ADJ000747,C001659,5145,James Smith,T6263,Credit,44.40,Cancellation request,Pending Approval,2026-05-06
+ADJ000748,C000003,8766,Mary Duncan,T6266,Credit,92.96,Billing inquiry,Pending Approval,2026-05-06
+ADJ000749,C000024,6316,Kyle Smith,T6268,Refund,81.05,Refund request,Approved,2026-05-06
+ADJ000750,C000056,1695,Amanda Marquez,T6269,Credit,74.69,Cancellation request,Approved,2026-05-06
+ADJ000751,C000075,11768,Virginia Smith,T6270,Credit,72.37,Billing inquiry,Approved,2026-05-06
+ADJ000752,C000239,7273,Mary Smith,T6272,Credit,63.34,Cancellation request,Pending Approval,2026-05-06
+ADJ000753,C000481,10735,Albert Valdez,T6274,Credit,56.95,Technical issue,Approved,2026-05-06
+ADJ000754,C000494,5200,Jennifer Little,T6275,Refund,56.79,Refund request,Approved,2026-05-06
+ADJ000755,C000558,11124,Mary Bowman,T6276,Refund,55.84,Refund request,Approved,2026-05-06
+ADJ000756,C000582,7749,Amy Gibson,T6277,Credit,55.33,Billing inquiry,Pending Approval,2026-05-06
+ADJ000757,C000618,7802,Mary Acevedo,T6278,Credit,54.64,Product inquiry,Pending Approval,2026-05-06
+ADJ000758,C000667,5085,Janet Jones,T6281,Refund,53.99,Refund request,Approved,2026-05-06
+ADJ000759,C000726,5965,Richard Parker,T6283,Credit,53.11,Product inquiry,Pending Approval,2026-05-06
+ADJ000760,C000796,771,Patricia Smith,T6284,Credit,52.24,Technical issue,Approved,2026-05-06
+ADJ000761,C001317,10584,Mary Smith,T6286,Credit,46.80,Product inquiry,Approved,2026-05-06
+ADJ000762,C001391,187,Mildred Herrera,T6288,Credit,46.29,Technical issue,Pending Approval,2026-05-06
+ADJ000763,C001552,11284,Sarah Sherman,T6290,Refund,45.01,Refund request,Approved,2026-05-06
+ADJ000764,C001628,9612,Willie Roberson,T6292,Credit,44.52,Technical issue,Pending Approval,2026-05-06
+ADJ000765,C001666,11757,Mary Boyle,T6293,Credit,44.39,Product inquiry,Approved,2026-05-06
+ADJ000766,C001680,2210,Mary Bryant,T6294,Credit,44.30,Cancellation request,Pending Approval,2026-05-06
+ADJ000767,C001713,10759,Douglas Smith,T6295,Refund,44.11,Refund request,Approved,2026-05-06
+ADJ000768,C000106,467,James Smith,T6298,Credit,69.92,Product inquiry,Approved,2026-05-06
+ADJ000769,C000113,7954,Danielle Smith,T6299,Credit,69.39,Billing inquiry,Approved,2026-05-06
+ADJ000770,C000168,5867,Beverly Jackson,T6300,Refund,66.19,Refund request,Approved,2026-05-06
+ADJ000771,C000271,6213,Michael Richardson,T6301,Refund,62.23,Refund request,Approved,2026-05-06
+ADJ000772,C000385,2708,Jennifer Dominguez,T6304,Credit,59.09,Product inquiry,Pending Approval,2026-05-06
+ADJ000773,C000517,5533,Mary Harrison,T6306,Credit,56.42,Cancellation request,Approved,2026-05-06
+ADJ000774,C000631,4552,Janice Smith,T6307,Credit,54.44,Refund request,Pending Approval,2026-05-06
+ADJ000775,C000780,9341,Karen Collins,T6308,Credit,52.40,Product inquiry,Approved,2026-05-06
+ADJ000776,C000871,9563,Pamela Murphy,T6309,Credit,51.32,Product inquiry,Approved,2026-05-06
+ADJ000777,C000945,396,Deborah Smith,T6311,Credit,50.49,Product inquiry,Pending Approval,2026-05-06
+ADJ000778,C001115,11235,Judy Church,T6312,Refund,48.60,Refund request,Approved,2026-05-06
+ADJ000779,C001117,6165,Mary Gardner,T6313,Credit,48.59,Cancellation request,Pending Approval,2026-05-06
+ADJ000780,C001145,9639,Mary Smith,T6314,Credit,48.39,Cancellation request,Pending Approval,2026-05-06
+ADJ000781,C001171,7716,David Middleton,T6315,Credit,48.09,Cancellation request,Approved,2026-05-06
+ADJ000782,C001181,1847,Mary Smith,T6316,Refund,48.04,Refund request,Approved,2026-05-06
+ADJ000783,C001206,10905,Lisa Warner,T6317,Refund,47.79,Refund request,Approved,2026-05-06
+ADJ000784,C001278,5943,Mary Sherman,T6319,Credit,47.16,Cancellation request,Pending Approval,2026-05-06
+ADJ000785,C001416,6397,Mary Carr,T6321,Credit,46.05,Cancellation request,Approved,2026-05-06
+ADJ000786,C001448,6014,Mary Washington,T6322,Credit,45.84,Refund request,Pending Approval,2026-05-06
+ADJ000787,C001581,3617,Mary Smith,T6324,Credit,44.81,Technical issue,Approved,2026-05-06
+ADJ000788,C001586,8787,Janice Pittman,T6325,Credit,44.80,Cancellation request,Pending Approval,2026-05-06
+ADJ000789,C001631,6370,Andrea Smith,T6326,Refund,44.50,Refund request,Approved,2026-05-06
+ADJ000790,C001664,6909,Mary Salinas,T6327,Credit,44.39,Billing inquiry,Pending Approval,2026-05-06
+ADJ000791,C001689,1331,Mary Smith,T6328,Refund,44.28,Refund request,Approved,2026-05-06
+ADJ000792,C001778,12332,Kelly Jones,T6331,Credit,43.69,Technical issue,Approved,2026-05-06
+ADJ000793,C001865,2979,Nicole Smith,T6334,Credit,42.99,Billing inquiry,Approved,2026-05-06
+ADJ000794,C001887,11522,Roy Smith,T6335,Credit,42.88,Technical issue,Approved,2026-05-06
+ADJ000795,C001929,2881,Phillip Smith,T6337,Credit,42.60,Billing inquiry,Pending Approval,2026-05-06
+ADJ000796,C001976,8942,Robert Smith,T6338,Credit,42.40,Technical issue,Pending Approval,2026-05-06
+ADJ000797,C000061,773,Dylan Horton,T6340,Credit,73.94,Refund request,Pending Approval,2026-05-06
+ADJ000798,C000180,5778,Evelyn Smith,T6343,Credit,65.87,Cancellation request,Pending Approval,2026-05-06
+ADJ000799,C000218,12221,Betty Sanchez,T6344,Credit,64.29,Billing inquiry,Pending Approval,2026-05-06
+ADJ000800,C000256,11833,Mary Weaver,T6345,Refund,62.64,Refund request,Approved,2026-05-06
+ADJ000801,C000289,6893,Deborah Smith,T6346,Credit,61.49,Product inquiry,Approved,2026-05-06
+ADJ000802,C000295,8511,Mary Smith,T6347,Refund,61.32,Refund request,Approved,2026-05-06
+ADJ000803,C000328,4697,Kathryn Singh,T6348,Credit,60.19,Refund request,Pending Approval,2026-05-06
+ADJ000804,C000339,8192,Kathryn Marshall,T6349,Credit,59.94,Billing inquiry,Pending Approval,2026-05-06
+ADJ000805,C000480,2278,Marie Smith,T6350,Credit,57.00,Product inquiry,Approved,2026-05-06
+ADJ000806,C000537,731,Robert Smith,T6351,Credit,56.10,Technical issue,Approved,2026-05-06
+ADJ000807,C000545,6581,Christian Smith,T6352,Credit,55.99,Refund request,Pending Approval,2026-05-06
+ADJ000808,C000616,6359,Jerry Smith,T6355,Credit,54.69,Billing inquiry,Approved,2026-05-06
+ADJ000809,C000624,6060,Michael Smith,T6356,Refund,54.59,Refund request,Approved,2026-05-06
+ADJ000810,C000735,4904,Bruce Smith,T6358,Credit,53.04,Billing inquiry,Approved,2026-05-06
+ADJ000811,C000766,1106,Daniel Smith,T6359,Credit,52.59,Billing inquiry,Approved,2026-05-06
+ADJ000812,C001533,328,William Morrison,T6368,Refund,45.18,Refund request,Approved,2026-05-06
+ADJ000813,C001769,3558,Mary Smith,T6371,Credit,43.74,Technical issue,Pending Approval,2026-05-06
+ADJ000814,C001923,2750,George Mason,T6372,Credit,42.64,Technical issue,Approved,2026-05-06
+ADJ000815,C000071,5454,Mary Smith,T6373,Refund,72.79,Refund request,Approved,2026-05-06
+ADJ000816,C000076,2970,Kenneth Smith,T6375,Credit,72.31,Billing inquiry,Pending Approval,2026-05-06
+ADJ000817,C000161,12420,Nathan Adams,T6377,Refund,66.74,Refund request,Approved,2026-05-06
+ADJ000818,C000267,8156,Hannah Smith,T6378,Credit,62.37,Product inquiry,Approved,2026-05-06
+ADJ000819,C000290,10672,Mary Smith,T6379,Credit,61.49,Cancellation request,Approved,2026-05-06
+ADJ000820,C000391,5197,Brenda Jordan,T6380,Refund,58.94,Refund request,Approved,2026-05-06
+ADJ000821,C000417,4596,Mary Burns,T6381,Refund,58.34,Refund request,Approved,2026-05-06
+ADJ000822,C000548,9586,Mary Olson,T6382,Credit,55.93,Product inquiry,Approved,2026-05-06
+ADJ000823,C000619,9161,Mary Smith,T6383,Credit,54.64,Product inquiry,Pending Approval,2026-05-06
+ADJ000824,C000764,10572,Mary Smith,T6385,Credit,52.59,Billing inquiry,Pending Approval,2026-05-06
+ADJ000825,C000807,9898,Mary Moon,T6386,Refund,52.09,Refund request,Approved,2026-05-06
+ADJ000826,C000841,10854,Mary Coleman,T6387,Credit,51.65,Billing inquiry,Pending Approval,2026-05-06
+ADJ000827,C000941,6307,Gregory Smith,T6390,Credit,50.51,Product inquiry,Approved,2026-05-06
+ADJ000828,C000952,3133,Ruth Becker,T6391,Credit,50.34,Technical issue,Approved,2026-05-06
+ADJ000829,C000982,3763,Mary Martinez,T6392,Credit,50.02,Technical issue,Pending Approval,2026-05-06
+ADJ000830,C001075,6571,Brenda Gonzalez,T6393,Refund,48.99,Refund request,Approved,2026-05-06
+ADJ000831,C001212,2759,Carolyn Ritter,T6394,Refund,47.70,Refund request,Approved,2026-05-06
+ADJ000832,C001256,8987,Kathleen Price,T6395,Credit,47.35,Cancellation request,Pending Approval,2026-05-06
+ADJ000833,C001297,252,Mary Frazier,T6397,Credit,46.95,Technical issue,Pending Approval,2026-05-06
+ADJ000834,C001424,5518,Patricia Smith,T6400,Refund,45.99,Refund request,Approved,2026-05-06
+ADJ000835,C001454,11352,Doris Peterson,T6401,Credit,45.76,Cancellation request,Pending Approval,2026-05-06
+ADJ000836,C001487,2306,Mary Chen,T6402,Refund,45.49,Refund request,Approved,2026-05-06
+ADJ000837,C001510,439,Rose Delgado,T6404,Refund,45.35,Refund request,Approved,2026-05-06
+ADJ000838,C001641,9496,Mary Taylor,T6405,Credit,44.49,Product inquiry,Pending Approval,2026-05-06
+ADJ000839,C001696,4388,Richard Moore,T6407,Credit,44.20,Refund request,Pending Approval,2026-05-06
+ADJ000840,C001875,5140,Mary Walton,T6408,Credit,42.92,Billing inquiry,Pending Approval,2026-05-06
+ADJ000841,C000026,5897,Mary Griffin,T6409,Refund,80.61,Refund request,Approved,2026-05-06
+ADJ000842,C000148,1012,Mark Watts,T6412,Credit,67.49,Billing inquiry,Pending Approval,2026-05-06
+ADJ000843,C000231,9502,Matthew Love,T6414,Credit,63.81,Billing inquiry,Pending Approval,2026-05-06
+ADJ000844,C000257,7460,Ethan Smith,T6415,Credit,62.63,Cancellation request,Approved,2026-05-06
+ADJ000845,C000484,8769,Mary Cantrell,T6418,Credit,56.90,Cancellation request,Approved,2026-05-06
+ADJ000846,C000611,7762,Mary Roberson,T6422,Refund,54.77,Refund request,Approved,2026-05-06
+ADJ000847,C000682,3762,Juan Smith,T6423,Credit,53.79,Product inquiry,Pending Approval,2026-05-06
+ADJ000848,C000753,5033,Mary Smith,T6424,Refund,52.81,Refund request,Approved,2026-05-06
+ADJ000849,C000769,2824,Mary Bray,T6425,Credit,52.54,Technical issue,Approved,2026-05-06
+ADJ000850,C000777,3336,Sandra Hunter,T6427,Credit,52.44,Technical issue,Pending Approval,2026-05-06
+ADJ000851,C000801,10992,Barbara Duran,T6428,Credit,52.18,Technical issue,Approved,2026-05-06
+ADJ000852,C001048,10269,Mary Flowers,T6431,Credit,49.27,Billing inquiry,Pending Approval,2026-05-06
+ADJ000853,C001061,1576,Dorothy Melton,T6432,Refund,49.10,Refund request,Approved,2026-05-06
+ADJ000854,C001114,6081,Lauren Bennett,T6434,Refund,48.60,Refund request,Approved,2026-05-06
+ADJ000855,C001330,7043,Cheryl Smith,T6436,Refund,46.69,Refund request,Approved,2026-05-06
+ADJ000856,C001436,984,Amy Smith,T6438,Credit,45.90,Refund request,Pending Approval,2026-05-06
+ADJ000857,C001501,5453,Grace English,T6440,Credit,45.40,Product inquiry,Pending Approval,2026-05-06
+ADJ000858,C001636,3461,Jose Smith,T6442,Credit,44.49,Product inquiry,Approved,2026-05-06
+ADJ000859,C001796,5559,Alice Smith,T6444,Credit,43.55,Technical issue,Pending Approval,2026-05-06
+ADJ000860,C001897,5573,Jordan Ortiz,T6445,Refund,42.80,Refund request,Approved,2026-05-06
+ADJ000861,C001989,6930,Paul Morton,T6446,Credit,42.35,Billing inquiry,Approved,2026-05-06
+ADJ000862,C000045,10777,Martha Smith,T6447,Credit,76.44,Billing inquiry,Approved,2026-05-06
+ADJ000863,C000115,11656,Mary Wyatt,T6448,Refund,69.37,Refund request,Approved,2026-05-06
+ADJ000864,C000252,2626,Laura Smith,T6451,Credit,62.74,Cancellation request,Approved,2026-05-06
+ADJ000865,C000282,5491,Sharon Smith,T6452,Credit,61.69,Billing inquiry,Pending Approval,2026-05-06
+ADJ000866,C000283,8380,Brittany Smith,T6453,Credit,61.69,Cancellation request,Pending Approval,2026-05-06
+ADJ000867,C000293,10761,David Smith,T6454,Credit,61.35,Billing inquiry,Pending Approval,2026-05-06
+ADJ000868,C000415,5821,Jessica Humphrey,T6455,Refund,58.37,Refund request,Approved,2026-05-06
+ADJ000869,C000577,6388,Emma Smith,T6457,Credit,55.40,Billing inquiry,Approved,2026-05-06
+ADJ000870,C000605,2217,Mary Martinez,T6458,Refund,54.99,Refund request,Approved,2026-05-06
+ADJ000871,C000623,11417,Kenneth Whitney,T6459,Credit,54.59,Billing inquiry,Pending Approval,2026-05-06
+ADJ000872,C000731,10077,Judith Smith,T6462,Credit,53.09,Billing inquiry,Approved,2026-05-06
+ADJ000873,C000741,10331,Megan Collier,T6463,Credit,52.94,Cancellation request,Approved,2026-05-06
+ADJ000874,C000759,11784,Mary Cunningham,T6464,Credit,52.69,Product inquiry,Pending Approval,2026-05-06
+ADJ000875,C000885,4907,Amanda Lopez,T6465,Credit,51.23,Refund request,Pending Approval,2026-05-06
+ADJ000876,C000944,9704,Mary Mcneil,T6466,Refund,50.49,Refund request,Approved,2026-05-06
+ADJ000877,C000985,9260,Joyce Smith,T6467,Credit,49.99,Refund request,Pending Approval,2026-05-06
+ADJ000878,C001095,11115,Michelle Smith,T6469,Credit,48.79,Technical issue,Pending Approval,2026-05-06
+ADJ000879,C001135,4005,Virginia Dyer,T6470,Refund,48.40,Refund request,Approved,2026-05-06
+ADJ000880,C001192,6521,Mary Hanson,T6471,Refund,47.90,Refund request,Approved,2026-05-06
+ADJ000881,C001240,8806,Amber Diaz,T6473,Refund,47.49,Refund request,Approved,2026-05-06
+ADJ000882,C001301,7795,Sandra Smith,T6474,Credit,46.93,Technical issue,Pending Approval,2026-05-06
+ADJ000883,C001308,10142,Teresa Smith,T6475,Refund,46.89,Refund request,Approved,2026-05-06
+ADJ000884,C001361,11154,Pamela Dickerson,T6476,Credit,46.54,Technical issue,Pending Approval,2026-05-06
+ADJ000885,C001492,11875,Joseph Stevens,T6477,Credit,45.46,Technical issue,Approved,2026-05-06
+ADJ000886,C001523,2121,Mary Dillon,T6478,Credit,45.25,Cancellation request,Pending Approval,2026-05-06
+ADJ000887,C001578,2093,Justin Jennings,T6479,Refund,44.88,Refund request,Approved,2026-05-06
+ADJ000888,C001592,6424,Mary Juarez,T6480,Credit,44.75,Technical issue,Approved,2026-05-06
+ADJ000889,C001846,351,John Singh,T6484,Credit,43.19,Refund request,Pending Approval,2026-05-06
+ADJ000890,C000029,6950,Nicholas Smith,T6487,Credit,79.51,Cancellation request,Approved,2026-05-06
+ADJ000891,C000182,1932,Shirley Perez,T6491,Refund,65.84,Refund request,Approved,2026-05-06
+ADJ000892,C000234,6101,Mary Smith,T6492,Credit,63.71,Product inquiry,Pending Approval,2026-05-06
+ADJ000893,C000351,7278,Mary Liu,T6493,Refund,59.70,Refund request,Approved,2026-05-06
+ADJ000894,C000406,8012,Gregory Smith,T6495,Credit,58.49,Cancellation request,Approved,2026-05-06
+ADJ000895,C000422,8382,Joshua Mullins,T6497,Refund,58.24,Refund request,Approved,2026-05-06
+ADJ000896,C000436,5264,Mary Smith,T6499,Credit,57.94,Product inquiry,Approved,2026-05-06
+ADJ000897,C000441,11755,Mary Jackson,T6500,Credit,57.79,Billing inquiry,Pending Approval,2026-05-06
+ADJ000898,C000444,9119,Mary Smith,T6501,Credit,57.74,Cancellation request,Pending Approval,2026-05-06
+ADJ000899,C000490,3755,Eugene Smith,T6502,Credit,56.83,Billing inquiry,Approved,2026-05-06
+ADJ000900,C000500,1865,Mary Romero,T6503,Credit,56.69,Refund request,Pending Approval,2026-05-06
+ADJ000901,C000531,8613,Mary Kirk,T6504,Credit,56.19,Technical issue,Approved,2026-05-06
+ADJ000902,C000532,11403,Mary Smith,T6505,Credit,56.19,Technical issue,Pending Approval,2026-05-06
+ADJ000903,C000573,1282,Mary Smith,T6507,Credit,55.44,Technical issue,Approved,2026-05-06
+ADJ000904,C000707,11397,Mary Mercer,T6510,Credit,53.41,Product inquiry,Pending Approval,2026-05-06
+ADJ000905,C001002,5481,Mary Hall,T6515,Refund,49.75,Refund request,Approved,2026-05-06
+ADJ000906,C001097,2610,Virginia Johnson,T6516,Credit,48.77,Cancellation request,Pending Approval,2026-05-06
+ADJ000907,C001109,1921,Larry Smith,T6517,Credit,48.65,Product inquiry,Approved,2026-05-06
+ADJ000908,C001124,5403,Mary Smith,T6518,Refund,48.57,Refund request,Approved,2026-05-06
+ADJ000909,C001218,5203,Mary Chandler,T6520,Credit,47.64,Cancellation request,Approved,2026-05-06
+ADJ000910,C001273,2960,Megan Rogers,T6521,Credit,47.21,Technical issue,Approved,2026-05-06
+ADJ000911,C001280,11667,Mary Brooks,T6522,Credit,47.12,Technical issue,Approved,2026-05-06
+ADJ000912,C001321,12365,Mary Pearson,T6523,Credit,46.80,Refund request,Pending Approval,2026-05-06
+ADJ000913,C001375,2025,Mary Fleming,T6524,Credit,46.39,Cancellation request,Pending Approval,2026-05-06
+ADJ000914,C001420,4562,Mary Smith,T6526,Credit,46.00,Technical issue,Pending Approval,2026-05-06
+ADJ000915,C001457,4673,Wayne Hodges,T6527,Credit,45.70,Product inquiry,Approved,2026-05-06
+ADJ000916,C001516,9181,Mary Smith,T6528,Refund,45.30,Refund request,Approved,2026-05-06
+ADJ000917,C001587,970,Mary Alvarez,T6529,Refund,44.79,Refund request,Approved,2026-05-06
+ADJ000918,C001697,1436,Sarah Smith,T6531,Credit,44.20,Cancellation request,Pending Approval,2026-05-06
+ADJ000919,C001818,2670,Mary Smith,T6533,Refund,43.40,Refund request,Approved,2026-05-06
+ADJ000920,C001842,568,Sean Vaughn,T6534,Credit,43.20,Product inquiry,Pending Approval,2026-05-06
+ADJ000921,C001995,9670,Mary Crane,T6538,Refund,42.32,Refund request,Approved,2026-05-06
+ADJ000922,C000149,5563,Paul Trevino,T6540,Credit,67.44,Technical issue,Approved,2026-05-06
+ADJ000923,C000343,2842,Charles Johnson,T6542,Credit,59.89,Refund request,Pending Approval,2026-05-06
+ADJ000924,C000398,1379,Raymond Harvey,T6543,Credit,58.79,Billing inquiry,Approved,2026-05-06
+ADJ000925,C000445,4512,Jane Anderson,T6545,Credit,57.71,Technical issue,Pending Approval,2026-05-06
+ADJ000926,C000446,9436,Mary Torres,T6546,Credit,57.70,Billing inquiry,Pending Approval,2026-05-06
+ADJ000927,C000496,2373,Mary Smith,T6547,Credit,56.74,Technical issue,Approved,2026-05-06
+ADJ000928,C000565,7,Melissa Wilcox,T6549,Credit,55.69,Product inquiry,Pending Approval,2026-05-06
+ADJ000929,C000806,9248,Mary Luna,T6552,Refund,52.10,Refund request,Approved,2026-05-06
+ADJ000930,C000918,10554,Justin Smith,T6554,Credit,50.81,Billing inquiry,Approved,2026-05-06
+ADJ000931,C000961,3993,Mary Crawford,T6555,Credit,50.24,Cancellation request,Approved,2026-05-06
+ADJ000932,C000962,9405,Ashley Smith,T6556,Credit,50.20,Technical issue,Approved,2026-05-06
+ADJ000933,C000965,8658,Mary Allen,T6557,Credit,50.16,Cancellation request,Pending Approval,2026-05-06
+ADJ000934,C001013,8478,Mary Sweeney,T6558,Credit,49.65,Technical issue,Approved,2026-05-06
+ADJ000935,C001089,10072,Richard Smith,T6559,Refund,48.85,Refund request,Approved,2026-05-06
+ADJ000936,C001394,1753,Sandra Smith,T6561,Credit,46.29,Product inquiry,Approved,2026-05-06
+ADJ000937,C001421,11929,Amy Smith,T6562,Credit,46.00,Product inquiry,Approved,2026-05-06
+ADJ000938,C001427,3428,Madison Joseph,T6563,Refund,45.99,Refund request,Approved,2026-05-06
+ADJ000939,C001432,3066,Mary Smith,T6564,Credit,45.95,Product inquiry,Approved,2026-05-06
+ADJ000940,C001536,2763,Frances Smith,T6566,Credit,45.15,Billing inquiry,Approved,2026-05-06
+ADJ000941,C001616,1243,Joan Rosales,T6567,Credit,44.60,Billing inquiry,Pending Approval,2026-05-06
+ADJ000942,C001675,5852,Mary Harris,T6568,Credit,44.32,Refund request,Pending Approval,2026-05-06
+ADJ000943,C001709,10721,Mary Smith,T6569,Credit,44.16,Technical issue,Pending Approval,2026-05-06
+ADJ000944,C001935,11997,Jonathan Smith,T6572,Credit,42.60,Cancellation request,Approved,2026-05-06
+ADJ000945,C001943,2562,Mary Anderson,T6573,Credit,42.55,Refund request,Pending Approval,2026-05-06
+ADJ000946,C000027,2774,Sandra Smith,T6574,Credit,80.39,Billing inquiry,Approved,2026-05-06
+ADJ000947,C000466,8027,James Smith,T6579,Refund,57.30,Refund request,Approved,2026-05-06
+ADJ000948,C000529,2433,James Smith,T6582,Credit,56.24,Billing inquiry,Approved,2026-05-06
+ADJ000949,C000734,11492,Evelyn Allen,T6584,Credit,53.04,Billing inquiry,Pending Approval,2026-05-06
+ADJ000950,C000793,569,Mary Frye,T6586,Refund,52.29,Refund request,Approved,2026-05-06
+ADJ000951,C000798,3229,Teresa Smith,T6587,Credit,52.23,Product inquiry,Approved,2026-05-06
+ADJ000952,C001139,12132,Mary Larson,T6593,Credit,48.39,Technical issue,Pending Approval,2026-05-06
+ADJ000953,C001287,4683,Mary Lang,T6594,Refund,47.07,Refund request,Approved,2026-05-06
+ADJ000954,C001351,4044,Stephen Smith,T6595,Credit,46.60,Technical issue,Approved,2026-05-06
+ADJ000955,C001551,2193,Catherine Smith,T6597,Credit,45.01,Technical issue,Approved,2026-05-06
+ADJ000956,C001635,7356,Andrew Robles,T6599,Credit,44.50,Billing inquiry,Approved,2026-05-06
+ADJ000957,C001649,11574,Mary Guzman,T6600,Refund,44.45,Refund request,Approved,2026-05-06
+ADJ000958,C001692,12018,Raymond Smith,T6601,Refund,44.22,Refund request,Approved,2026-05-06
+ADJ000959,C001773,4213,Michael Townsend,T6602,Credit,43.70,Billing inquiry,Pending Approval,2026-05-06
+ADJ000960,C001898,8352,Teresa Black,T6603,Credit,42.80,Technical issue,Pending Approval,2026-05-06
+ADJ000961,C000376,5904,Catherine Peterson,T6613,Refund,59.23,Refund request,Approved,2026-05-06
+ADJ000962,C000419,5606,Teresa White,T6614,Credit,58.29,Cancellation request,Pending Approval,2026-05-06
+ADJ000963,C000620,8637,Mary Smith,T6617,Refund,54.63,Refund request,Approved,2026-05-06
+ADJ000964,C000705,3977,Mary Smith,T6618,Credit,53.44,Refund request,Pending Approval,2026-05-06
+ADJ000965,C000817,12291,Jennifer Sims,T6619,Credit,51.90,Refund request,Pending Approval,2026-05-06
+ADJ000966,C001093,10617,Ruth Smith,T6621,Credit,48.80,Product inquiry,Pending Approval,2026-05-06
+ADJ000967,C001099,6418,Olivia Owens,T6622,Credit,48.77,Billing inquiry,Approved,2026-05-06
+ADJ000968,C001484,7992,Harold Smith,T6624,Credit,45.50,Cancellation request,Approved,2026-05-06
+ADJ000969,C001514,207,Jose Powers,T6625,Credit,45.34,Product inquiry,Approved,2026-05-06
+ADJ000970,C001614,4476,Mary Ortiz,T6627,Credit,44.64,Technical issue,Pending Approval,2026-05-06
+ADJ000971,C001767,8275,Janice Smith,T6629,Credit,43.75,Refund request,Pending Approval,2026-05-06
+ADJ000972,C001794,3435,Mary Smith,T6630,Credit,43.56,Cancellation request,Pending Approval,2026-05-06
+ADJ000973,C001797,4580,Charles Smith,T6631,Credit,43.55,Technical issue,Pending Approval,2026-05-06
+ADJ000974,C001819,1711,Jason Smith,T6632,Refund,43.40,Refund request,Approved,2026-05-06
+ADJ000975,C001895,11665,William Anderson,T6634,Credit,42.80,Product inquiry,Approved,2026-05-06
+ADJ000976,C001983,12335,Mary Riley,T6635,Credit,42.40,Refund request,Pending Approval,2026-05-06
+ADJ000977,C000022,5004,Dorothy Friedman,T6637,Credit,81.65,Technical issue,Approved,2026-05-06
+ADJ000978,C000085,6341,Daniel Smith,T6639,Refund,71.69,Refund request,Approved,2026-05-06
+ADJ000979,C000227,11947,Mary Smith,T6640,Credit,63.89,Cancellation request,Pending Approval,2026-05-06
+ADJ000980,C000341,11422,Mary Jones,T6641,Credit,59.94,Refund request,Pending Approval,2026-05-06
+ADJ000981,C000402,8917,Mary Smith,T6643,Refund,58.57,Refund request,Approved,2026-05-06
+ADJ000982,C000502,827,Tyler Smith,T6644,Refund,56.69,Refund request,Approved,2026-05-06
+ADJ000983,C000591,1544,Brittany Marquez,T6646,Credit,55.19,Technical issue,Approved,2026-05-06
+ADJ000984,C000681,9930,Nathan Smith,T6648,Credit,53.80,Billing inquiry,Approved,2026-05-06
+ADJ000985,C000683,2335,Harold Howell,T6649,Credit,53.79,Billing inquiry,Pending Approval,2026-05-06
+ADJ000986,C000721,2037,Jacob Clark,T6650,Credit,53.25,Refund request,Pending Approval,2026-05-06
+ADJ000987,C000782,9671,Jennifer Smith,T6651,Credit,52.40,Cancellation request,Approved,2026-05-06
+ADJ000988,C001112,10620,Mary Smith,T6655,Credit,48.60,Billing inquiry,Approved,2026-05-06
+ADJ000989,C001131,1558,Mary Smith,T6656,Refund,48.44,Refund request,Approved,2026-05-06
+ADJ000990,C001140,9009,Mary Sanchez,T6657,Refund,48.39,Refund request,Approved,2026-05-06
+ADJ000991,C001147,5976,William Estrada,T6659,Credit,48.35,Technical issue,Approved,2026-05-06
+ADJ000992,C001150,7975,Eugene Davila,T6660,Credit,48.33,Product inquiry,Pending Approval,2026-05-06
+ADJ000993,C001158,5165,Mary Smith,T6661,Credit,48.19,Billing inquiry,Approved,2026-05-06
+ADJ000994,C001319,2585,Kyle Rice,T6664,Credit,46.80,Cancellation request,Pending Approval,2026-05-06
+ADJ000995,C001440,11924,Mary Ramos,T6665,Refund,45.89,Refund request,Approved,2026-05-06
+ADJ000996,C001479,7758,Joyce Howe,T6666,Credit,45.52,Cancellation request,Approved,2026-05-06
+ADJ000997,C001658,4657,Mary Shaw,T6668,Credit,44.40,Billing inquiry,Approved,2026-05-06
+ADJ000998,C001734,8643,Mary Valenzuela,T6669,Refund,43.99,Refund request,Approved,2026-05-06
+ADJ000999,C001757,2591,Patricia Smith,T6670,Credit,43.80,Cancellation request,Approved,2026-05-06
+ADJ001000,C001758,10289,Virginia Ford,T6671,Credit,43.80,Billing inquiry,Pending Approval,2026-05-06
+ADJ001001,C001870,8123,Mary Todd,T6674,Credit,42.99,Billing inquiry,Approved,2026-05-06
+ADJ001002,C001968,8091,Emily Powell,T6677,Refund,42.44,Refund request,Approved,2026-05-06
+ADJ001003,C001984,6755,Mary Callahan,T6678,Credit,42.40,Technical issue,Pending Approval,2026-05-06
+ADJ001004,C001990,2219,Mary Chung,T6679,Credit,42.35,Billing inquiry,Pending Approval,2026-05-06
+ADJ001005,C000081,10291,Ann Smith,T6680,Credit,71.95,Refund request,Pending Approval,2026-05-06
+ADJ001006,C000174,9368,Mary Cabrera,T6682,Credit,66.04,Refund request,Pending Approval,2026-05-06
+ADJ001007,C000185,6953,Benjamin Smith,T6683,Credit,65.77,Refund request,Pending Approval,2026-05-06
+ADJ001008,C000333,12,Christopher Smith,T6685,Credit,60.09,Product inquiry,Approved,2026-05-06
+ADJ001009,C000380,5739,Mary Palmer,T6686,Refund,59.19,Refund request,Approved,2026-05-06
+ADJ001010,C001015,8817,Mary Smith,T6690,Refund,49.64,Refund request,Approved,2026-05-06
+ADJ001011,C001178,1448,Mary Murray,T6692,Refund,48.09,Refund request,Approved,2026-05-06
+ADJ001012,C001180,1871,Mary Mcknight,T6693,Refund,48.05,Refund request,Approved,2026-05-06
+ADJ001013,C001261,9974,Olivia Smith,T6697,Credit,47.31,Refund request,Pending Approval,2026-05-06
+ADJ001014,C001398,5297,Mary Smith,T6699,Refund,46.24,Refund request,Approved,2026-05-06
+ADJ001015,C001558,5749,Mary Smith,T6702,Credit,44.99,Billing inquiry,Approved,2026-05-06
+ADJ001016,C001706,5104,Kevin Raymond,T6703,Refund,44.19,Refund request,Approved,2026-05-06
+ADJ001017,C001742,2267,Rebecca Tran,T6705,Refund,43.90,Refund request,Approved,2026-05-06
+ADJ001018,C001888,11631,Jennifer Mckenzie,T6707,Refund,42.86,Refund request,Approved,2026-05-06
+ADJ001019,C001970,5116,Doris Smith,T6708,Credit,42.44,Billing inquiry,Approved,2026-05-06
+ADJ001020,C001998,8864,Mary Benson,T6710,Credit,42.30,Product inquiry,Approved,2026-05-06
+ADJ001021,C000140,5001,Ann Waller,T6711,Credit,67.69,Product inquiry,Approved,2026-05-06
+ADJ001022,C000253,4460,Mary Smith,T6712,Credit,62.73,Refund request,Pending Approval,2026-05-06
+ADJ001023,C000345,10634,Mary King,T6713,Refund,59.86,Refund request,Approved,2026-05-06
+ADJ001024,C000569,1571,Betty Bishop,T6714,Refund,55.59,Refund request,Approved,2026-05-06
+ADJ001025,C000586,11576,Richard Andrade,T6715,Credit,55.25,Refund request,Pending Approval,2026-05-06
+ADJ001026,C000607,9702,Katherine Tyler,T6716,Refund,54.99,Refund request,Approved,2026-05-06
+ADJ001027,C000909,2291,Mary Mcdonald,T6721,Refund,50.93,Refund request,Approved,2026-05-06
+ADJ001028,C000995,8125,Philip Robbins,T6722,Refund,49.85,Refund request,Approved,2026-05-06
+ADJ001029,C001006,5298,Lisa Moore,T6723,Credit,49.70,Technical issue,Approved,2026-05-06
+ADJ001030,C001076,6746,Anthony Sanchez,T6725,Credit,48.98,Refund request,Pending Approval,2026-05-06
+ADJ001031,C001315,11005,Christian Keller,T6726,Refund,46.84,Refund request,Approved,2026-05-06
+ADJ001032,C001337,6688,Mary Smith,T6727,Credit,46.67,Cancellation request,Pending Approval,2026-05-06
+ADJ001033,C001345,8675,Zachary Smith,T6728,Credit,46.63,Technical issue,Pending Approval,2026-05-06
+ADJ001034,C001372,9609,Mary Lucero,T6729,Credit,46.40,Technical issue,Pending Approval,2026-05-06
+ADJ001035,C001382,8499,Angela Smith,T6730,Credit,46.35,Cancellation request,Approved,2026-05-06
+ADJ001036,C001406,1013,Frances Smith,T6731,Credit,46.17,Billing inquiry,Pending Approval,2026-05-06
+ADJ001037,C001600,2845,Ryan Collins,T6732,Credit,44.74,Product inquiry,Approved,2026-05-06
+ADJ001038,C000020,7200,Katherine Smith,T6737,Credit,82.29,Cancellation request,Approved,2026-05-06
+ADJ001039,C000126,8018,Ruth Shepherd,T6738,Credit,68.49,Cancellation request,Approved,2026-05-06
+ADJ001040,C000134,10175,Michael Gibson,T6739,Credit,67.99,Product inquiry,Approved,2026-05-06
+ADJ001041,C000188,4181,Aaron Hudson,T6740,Refund,65.63,Refund request,Approved,2026-05-06
+ADJ001042,C000191,10129,Mary Kidd,T6741,Credit,65.35,Cancellation request,Approved,2026-05-06
+ADJ001043,C000248,5054,Paul Thomas,T6742,Credit,62.93,Technical issue,Approved,2026-05-06
+ADJ001044,C000303,8078,Janet Thomas,T6744,Credit,61.14,Product inquiry,Pending Approval,2026-05-06
+ADJ001045,C000504,2447,Mary Smith,T6746,Credit,56.64,Refund request,Pending Approval,2026-05-06
+ADJ001046,C000554,10051,Kathryn Smith,T6747,Credit,55.87,Billing inquiry,Approved,2026-05-06
+ADJ001047,C000634,8285,Eric Smith,T6748,Credit,54.40,Product inquiry,Approved,2026-05-06
+ADJ001048,C000648,7940,Mary Mejia,T6749,Credit,54.29,Refund request,Pending Approval,2026-05-06
+ADJ001049,C000714,3523,Mary Mcgee,T6750,Credit,53.33,Technical issue,Approved,2026-05-06
+ADJ001050,C000808,5907,Mary Proctor,T6751,Credit,52.09,Technical issue,Pending Approval,2026-05-06
+ADJ001051,C000913,3280,Kathleen Smith,T6753,Credit,50.89,Product inquiry,Pending Approval,2026-05-06
+ADJ001052,C001080,2703,Kimberly Smith,T6755,Credit,48.90,Billing inquiry,Approved,2026-05-06
+ADJ001053,C001106,10563,Mary Smith,T6757,Refund,48.69,Refund request,Approved,2026-05-06
+ADJ001054,C001211,3713,Helen Smith,T6759,Refund,47.71,Refund request,Approved,2026-05-06
+ADJ001055,C001509,6457,Dorothy Coleman,T6763,Refund,45.35,Refund request,Approved,2026-05-06
+ADJ001056,C001557,10668,Mary Smith,T6764,Credit,44.99,Cancellation request,Pending Approval,2026-05-06
+ADJ001057,C001610,5129,Dennis Smith,T6765,Refund,44.69,Refund request,Approved,2026-05-06
+ADJ001058,C001741,11950,Daniel Harris,T6766,Refund,43.94,Refund request,Approved,2026-05-06
+ADJ001059,C001781,3696,Martha Holloway,T6767,Credit,43.68,Cancellation request,Approved,2026-05-06
+ADJ001060,C001792,8321,Kenneth Smith,T6768,Refund,43.58,Refund request,Approved,2026-05-06
+ADJ001061,C001909,11509,Sharon Wood,T6769,Credit,42.74,Billing inquiry,Pending Approval,2026-05-06
+ADJ001062,C000143,7892,Michael Hayes,T6771,Credit,67.66,Product inquiry,Pending Approval,2026-05-06
+ADJ001063,C000171,58,Michael Edwards,T6772,Credit,66.15,Cancellation request,Pending Approval,2026-05-06
+ADJ001064,C000349,10635,Donna Torres,T6774,Credit,59.75,Product inquiry,Approved,2026-05-06
+ADJ001065,C000432,698,Mary Smith,T6776,Credit,57.99,Cancellation request,Approved,2026-05-06
+ADJ001066,C000437,2514,Mary Luna,T6777,Refund,57.91,Refund request,Approved,2026-05-06
+ADJ001067,C000453,1261,Victoria Hancock,T6778,Refund,57.54,Refund request,Approved,2026-05-06
+ADJ001068,C000519,5331,Victoria Hines,T6779,Credit,56.37,Technical issue,Approved,2026-05-06
+ADJ001069,C000550,9018,Mary Smith,T6780,Credit,55.89,Technical issue,Pending Approval,2026-05-06
+ADJ001070,C000700,241,Janet Carter,T6782,Refund,53.52,Refund request,Approved,2026-05-06
+ADJ001071,C000904,11275,Kyle Wheeler,T6784,Credit,51.00,Technical issue,Pending Approval,2026-05-06
+ADJ001072,C000949,408,Elizabeth Raymond,T6785,Refund,50.40,Refund request,Approved,2026-05-06
+ADJ001073,C000977,625,Terry Smith,T6786,Refund,50.09,Refund request,Approved,2026-05-06
+ADJ001074,C000992,3235,Lori Baker,T6787,Credit,49.94,Product inquiry,Approved,2026-05-06
+ADJ001075,C001350,6739,Matthew Mullins,T6790,Credit,46.60,Product inquiry,Approved,2026-05-06
+ADJ001076,C001378,4113,Frank Smith,T6791,Credit,46.39,Technical issue,Pending Approval,2026-05-06
+ADJ001077,C001541,2988,Amy Torres,T6793,Credit,45.10,Cancellation request,Pending Approval,2026-05-06
+ADJ001078,C001625,12026,George Smith,T6794,Credit,44.54,Refund request,Pending Approval,2026-05-06
+ADJ001079,C001753,7824,Mary Jackson,T6795,Credit,43.85,Technical issue,Pending Approval,2026-05-06
+ADJ001080,C001814,224,Mary Hernandez,T6796,Credit,43.42,Product inquiry,Approved,2026-05-06
+ADJ001081,C001836,7594,Mary Smith,T6797,Refund,43.25,Refund request,Approved,2026-05-06
+ADJ001082,C001947,11330,Arthur Johnson,T6798,Credit,42.54,Technical issue,Approved,2026-05-06
+ADJ001083,C001951,8572,Victoria Smith,T6800,Credit,42.52,Cancellation request,Approved,2026-05-06
+ADJ001084,C000564,5049,Mary Walton,T6804,Refund,55.70,Refund request,Approved,2026-05-06
+ADJ001085,C000804,10278,Mary Farrell,T6805,Credit,52.13,Refund request,Pending Approval,2026-05-06
+ADJ001086,C000883,6480,Ryan Austin,T6806,Refund,51.24,Refund request,Approved,2026-05-06
+ADJ001087,C000914,3506,Samantha Graham,T6807,Refund,50.87,Refund request,Approved,2026-05-06
+ADJ001088,C001191,2256,Mary Smith,T6809,Refund,47.90,Refund request,Approved,2026-05-06
+ADJ001089,C001225,308,Alan Berger,T6810,Refund,47.59,Refund request,Approved,2026-05-06
+ADJ001090,C001511,6318,Gerald Garza,T6812,Credit,45.35,Product inquiry,Approved,2026-05-06
+ADJ001091,C001517,9541,Richard Leach,T6813,Credit,45.30,Billing inquiry,Pending Approval,2026-05-06
+ADJ001092,C001691,7705,Julia Robinson,T6814,Credit,44.23,Billing inquiry,Approved,2026-05-06
+ADJ001093,C001952,12129,Mary Perkins,T6817,Credit,42.52,Product inquiry,Pending Approval,2026-05-06
+ADJ001094,C001956,4487,Rebecca Knight,T6818,Refund,42.50,Refund request,Approved,2026-05-06
+ADJ001095,C000030,5216,Mary Pitts,T6820,Credit,79.29,Technical issue,Approved,2026-05-06
+ADJ001096,C000203,1107,Nicole Miller,T6822,Refund,64.89,Refund request,Approved,2026-05-06
+ADJ001097,C000360,6623,Christian Turner,T6823,Credit,59.54,Billing inquiry,Approved,2026-05-06
+ADJ001098,C000396,6473,Mary Castillo,T6824,Credit,58.85,Billing inquiry,Approved,2026-05-06
+ADJ001099,C000640,9528,Mary Flores,T6825,Credit,54.36,Technical issue,Approved,2026-05-06
+ADJ001100,C000654,12123,Jeremy Tucker,T6826,Credit,54.19,Billing inquiry,Approved,2026-05-06
+ADJ001101,C000834,5411,Robert Crane,T6827,Credit,51.75,Cancellation request,Approved,2026-05-06
+ADJ001102,C000953,7016,Jack Sloan,T6828,Credit,50.33,Product inquiry,Pending Approval,2026-05-06
+ADJ001103,C001094,2578,Mary Blake,T6831,Credit,48.80,Technical issue,Approved,2026-05-06
+ADJ001104,C001285,2091,Doris Smith,T6835,Credit,47.09,Product inquiry,Pending Approval,2026-05-06
+ADJ001105,C001365,6184,James Potter,T6836,Credit,46.50,Technical issue,Pending Approval,2026-05-06
+ADJ001106,C001392,6724,Benjamin Smith,T6837,Credit,46.29,Product inquiry,Pending Approval,2026-05-06
+ADJ001107,C001745,3189,Bryan Smith,T6839,Refund,43.90,Refund request,Approved,2026-05-06
+ADJ001108,C001825,10769,Mary Edwards,T6840,Refund,43.37,Refund request,Approved,2026-05-06
+ADJ001109,C000040,9271,Christopher Smith,T6843,Credit,76.65,Cancellation request,Pending Approval,2026-05-06
+ADJ001110,C000141,2595,Amy Smith,T6844,Credit,67.69,Cancellation request,Approved,2026-05-06
+ADJ001111,C000394,2564,Phillip Smith,T6845,Credit,58.90,Billing inquiry,Pending Approval,2026-05-06
+ADJ001112,C000408,633,Mary Campbell,T6847,Credit,58.48,Technical issue,Approved,2026-05-06
+ADJ001113,C000428,8812,Mary Woodward,T6848,Credit,58.09,Technical issue,Pending Approval,2026-05-06
+ADJ001114,C001504,11968,Emily Winters,T6854,Credit,45.39,Technical issue,Approved,2026-05-06
+ADJ001115,C001786,8883,Marie Davis,T6856,Refund,43.60,Refund request,Approved,2026-05-06
+ADJ001116,C000007,3710,Ashley Smith,T6857,Credit,90.19,Product inquiry,Pending Approval,2026-05-06
+ADJ001117,C000038,11017,Rachel Prince,T6858,Credit,76.92,Technical issue,Pending Approval,2026-05-06
+ADJ001118,C000049,9737,Benjamin Smith,T6859,Refund,75.39,Refund request,Approved,2026-05-06
+ADJ001119,C000214,11887,Christopher Smith,T6860,Credit,64.53,Refund request,Pending Approval,2026-05-06
+ADJ001120,C000625,548,Ryan Horton,T6863,Refund,54.58,Refund request,Approved,2026-05-06
+ADJ001121,C000704,4045,Mary Neal,T6866,Credit,53.46,Technical issue,Pending Approval,2026-05-06
+ADJ001122,C000820,7215,Patricia Ruiz,T6867,Refund,51.89,Refund request,Approved,2026-05-06
+ADJ001123,C000948,8578,Kevin Graham,T6868,Credit,50.44,Cancellation request,Approved,2026-05-06
+ADJ001124,C001179,10172,Mary Pugh,T6870,Credit,48.05,Billing inquiry,Pending Approval,2026-05-06
+ADJ001125,C001235,11163,Jane Price,T6871,Refund,47.52,Refund request,Approved,2026-05-06
+ADJ001126,C001512,1376,Mary Austin,T6875,Credit,45.35,Product inquiry,Pending Approval,2026-05-06
+ADJ001127,C001772,1773,Joan Carr,T6877,Credit,43.70,Technical issue,Approved,2026-05-06
+ADJ001128,C001942,3453,Mary Smith,T6880,Credit,42.55,Cancellation request,Approved,2026-05-06
+ADJ001129,C000718,7050,Mary Holloway,T6883,Credit,53.29,Product inquiry,Approved,2026-05-06
+ADJ001130,C000774,9785,Barbara Barnes,T6884,Credit,52.49,Billing inquiry,Pending Approval,2026-05-06
+ADJ001131,C000943,11761,Lauren Coleman,T6885,Refund,50.49,Refund request,Approved,2026-05-06
+ADJ001132,C001024,9517,Angela Vargas,T6886,Refund,49.54,Refund request,Approved,2026-05-06
+ADJ001133,C001434,6926,Ashley Powell,T6887,Credit,45.94,Cancellation request,Approved,2026-05-06
+ADJ001134,C001503,6416,Mary Smith,T6888,Credit,45.39,Cancellation request,Approved,2026-05-06
+ADJ001135,C001791,5653,Jean Schultz,T6890,Credit,43.59,Cancellation request,Pending Approval,2026-05-06
+ADJ001136,C000064,898,Cheryl Smith,T6891,Refund,73.69,Refund request,Approved,2026-05-06
+ADJ001137,C000614,4568,Mary Hodge,T6892,Credit,54.71,Cancellation request,Approved,2026-05-06
+ADJ001138,C000895,616,Nancy Mcclure,T6895,Refund,51.11,Refund request,Approved,2026-05-06
+ADJ001139,C001210,2111,Joan Smith,T6899,Credit,47.73,Billing inquiry,Pending Approval,2026-05-06
+ADJ001140,C001342,8005,Robert Lambert,T6900,Refund,46.65,Refund request,Approved,2026-05-06
+ADJ001141,C000119,8015,Mary Blackburn,T6906,Credit,69.11,Refund request,Pending Approval,2026-05-06
+ADJ001142,C000439,9513,Brian Rice,T6907,Credit,57.84,Technical issue,Approved,2026-05-06
+ADJ001143,C000493,603,Austin Smith,T6909,Credit,56.79,Product inquiry,Pending Approval,2026-05-06
+ADJ001144,C001419,4169,Mary Palmer,T6913,Credit,46.04,Product inquiry,Approved,2026-05-06
+ADJ001145,C001580,6727,Mary Velasquez,T6914,Refund,44.83,Refund request,Approved,2026-05-06
+ADJ001146,C001590,2461,Maria Smith,T6915,Credit,44.78,Technical issue,Approved,2026-05-06
+ADJ001147,C001591,10642,James Smith,T6916,Refund,44.76,Refund request,Approved,2026-05-06
+ADJ001148,C001674,5622,Ronald Hall,T6918,Credit,44.33,Product inquiry,Approved,2026-05-06
+ADJ001149,C001811,6222,Stephanie Smith,T6919,Credit,43.45,Product inquiry,Pending Approval,2026-05-06
+ADJ001150,C001858,2652,Martha Santiago,T6920,Credit,43.09,Billing inquiry,Approved,2026-05-06
+ADJ001151,C001873,222,Frank Ruiz,T6921,Credit,42.95,Cancellation request,Pending Approval,2026-05-06
+ADJ001152,C001874,7180,Mary Walton,T6922,Credit,42.95,Refund request,Pending Approval,2026-05-06
+ADJ001153,C001919,11681,Roy Jackson,T6924,Credit,42.69,Technical issue,Pending Approval,2026-05-06
+ADJ001154,C001961,5704,Matthew Smith,T6925,Credit,42.49,Technical issue,Approved,2026-05-06
+ADJ001155,C000276,10198,Mary Smith,T6926,Credit,61.99,Product inquiry,Approved,2026-05-06
+ADJ001156,C000743,8800,John Smith,T6929,Credit,52.92,Product inquiry,Pending Approval,2026-05-06
+ADJ001157,C001036,10765,Mary Byrd,T6931,Credit,49.39,Billing inquiry,Pending Approval,2026-05-06
+ADJ001158,C001486,3291,Mary Parrish,T6933,Credit,45.49,Product inquiry,Approved,2026-05-06
+ADJ001159,C001644,10637,Matthew Smith,T6935,Credit,44.45,Refund request,Pending Approval,2026-05-06
+ADJ001160,C000390,6970,Helen Long,T6936,Refund,58.98,Refund request,Approved,2026-05-06
+ADJ001161,C000470,11960,Ryan Allen,T6937,Refund,57.25,Refund request,Approved,2026-05-06
+ADJ001162,C000652,7316,Marilyn Wu,T6938,Refund,54.19,Refund request,Approved,2026-05-06
+ADJ001163,C000694,867,Catherine Smith,T6939,Credit,53.59,Billing inquiry,Pending Approval,2026-05-06
+ADJ001164,C000873,7602,Brian Mitchell,T6940,Credit,51.30,Product inquiry,Approved,2026-05-06
+ADJ001165,C001203,5158,Ashley Smith,T6941,Refund,47.80,Refund request,Approved,2026-05-06
+ADJ001166,C001899,1574,Mary Smith,T6942,Refund,42.80,Refund request,Approved,2026-05-06
+ADJ001167,C001924,3119,Shirley Hinton,T6943,Credit,42.64,Cancellation request,Pending Approval,2026-05-06
+ADJ001168,C001933,109,Mary Thompson,T6944,Credit,42.60,Refund request,Pending Approval,2026-05-06
+ADJ001169,C000175,6977,Mary Short,T6945,Refund,66.04,Refund request,Approved,2026-05-06
+ADJ001170,C000791,4595,Christian Smith,T6949,Credit,52.30,Billing inquiry,Approved,2026-05-06
+ADJ001171,C001008,9523,Dylan Jackson,T6950,Credit,49.70,Cancellation request,Approved,2026-05-06
+ADJ001172,C001084,1532,Mary Bailey,T6951,Credit,48.89,Cancellation request,Approved,2026-05-06
+ADJ001173,C001341,986,Catherine Hawkins,T6953,Refund,46.65,Refund request,Approved,2026-05-06
+ADJ001174,C001815,9281,Ann Smith,T6956,Refund,43.41,Refund request,Approved,2026-05-06
+ADJ001175,C000750,9103,Nathan Smith,T6958,Refund,52.87,Refund request,Approved,2026-05-06
+ADJ001176,C001332,7850,Mary Lara,T6959,Credit,46.69,Cancellation request,Pending Approval,2026-05-06
+ADJ001177,C001538,9402,Amber Smith,T6960,Refund,45.14,Refund request,Approved,2026-05-06
+ADJ001178,C001359,10884,Zachary Smith,T6965,Refund,46.54,Refund request,Approved,2026-05-06
+ADJ001179,C001556,4140,Brandon Smith,T6967,Credit,44.99,Product inquiry,Approved,2026-05-06
+ADJ001180,C001817,5326,Sean Spencer,T6968,Credit,43.40,Billing inquiry,Pending Approval,2026-05-06
+ADJ001181,C000979,8628,Frances Meyer,T6969,Credit,50.05,Cancellation request,Approved,2026-05-06
+ADJ001182,C001439,10162,Joseph Livingston,T6970,Refund,45.90,Refund request,Approved,2026-05-06
+ADJ001183,C001604,8763,Pamela Williams,T6971,Credit,44.71,Technical issue,Pending Approval,2026-05-06
+ADJ001184,C001783,11637,Mary Smith,T6972,Credit,43.63,Billing inquiry,Approved,2026-05-06
+ADJ001185,C001866,630,Jacob Smith,T6973,Refund,42.99,Refund request,Approved,2026-05-06
+ADJ001186,C001458,737,Lawrence Smith,T6974,Credit,45.70,Product inquiry,Approved,2026-05-06
+ADJ001187,C001637,3406,Mary Smith,T6975,Credit,44.49,Product inquiry,Approved,2026-05-06
+ADJ001188,C000912,3206,Mary Smith,T6976,Credit,50.89,Product inquiry,Approved,2026-05-06
+ADJ001189,C001164,4470,Mary Smith,T6978,Refund,48.14,Refund request,Approved,2026-05-06
+ADJ001190,C001779,9831,Daniel Smith,T6982,Credit,43.69,Billing inquiry,Approved,2026-05-06
+ADJ001191,C000744,5382,Mary Smith,T6985,Credit,52.91,Technical issue,Approved,2026-05-06
+ADJ001192,C000833,11606,Mary Cisneros,T6987,Credit,51.76,Billing inquiry,Pending Approval,2026-05-06
+ADJ001193,C001682,10678,Martha Prince,T6990,Credit,44.29,Billing inquiry,Approved,2026-05-06
+ADJ001194,C000096,1780,Larry Sharp,T6991,Credit,70.71,Billing inquiry,Approved,2026-05-06
+ADJ001195,C000622,5364,Thomas Colon,T6993,Credit,54.59,Refund request,Pending Approval,2026-05-06
+ADJ001196,C001223,11772,Mary Smith,T6995,Refund,47.59,Refund request,Approved,2026-05-06
+ADJ001197,C001594,8963,Ruth Bush,T6997,Credit,44.75,Technical issue,Pending Approval,2026-05-06
+ADJ001198,C001885,4492,Pamela Hubbard,T6999,Credit,42.89,Technical issue,Approved,2026-05-06
