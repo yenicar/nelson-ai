@@ -9,17 +9,17 @@
 //
 // Account drill-in opens in a slide-over drawer.
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api, ApiError } from "@/lib/api";
 import { Customer, DashboardPayload, SessionInfo } from "@/lib/types";
 import { KPIStrip } from "@/components/KPIStrip";
 import { DiagnosticCanvas } from "@/components/DiagnosticCanvas";
 import { DashboardControls } from "@/components/DashboardControls";
-import { RightRail } from "@/components/RightRail";
+import { RightRail, PrescriptiveTab } from "@/components/RightRail";
 import { ChatWidget } from "@/components/ChatWidget";
 import { AccountDrawer } from "@/components/AccountDrawer";
-import { Sidebar } from "@/components/Sidebar";
+import { Sidebar, NavTarget } from "@/components/Sidebar";
 import { AppHeader } from "@/components/AppHeader";
 import { ToastProvider } from "@/lib/toast";
 
@@ -36,6 +36,36 @@ export default function Dashboard() {
   const [bandFilter, setBandFilter] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<Customer[] | null>(null);
   const [searching, setSearching] = useState(false);
+
+  // Cross-pane navigation state (sidebar / header bell drive these).
+  const [activeNav, setActiveNav] = useState<NavTarget>("dashboard");
+  const [prescriptiveTab, setPrescriptiveTab] = useState<PrescriptiveTab>("pending");
+  const predictiveRef = useRef<HTMLDivElement>(null);
+  const prescriptiveRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLElement>(null);
+
+  const handleNavigate = useCallback((target: NavTarget) => {
+    setActiveNav(target);
+    if (target === "dashboard" || target === "customers") {
+      // Reset filters/search; scroll canvas to top.
+      if (target === "customers") {
+        setSearch("");
+        setBandFilter(null);
+      }
+      canvasRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (target === "actions") {
+      setPrescriptiveTab("pending");
+      prescriptiveRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } else if (target === "decisions") {
+      setPrescriptiveTab("decided");
+      prescriptiveRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, []);
+
+  const jumpToFollowups = useCallback(() => {
+    setActiveNav("dashboard");
+    predictiveRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, []);
 
   // Debounced backend search across all 2,000 customers when query has 2+ chars.
   useEffect(() => {
@@ -112,6 +142,8 @@ export default function Dashboard() {
           userId={session?.user_id || "—"}
           tenantName={session?.tenant_name || "—"}
           pendingActionsCount={data?.pending_actions.length ?? 0}
+          activeTarget={activeNav}
+          onNavigate={handleNavigate}
           onLogout={logout}
         />
 
@@ -120,6 +152,10 @@ export default function Dashboard() {
           <AppHeader
             summary={data?.summary ?? null}
             pendingActionsCount={data?.pending_actions.length ?? 0}
+            pendingFollowupsCount={data?.pending_followups.length ?? 0}
+            onJumpToActions={() => handleNavigate("actions")}
+            onJumpToDecisions={() => handleNavigate("decisions")}
+            onJumpToFollowups={jumpToFollowups}
           />
 
           {/* Body */}
@@ -140,7 +176,7 @@ export default function Dashboard() {
                 resultCount={searchResults ? displayedAccounts.length : undefined}
                 loading={searching}
               />
-              <main className="flex-1 min-h-0 overflow-y-auto pr-2 scrollbar-thin">
+              <main ref={canvasRef} className="flex-1 min-h-0 overflow-y-auto pr-2 scrollbar-thin">
                 {loading && (
                   <div className="space-y-4">
                     <div>
@@ -200,6 +236,10 @@ export default function Dashboard() {
               <RightRail
                 followups={data?.pending_followups ?? []}
                 actions={data?.pending_actions ?? []}
+                prescriptiveTab={prescriptiveTab}
+                onPrescriptiveTabChange={setPrescriptiveTab}
+                predictiveRef={predictiveRef}
+                prescriptiveRef={prescriptiveRef}
                 onSelect={setSelected}
                 onActionDecided={refresh}
               />

@@ -11,18 +11,45 @@ import { DecidedAction, PendingAction, PendingFollowup } from "@/lib/types";
 import { bandClass, relativeDate } from "@/lib/format";
 import { useToast } from "@/lib/toast";
 
+export type PrescriptiveTab = "pending" | "decided";
+
 interface Props {
   followups: PendingFollowup[];
   actions: PendingAction[];
+  /** Controlled prescriptive tab (so the sidebar/bell can switch it). */
+  prescriptiveTab: PrescriptiveTab;
+  onPrescriptiveTabChange: (tab: PrescriptiveTab) => void;
+  /** Optional refs for the parent to scroll into view from external triggers. */
+  predictiveRef?: React.RefObject<HTMLDivElement | null>;
+  prescriptiveRef?: React.RefObject<HTMLDivElement | null>;
   onSelect: (customerId: string) => void;
   onActionDecided: () => void;
 }
 
-export function RightRail({ followups, actions, onSelect, onActionDecided }: Props) {
+export function RightRail({
+  followups,
+  actions,
+  prescriptiveTab,
+  onPrescriptiveTabChange,
+  predictiveRef,
+  prescriptiveRef,
+  onSelect,
+  onActionDecided,
+}: Props) {
   return (
     <aside className="h-full flex flex-col gap-3">
-      <PredictivePanel followups={followups} onSelect={onSelect} />
-      <PrescriptivePanel actions={actions} onSelect={onSelect} onDecided={onActionDecided} />
+      <div ref={predictiveRef} className="flex-1 min-h-0 flex">
+        <PredictivePanel followups={followups} onSelect={onSelect} />
+      </div>
+      <div ref={prescriptiveRef} className="flex-1 min-h-0 flex">
+        <PrescriptivePanel
+          actions={actions}
+          tab={prescriptiveTab}
+          onTabChange={onPrescriptiveTabChange}
+          onSelect={onSelect}
+          onDecided={onActionDecided}
+        />
+      </div>
     </aside>
   );
 }
@@ -84,14 +111,17 @@ function PredictivePanel({
 
 function PrescriptivePanel({
   actions,
+  tab,
+  onTabChange,
   onSelect,
   onDecided,
 }: {
   actions: PendingAction[];
+  tab: PrescriptiveTab;
+  onTabChange: (tab: PrescriptiveTab) => void;
   onSelect: (customerId: string) => void;
   onDecided: () => void;
 }) {
-  const [tab, setTab] = useState<"pending" | "decided">("pending");
   const [decided, setDecided] = useState<DecidedAction[] | null>(null);
   const [loadingDecided, setLoadingDecided] = useState(false);
 
@@ -115,11 +145,11 @@ function PrescriptivePanel({
           Nelson's actions
         </div>
         <div className="flex items-center gap-1 text-xs">
-          <TabButton active={tab === "pending"} onClick={() => setTab("pending")}>
+          <TabButton active={tab === "pending"} onClick={() => onTabChange("pending")}>
             <Sparkles className="w-3 h-3" /> Pending
             <span className="ml-1 text-white/50">{actions.length}</span>
           </TabButton>
-          <TabButton active={tab === "decided"} onClick={() => setTab("decided")}>
+          <TabButton active={tab === "decided"} onClick={() => onTabChange("decided")}>
             <History className="w-3 h-3" /> Decided
             {decided && <span className="ml-1 text-white/50">{decided.length}</span>}
           </TabButton>

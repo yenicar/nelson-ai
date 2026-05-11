@@ -2,23 +2,32 @@
 
 import { LayoutDashboard, Sparkles, History, Users, Settings, LogOut } from "lucide-react";
 
+export type NavTarget = "dashboard" | "customers" | "actions" | "decisions";
+
 interface Props {
   userId: string;
   tenantName: string;
   pendingActionsCount: number;
+  activeTarget: NavTarget;
+  onNavigate: (target: NavTarget) => void;
   onLogout: () => void;
 }
 
-const NAV = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, badge: null as number | null },
-  { id: "customers", label: "Customers", icon: Users, badge: null },
-  { id: "actions", label: "Actions", icon: Sparkles, badge: null },
-  { id: "decisions", label: "Decisions", icon: History, badge: null },
+const NAV: { id: NavTarget; label: string; icon: typeof LayoutDashboard }[] = [
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { id: "customers", label: "Customers", icon: Users },
+  { id: "actions", label: "Actions", icon: Sparkles },
+  { id: "decisions", label: "Decisions", icon: History },
 ];
 
-export function Sidebar({ userId, tenantName, pendingActionsCount, onLogout }: Props) {
-  // For v1 only Dashboard is active; others are placeholders that just exist
-  // to give the app the spatial shape of a real product.
+export function Sidebar({
+  userId,
+  tenantName,
+  pendingActionsCount,
+  activeTarget,
+  onNavigate,
+  onLogout,
+}: Props) {
   return (
     <aside className="w-[220px] flex-shrink-0 h-full flex flex-col border-r border-white/5 bg-ink-900/50 backdrop-blur-xs">
       {/* Brand */}
@@ -45,22 +54,24 @@ export function Sidebar({ userId, tenantName, pendingActionsCount, onLogout }: P
 
       {/* Nav */}
       <nav className="flex-1 px-2 space-y-0.5">
-        {NAV.map((item, i) => {
+        {NAV.map((item) => {
           const Icon = item.icon;
-          const active = i === 0; // Dashboard is the only live route in v1
+          const active = activeTarget === item.id;
           const badge =
             item.id === "actions" && pendingActionsCount > 0 ? pendingActionsCount : null;
           return (
             <button
               key={item.id}
-              disabled={!active}
-              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition group ${
+              onClick={() => onNavigate(item.id)}
+              className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition ${
                 active
                   ? "bg-white/10 text-white"
-                  : "text-white/40 hover:bg-white/5 hover:text-white/65 disabled:cursor-default"
+                  : "text-white/55 hover:bg-white/5 hover:text-white"
               }`}
             >
-              <Icon className={`w-4 h-4 flex-shrink-0 ${active ? "text-accent-400" : ""}`} />
+              <Icon
+                className={`w-4 h-4 flex-shrink-0 ${active ? "text-accent-400" : "text-white/45"}`}
+              />
               <span className="flex-1 text-left">{item.label}</span>
               {badge != null && (
                 <span className="text-[10px] bg-accent-500/20 text-accent-400 px-1.5 py-0.5 rounded-full font-medium">
