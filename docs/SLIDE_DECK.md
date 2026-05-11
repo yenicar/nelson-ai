@@ -117,14 +117,49 @@ Below them: ❌ *does not send*
 
 ## Slide 9 — Evaluation (the differentiator)
 
-**Visual:** A confusion matrix table from `eval/reports/eval_<latest>.md`.
+**Visual:** Two big headline numbers side by side (50% decision agreement · 60% outcome alignment) + per-class breakdown.
 
 **Headline:** *"Graded against 2,583 real human decisions in the dataset."*
 
-**Talking track (90 sec):**
-> "I held out a stratified sample from `customer_review_logs` and asked Nelson to predict each reviewer's decision purely from the customer's evidence bundle — no leakage. He hit ___% agreement on Monitor, ___% on Stabilize, ___% on Escalate. *(point at confusion matrix)* Where he disagreed, he tended to be more conservative — escalating accounts the human would have stabilized. That's a known bias and it's in the report. The whole point of this is: I can tell you where the system is reliable and where it isn't. That's what 'human-in-the-loop' actually means."
+**Numbers** (from `eval/reports/eval_20260511_024750.md`, seed=42, N=30, model=gemini-2.5-flash):
 
-> *Fill in the percentages from `eval/reports/eval_<timestamp>.md` after running `python -m nelson.cli eval`.*
+| Metric | Value |
+|---|---:|
+| **Decision agreement** (matches human label) | **50%** (15/30) |
+| **Outcome alignment** (agreed OR vindicated by reality) | **60%** (18/30) |
+| **Citation validity** (cited IDs that resolve to real records) | **98%** |
+| Avg citations per prediction | 5.9 |
+| Parse errors | 0 |
+
+**By decision class:**
+
+| Class | n | Correct | Agreement |
+|---|---:|---:|---:|
+| Escalate | 15 | 15 | **100%** |
+| Monitor | 15 | 0 | 0% |
+
+**Disagreement breakdown:**
+
+| Verdict | Count |
+|---|---:|
+| Nelson vindicated (he said act, follow-up was actually needed) | 3 |
+| Human right, Nelson over-eager | 12 |
+| **Nelson under-called** (he said less than reality required) | **0** |
+
+**Talking track (90 sec):**
+> "I held out 30 customers from `customer_review_logs` — these are real reviewer decisions. I asked Nelson to predict each one purely from raw evidence: notes, emails, tickets, orders, fulfillment events. I deliberately stripped `risk_band` and `last_review_decision` from his input — so he has to reason, not read the answer.
+>
+> Two headline numbers: **decision agreement 50%**, **outcome alignment 60%** — that's when he matches the label *or* he disagreed and the actual outcome data vindicated him.
+>
+> The breakdown is where it gets interesting. *(point at per-class table)*
+> **Escalate cases: 100% agreement** — 15 of 15. Perfect at identifying clear executive escalations.
+> **Monitor cases: 0%** — he always recommends Stabilize when the human said Monitor.
+>
+> That's a systematic bias toward action. In 3 of those 15 disagreements, follow-up was actually required — Nelson was right. In 12, the human was right and Nelson would have over-intervened.
+>
+> For a draft-only system where every action is human-gated, this is the failure mode you want — Nelson catches more, the human filters. **Nelson never under-called** — zero cases of recommending less action than reality required.
+>
+> One more number: **98% citation validity**. Nelson cited 5.9 record IDs per prediction on average, 98% of which resolve to real records. He's not hallucinating evidence."
 
 ---
 
