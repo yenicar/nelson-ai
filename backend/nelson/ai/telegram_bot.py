@@ -202,6 +202,17 @@ def _kb(rows: list[list[dict]]) -> dict:
     return {"inline_keyboard": rows}
 
 
+async def _post_send(
+    client: httpx.AsyncClient, body: dict
+) -> tuple[bool, dict]:
+    """POST to sendMessage and return (ok, response_json)."""
+    try:
+        r = await client.post(_api_url("sendMessage"), json=body)
+        return r.json().get("ok", False), r.json()
+    except Exception as e:
+        return False, {"description": f"transport error: {type(e).__name__}: {e}"}
+
+
 async def _send(
     client: httpx.AsyncClient,
     chat_id: int,
@@ -209,21 +220,36 @@ async def _send(
     *,
     reply_markup: dict | None = None,
 ) -> int | None:
-    """Send a message. Returns message_id (for the LAST chunk) on success."""
+    """Send a message with Markdown formatting; fall back to plain text on
+    parse errors. Returns message_id (for the LAST chunk) on success.
+
+    Telegram's Markdown parser is strict — unescaped underscores in customer
+    IDs, unbalanced asterisks, stray backticks, etc. all return a 400. The
+    fallback ensures the user always sees the content even if formatting fails.
+    """
     last_id: int | None = None
     chunks = [text[i : i + 3900] for i in range(0, len(text), 3900)] or [text]
     for i, chunk in enumerate(chunks):
         body: dict = {"chat_id": chat_id, "text": chunk, "parse_mode": "Markdown"}
-        # Buttons only on the final chunk
         if reply_markup and i == len(chunks) - 1:
             body["reply_markup"] = reply_markup
-        r = await client.post(_api_url("sendMessage"), json=body)
-        try:
-            j = r.json()
-            if j.get("ok"):
-                last_id = j["result"]["message_id"]
-        except Exception:
-            pass
+
+        ok, j = await _post_send(client, body)
+
+        if not ok:
+            desc = j.get("description", "unknown error")
+            print(f"  [telegram] sendMessage failed (Markdown): {desc}")
+            # Retry without parse_mode — content always wins over formatting.
+            body.pop("parse_mode", None)
+            ok, j = await _post_send(client, body)
+            if not ok:
+                print(f"  [telegram] sendMessage retry (plain) also failed: {j.get('description', j)}")
+                continue
+            else:
+                print("  [telegram] plain-text fallback succeeded")
+
+        if ok and "result" in j:
+            last_id = j["result"]["message_id"]
     return last_id
 
 
@@ -862,8 +888,11 @@ async def _do_handle(
             use_cache=False,
         )
         sessions[user_id] = result["session_id"]
-    await _send(client, chat_id, result["response"])
-    print(f"  [telegram] replied to chat={chat_id} ({len(result['response'])} chars)")
+    msg_id = await _send(client, chat_id, result["response"])
+    if msg_id:
+        print(f"  [telegram] replied to chat={chat_id} ({len(result['response'])} chars) message_id={msg_id}")
+    else:
+        print(f"  [telegram] reply NOT DELIVERED to chat={chat_id} (sendMessage failed both Markdown + plain)")
 
 
 async def _run() -> None:
