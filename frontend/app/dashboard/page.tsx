@@ -21,6 +21,8 @@ import { ChatWidget } from "@/components/ChatWidget";
 import { AccountDrawer } from "@/components/AccountDrawer";
 import { Sidebar, NavTarget } from "@/components/Sidebar";
 import { AppHeader } from "@/components/AppHeader";
+import { CustomersView } from "@/views/CustomersView";
+import { ActionsView } from "@/views/ActionsView";
 import { ToastProvider } from "@/lib/toast";
 
 export default function Dashboard() {
@@ -46,20 +48,13 @@ export default function Dashboard() {
 
   const handleNavigate = useCallback((target: NavTarget) => {
     setActiveNav(target);
-    if (target === "dashboard" || target === "customers") {
-      // Reset filters/search; scroll canvas to top.
-      if (target === "customers") {
-        setSearch("");
-        setBandFilter(null);
-      }
-      canvasRef.current?.scrollTo({ top: 0, behavior: "smooth" });
-    } else if (target === "actions") {
+    if (target === "actions") {
       setPrescriptiveTab("pending");
-      prescriptiveRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     } else if (target === "decisions") {
       setPrescriptiveTab("decided");
-      prescriptiveRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
+    // Each view manages its own scroll position; nothing to do for
+    // dashboard/customers beyond setting activeNav.
   }, []);
 
   const jumpToFollowups = useCallback(() => {
@@ -158,7 +153,17 @@ export default function Dashboard() {
             onJumpToFollowups={jumpToFollowups}
           />
 
-          {/* Body */}
+          {/* Body — view switches by activeNav */}
+          {activeNav === "customers" && (
+            <CustomersView onSelect={setSelected} selectedId={selected} />
+          )}
+          {(activeNav === "actions" || activeNav === "decisions") && (
+            <ActionsView
+              initialTab={activeNav === "decisions" ? "decided" : "pending"}
+              onSelect={setSelected}
+            />
+          )}
+          {activeNav === "dashboard" && (
           <div className="flex-1 min-h-0 grid grid-cols-[1fr_340px] gap-4 p-4">
             {/* Left content: KPI strip + controls + diagnostic canvas */}
             <div className="flex flex-col gap-4 min-h-0">
@@ -245,6 +250,7 @@ export default function Dashboard() {
               />
             </div>
           </div>
+          )}
         </div>
 
         {/* Overlays */}
