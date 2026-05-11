@@ -5,20 +5,21 @@
 // in each lane render as full cards, the tail collapses to compact strips.
 
 import { useMemo } from "react";
-import { Customer } from "@/lib/types";
+import { Customer, SentimentBreakdown } from "@/lib/types";
 import { Lane, LANE_DESCRIPTIONS, LANE_LABELS, bandClass, customerLane, fmtMoney, fmtPct } from "@/lib/format";
 import { AccountCard } from "./AccountCard";
 import { ChevronRight } from "lucide-react";
 
 interface Props {
   accounts: Customer[];
+  sentiment?: Record<string, SentimentBreakdown>;
   onSelect: (customerId: string) => void;
   selectedId?: string | null;
 }
 
 const LANE_ORDER: Lane[] = ["open_tickets", "late_deliveries", "health_concerns", "watch_list"];
 
-export function DiagnosticCanvas({ accounts, onSelect, selectedId }: Props) {
+export function DiagnosticCanvas({ accounts, sentiment, onSelect, selectedId }: Props) {
   const grouped = useMemo(() => {
     const out: Record<Lane, Customer[]> = {
       open_tickets: [],
@@ -41,6 +42,7 @@ export function DiagnosticCanvas({ accounts, onSelect, selectedId }: Props) {
             label={LANE_LABELS[lane]}
             description={LANE_DESCRIPTIONS[lane]}
             items={items}
+            sentiment={sentiment}
             onSelect={onSelect}
             selectedId={selectedId}
           />
@@ -54,12 +56,14 @@ function Lane({
   label,
   description,
   items,
+  sentiment,
   onSelect,
   selectedId,
 }: {
   label: string;
   description: string;
   items: Customer[];
+  sentiment?: Record<string, SentimentBreakdown>;
   onSelect: (customerId: string) => void;
   selectedId?: string | null;
 }) {
@@ -87,6 +91,7 @@ function Lane({
             >
               <AccountCard
                 customer={c}
+                sentiment={sentiment?.[c.customer_id]}
                 tier="featured"
                 pinned={selectedId === c.customer_id}
                 onClick={() => onSelect(c.customer_id)}

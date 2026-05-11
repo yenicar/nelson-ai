@@ -134,6 +134,91 @@ class AccountsRepo:
             (tenant_id, f"{prefix}%", limit),
         )
 
+    # ---------- Sentiment (rolled up from emails + tickets) ----------
+    # Classification is keyword-based on the synthesized `sentiment_hint` /
+    # `customer_sentiment` labels. Buckets: positive / neutral / negative.
+
+    _SENTIMENT_CTE = """
+        WITH signals AS (
+            SELECT customer_id, LOWER(COALESCE(sentiment_hint, '')) AS s
+            FROM customer_email_logs
+            WHERE tenant_id = ? AND sentiment_hint IS NOT NULL
+            UNION ALL
+            SELECT customer_id, LOWER(COALESCE(customer_sentiment, '')) AS s
+            FROM support_tickets
+            WHERE tenant_id = ? AND customer_sentiment IS NOT NULL
+        ),
+        classified AS (
+            SELECT
+                customer_id,
+                CASE
+                    WHEN s LIKE '%posit%' OR s LIKE '%happy%' OR s LIKE '%satisf%'
+                         OR s LIKE '%pleas%' OR s = 'good' OR s LIKE '%stable%'
+                         OR s LIKE '%resolved%' OR s LIKE '%delight%'
+                        THEN 'positive'
+                    WHEN s LIKE '%negat%' OR s LIKE '%concern%' OR s LIKE '%frust%'
+                         OR s LIKE '%angry%' OR s LIKE '%upset%' OR s LIKE '%critical%'
+                         OR s LIKE '%dissat%' OR s LIKE '%urgent%'
+                        THEN 'negative'
+                    ELSE 'neutral'
+                END AS bucket
+            FROM signals
+        )
+    """
+
+    @staticmethod
+    def sentiment_for_customers(tenant_id: str, customer_ids: list[str]) -> dict[str, dict]:
+        """Per-customer sentiment breakdown. Returns {customer_id: {pos, neu, neg, total, net}}."""
+        if not customer_ids:
+            return {}
+        con = get_connection()
+        placeholders = ",".join(["?"] * len(customer_ids))
+        rows = con.execute(
+            AccountsRepo._SENTIMENT_CTE + f"""
+            SELECT
+                customer_id,
+                SUM(CASE WHEN bucket='positive' THEN 1 ELSE 0 END) AS pos,
+                SUM(CASE WHEN bucket='neutral'  THEN 1 ELSE 0 END) AS neu,
+                SUM(CASE WHEN bucket='negative' THEN 1 ELSE 0 END) AS neg,
+                COUNT(*)                                            AS total
+            FROM classified
+            WHERE customer_id IN ({placeholders})
+            GROUP BY customer_id
+            """,
+            (tenant_id, tenant_id, *customer_ids),
+        ).fetchall()
+        out: dict[str, dict] = {}
+        for r in rows:
+            pos, neu, neg, total = int(r[1] or 0), int(r[2] or 0), int(r[3] or 0), int(r[4] or 0)
+            net = round(((pos - neg) / total) * 100) if total else 0
+            out[r[0]] = {"positive": pos, "neutral": neu, "negative": neg, "total": total, "net": net}
+        # Fill zeros for customers with no signals so the frontend doesn't need
+        # to handle missing keys.
+        for cid in customer_ids:
+            out.setdefault(cid, {"positive": 0, "neutral": 0, "negative": 0, "total": 0, "net": 0})
+        return out
+
+    @staticmethod
+    def portfolio_sentiment(tenant_id: str) -> dict:
+        """Portfolio-wide sentiment breakdown across all email + ticket signals."""
+        con = get_connection()
+        row = con.execute(
+            AccountsRepo._SENTIMENT_CTE + """
+            SELECT
+                SUM(CASE WHEN bucket='positive' THEN 1 ELSE 0 END) AS pos,
+                SUM(CASE WHEN bucket='neutral'  THEN 1 ELSE 0 END) AS neu,
+                SUM(CASE WHEN bucket='negative' THEN 1 ELSE 0 END) AS neg,
+                COUNT(*)                                            AS total
+            FROM classified
+            """,
+            (tenant_id, tenant_id),
+        ).fetchone()
+        if not row:
+            return {"positive": 0, "neutral": 0, "negative": 0, "total": 0, "net": 0}
+        pos, neu, neg, total = int(row[0] or 0), int(row[1] or 0), int(row[2] or 0), int(row[3] or 0)
+        net = round(((pos - neg) / total) * 100) if total else 0
+        return {"positive": pos, "neutral": neu, "negative": neg, "total": total, "net": net}
+
     @staticmethod
     def portfolio_summary(tenant_id: str) -> dict:
         """Always returns a complete summary object — falls back to zeros if

@@ -111,9 +111,19 @@ export interface PendingFollowup {
   next_best_action?: string | null;
 }
 
+export interface SentimentBreakdown {
+  positive: number;
+  neutral: number;
+  negative: number;
+  total: number;
+  net: number; // -100 to +100
+}
+
 export interface DashboardPayload {
   summary: PortfolioSummary;
+  portfolio_sentiment: SentimentBreakdown;
   accounts: Customer[];
+  sentiment: Record<string, SentimentBreakdown>; // keyed by customer_id
   pending_followups: PendingFollowup[];
   pending_actions: PendingAction[];
 }

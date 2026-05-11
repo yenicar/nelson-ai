@@ -3,18 +3,25 @@
 // Top of dashboard — Gartner level 1: DESCRIPTIVE.
 // Five tiles answering "what's the state of the portfolio right now?"
 
-import { PortfolioSummary } from "@/lib/types";
+import { PortfolioSummary, SentimentBreakdown } from "@/lib/types";
 import { fmtMoney } from "@/lib/format";
-import { Activity, AlertOctagon, DollarSign, Heart, Users } from "lucide-react";
+import { Activity, AlertOctagon, DollarSign, MessageCircle, Users } from "lucide-react";
 import { AnimatedNumber } from "./AnimatedNumber";
+import { SentimentBar, sentimentTone } from "./SentimentBar";
 
 interface Props {
   summary: PortfolioSummary | null;
+  sentiment?: SentimentBreakdown | null;
   pendingFollowupsCount: number;
   pendingActionsCount: number;
 }
 
-export function KPIStrip({ summary, pendingFollowupsCount, pendingActionsCount }: Props) {
+export function KPIStrip({
+  summary,
+  sentiment,
+  pendingFollowupsCount,
+  pendingActionsCount,
+}: Props) {
   // Skeleton state when summary hasn't loaded yet
   if (!summary) {
     return (
@@ -64,16 +71,35 @@ export function KPIStrip({ summary, pendingFollowupsCount, pendingActionsCount }
         <BandBar summary={summary} />
       </Tile>
       <Tile
-        label="Avg health"
+        label="Sentiment"
         valueNode={
-          <>
-            <AnimatedNumber value={Math.round(summary.avg_health_score ?? 0)} />
-            <span className="text-base text-white/40">/100</span>
-          </>
+          <span className={sentimentTone(sentiment?.net)}>
+            {sentiment ? (
+              <>
+                {sentiment.net > 0 ? "+" : ""}
+                <AnimatedNumber value={sentiment.net ?? 0} />
+              </>
+            ) : (
+              "—"
+            )}
+          </span>
         }
-        sublabel={`Avg risk ${Math.round(summary.avg_risk_score ?? 0)}/100`}
-        icon={<Heart className="w-4 h-4 text-risk-low" />}
-      />
+        sublabel={
+          sentiment
+            ? `${sentiment.total.toLocaleString()} signals · ${sentiment.positive.toLocaleString()} ↑ ${sentiment.negative.toLocaleString()} ↓`
+            : "loading"
+        }
+        icon={<MessageCircle className="w-4 h-4 text-white/60" />}
+        emphasis={
+          sentiment && sentiment.net <= -15
+            ? "critical"
+            : sentiment && sentiment.net >= 15
+              ? "default"
+              : "default"
+        }
+      >
+        <SentimentBar data={sentiment} variant="tile" />
+      </Tile>
       <Tile
         label="Action queue"
         valueNode={

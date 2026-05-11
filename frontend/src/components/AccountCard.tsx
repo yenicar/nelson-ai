@@ -1,19 +1,21 @@
 "use client";
 
-import { Customer } from "@/lib/types";
+import { Customer, SentimentBreakdown } from "@/lib/types";
 import { bandClass, fmtMoney, fmtPct } from "@/lib/format";
-import { AlertCircle, ChevronRight, Mail, Package, TrendingDown } from "lucide-react";
+import { AlertCircle, ChevronRight, Mail, MessageCircle, Package, TrendingDown } from "lucide-react";
 import { RiskGauge } from "./RiskGauge";
+import { SentimentBar, sentimentTone } from "./SentimentBar";
 
 interface Props {
   customer: Customer;
+  sentiment?: SentimentBreakdown | null;
   onClick?: () => void;
   pinned?: boolean;
   /** featured = larger, more detail. standard = original. compact = strip. */
   tier?: "featured" | "standard" | "compact";
 }
 
-export function AccountCard({ customer: c, onClick, pinned, tier = "standard" }: Props) {
+export function AccountCard({ customer: c, sentiment, onClick, pinned, tier = "standard" }: Props) {
   if (tier === "compact") {
     return (
       <button
@@ -76,6 +78,17 @@ export function AccountCard({ customer: c, onClick, pinned, tier = "standard" }:
           />
         )}
       </div>
+
+      {sentiment && sentiment.total > 0 && (
+        <div className="mt-2 flex items-center gap-2">
+          <MessageCircle className="w-3 h-3 text-white/40 flex-shrink-0" />
+          <SentimentBar data={sentiment} variant="compact" />
+          <span className={`text-[10px] font-medium tabular-nums ${sentimentTone(sentiment.net)}`}>
+            {sentiment.net > 0 ? "+" : ""}
+            {sentiment.net}
+          </span>
+        </div>
+      )}
 
       {featured && c.next_best_action && (
         <div className="mt-3 pt-3 border-t border-white/10 text-xs text-accent-400 flex items-center gap-1.5">

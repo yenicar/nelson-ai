@@ -128,6 +128,7 @@ export default function Dashboard() {
             <div className="flex flex-col gap-4 min-h-0">
               <KPIStrip
                 summary={data?.summary ?? null}
+                sentiment={data?.portfolio_sentiment ?? null}
                 pendingFollowupsCount={data?.pending_followups.length ?? 0}
                 pendingActionsCount={data?.pending_actions.length ?? 0}
               />
@@ -186,6 +187,7 @@ export default function Dashboard() {
                 {!loading && !error && data && displayedAccounts.length > 0 && (
                   <DiagnosticCanvas
                     accounts={displayedAccounts}
+                    sentiment={data.sentiment}
                     onSelect={setSelected}
                     selectedId={selected}
                   />
