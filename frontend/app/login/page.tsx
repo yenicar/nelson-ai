@@ -35,9 +35,15 @@ export default function Login() {
         onSubmit={submit}
         className="glass-deep rounded-3xl p-10 w-full max-w-sm animate-slide-up"
       >
-        <div className="mb-8">
-          <h1 className="text-3xl font-semibold tracking-tight">Nelson</h1>
-          <p className="text-white/50 text-sm mt-1">AI Account Intelligence</p>
+        <div className="mb-8 flex items-center gap-3">
+          <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-accent-500/40">
+            N
+            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-risk-low rounded-full ring-2 ring-ink-900 animate-pulse-soft" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight">Nelson</h1>
+            <p className="text-white/50 text-xs mt-0.5">AI Account Intelligence</p>
+          </div>
         </div>
 
         <div className="space-y-4">

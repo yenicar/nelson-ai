@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { api, ApiError } from "@/lib/api";
 import type { PendingAction, TraceStep } from "@/lib/types";
+import { useToast } from "@/lib/toast";
 
 interface Msg {
   role: "user" | "assistant";
@@ -313,6 +314,7 @@ function InlineActionCard({
 }) {
   const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const toast = useToast();
   const decided = action.status === "approved" || action.status === "rejected";
   const approved = action.status === "approved";
 
@@ -335,9 +337,16 @@ function InlineActionCard({
     try {
       if (verb === "approve") await api.approveAction(action.action_id);
       else await api.rejectAction(action.action_id);
+      toast.push({
+        kind: verb === "approve" ? "success" : "info",
+        title: `${verb === "approve" ? "Approved" : "Rejected"}: ${action.action_type.replace(/_/g, " ")}`,
+        body: action.customer_full_name || undefined,
+      });
       onDecided(action.action_id, verb === "approve" ? "approved" : "rejected");
     } catch (e) {
-      setError(e instanceof ApiError ? e.body || e.message : String(e));
+      const msg = e instanceof ApiError ? e.body || e.message : String(e);
+      setError(msg);
+      toast.push({ kind: "error", title: "Action failed", body: msg });
       setBusy(null);
     }
   }

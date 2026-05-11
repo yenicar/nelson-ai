@@ -9,6 +9,7 @@ import { ArrowUpRight, Check, Clock, History, Loader2, Sparkles, X } from "lucid
 import { api, ApiError } from "@/lib/api";
 import { DecidedAction, PendingAction, PendingFollowup } from "@/lib/types";
 import { bandClass, relativeDate } from "@/lib/format";
+import { useToast } from "@/lib/toast";
 
 interface Props {
   followups: PendingFollowup[];
@@ -234,6 +235,7 @@ function ActionRow({
 }) {
   const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const toast = useToast();
 
   async function decide(kind: "approve" | "reject") {
     setBusy(kind);
@@ -241,9 +243,16 @@ function ActionRow({
     try {
       if (kind === "approve") await api.approveAction(action.action_id);
       else await api.rejectAction(action.action_id);
+      toast.push({
+        kind: kind === "approve" ? "success" : "info",
+        title: `${kind === "approve" ? "Approved" : "Rejected"}: ${action.action_type.replace(/_/g, " ")}`,
+        body: action.customer_full_name || undefined,
+      });
       onDecided();
     } catch (e) {
-      setError(e instanceof ApiError ? e.body || e.message : String(e));
+      const msg = e instanceof ApiError ? e.body || e.message : String(e);
+      setError(msg);
+      toast.push({ kind: "error", title: "Action failed", body: msg });
       setBusy(null);
     }
   }

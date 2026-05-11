@@ -27,8 +27,18 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["-apple-system", "SF Pro Display", "Inter", "system-ui", "sans-serif"],
-        mono: ["SF Mono", "Menlo", "monospace"],
+        sans: [
+          "var(--font-sans)",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: ["var(--font-mono)", "SF Mono", "Menlo", "monospace"],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
       },
       backdropBlur: {
         xs: "2px",

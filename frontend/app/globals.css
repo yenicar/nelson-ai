@@ -4,6 +4,9 @@
 
 @layer base {
   html, body, #__next { height: 100%; }
+  html {
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
   body {
     background:
       radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.12), transparent 50%),
@@ -11,8 +14,12 @@
       #0a0e1a;
     color: rgba(255, 255, 255, 0.94);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow: hidden;
+    font-feature-settings: "cv11", "ss01", "ss03";
   }
+  /* Tabular numerals for KPI values */
+  .tabular-nums { font-variant-numeric: tabular-nums; }
 }
 
 @layer components {

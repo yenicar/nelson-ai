@@ -11,7 +11,6 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LogOut } from "lucide-react";
 import { api, ApiError } from "@/lib/api";
 import { Customer, DashboardPayload, SessionInfo } from "@/lib/types";
 import { KPIStrip } from "@/components/KPIStrip";
@@ -20,6 +19,9 @@ import { DashboardControls } from "@/components/DashboardControls";
 import { RightRail } from "@/components/RightRail";
 import { ChatWidget } from "@/components/ChatWidget";
 import { AccountDrawer } from "@/components/AccountDrawer";
+import { Sidebar } from "@/components/Sidebar";
+import { AppHeader } from "@/components/AppHeader";
+import { ToastProvider } from "@/lib/toast";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -103,113 +105,110 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex flex-col">
-      {/* Header */}
-      <header className="flex items-center justify-between px-6 py-3 border-b border-white/5 flex-shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 bg-risk-low rounded-full animate-pulse-soft" />
-            <span className="font-semibold">Nelson</span>
-            <span className="text-white/30 text-xs">·</span>
-            <span className="text-white/60 text-sm">{session?.tenant_name || "—"}</span>
-          </div>
-        </div>
-        <button
-          onClick={logout}
-          className="text-white/60 hover:text-white transition flex items-center gap-2 text-xs glass rounded-full px-3 py-1.5"
-        >
-          <LogOut className="w-3.5 h-3.5" />
-          {session?.user_id}
-        </button>
-      </header>
+    <ToastProvider>
+      <div className="h-screen w-screen overflow-hidden flex">
+        {/* Left sidebar */}
+        <Sidebar
+          userId={session?.user_id || "—"}
+          tenantName={session?.tenant_name || "—"}
+          pendingActionsCount={data?.pending_actions.length ?? 0}
+          onLogout={logout}
+        />
 
-      {/* Body */}
-      <div className="flex-1 min-h-0 grid grid-cols-[1fr_360px] gap-4 p-4">
-        {/* Left column: KPI strip + controls + diagnostic canvas */}
-        <div className="flex flex-col gap-4 min-h-0">
-          <KPIStrip
+        {/* Main column */}
+        <div className="flex-1 min-w-0 flex flex-col">
+          <AppHeader
             summary={data?.summary ?? null}
-            pendingFollowupsCount={data?.pending_followups.length ?? 0}
             pendingActionsCount={data?.pending_actions.length ?? 0}
           />
-          <DashboardControls
-            search={search}
-            onSearchChange={setSearch}
-            band={bandFilter}
-            onBandChange={setBandFilter}
-            resultCount={searchResults ? displayedAccounts.length : undefined}
-            loading={searching}
-          />
-          <main className="flex-1 min-h-0 overflow-y-auto pr-2 scrollbar-thin">
-            {loading && (
-              <div className="space-y-4">
-                {/* Skeleton lane */}
-                <div>
-                  <div className="h-3 w-40 bg-white/10 rounded mb-3 animate-pulse-soft" />
-                  <div className="grid grid-cols-3 gap-3">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="glass rounded-2xl p-4 animate-pulse-soft h-[140px]"
-                        style={{ animationDelay: `${i * 100}ms` }}
-                      >
-                        <div className="h-3 w-32 bg-white/15 rounded mb-3" />
-                        <div className="h-2 w-20 bg-white/10 rounded mb-4" />
-                        <div className="grid grid-cols-2 gap-2">
-                          <div className="h-2 w-12 bg-white/8 rounded" />
-                          <div className="h-2 w-12 bg-white/8 rounded" />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-            {!loading && error && (
-              <div className="glass-deep rounded-2xl p-5 text-sm text-risk-critical bg-risk-critical/5 border border-risk-critical/30">
-                <div className="font-semibold mb-1">Dashboard data failed to load</div>
-                <div className="text-white/70 text-xs">{error}</div>
-                <button
-                  onClick={refresh}
-                  className="mt-3 text-xs glass rounded-md px-3 py-1.5 hover:bg-white/10 transition"
-                >
-                  Retry
-                </button>
-              </div>
-            )}
-            {!loading && !error && data && displayedAccounts.length === 0 && (search || bandFilter) && (
-              <div className="glass rounded-2xl p-5 text-sm text-white/60 text-center">
-                No customers match
-                {search && <> "<span className="text-white">{search}</span>"</>}
-                {bandFilter && <> in band <span className="text-white">{bandFilter}</span></>}.
-              </div>
-            )}
-            {!loading && !error && data && displayedAccounts.length > 0 && (
-              <DiagnosticCanvas
-                accounts={displayedAccounts}
-                onSelect={setSelected}
-                selectedId={selected}
+
+          {/* Body */}
+          <div className="flex-1 min-h-0 grid grid-cols-[1fr_340px] gap-4 p-4">
+            {/* Left content: KPI strip + controls + diagnostic canvas */}
+            <div className="flex flex-col gap-4 min-h-0">
+              <KPIStrip
+                summary={data?.summary ?? null}
+                pendingFollowupsCount={data?.pending_followups.length ?? 0}
+                pendingActionsCount={data?.pending_actions.length ?? 0}
               />
-            )}
-          </main>
+              <DashboardControls
+                search={search}
+                onSearchChange={setSearch}
+                band={bandFilter}
+                onBandChange={setBandFilter}
+                resultCount={searchResults ? displayedAccounts.length : undefined}
+                loading={searching}
+              />
+              <main className="flex-1 min-h-0 overflow-y-auto pr-2 scrollbar-thin">
+                {loading && (
+                  <div className="space-y-4">
+                    <div>
+                      <div className="h-3 w-40 bg-white/10 rounded mb-3 animate-pulse-soft" />
+                      <div className="grid grid-cols-3 gap-3">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="glass rounded-2xl p-4 animate-pulse-soft h-[140px]"
+                            style={{ animationDelay: `${i * 100}ms` }}
+                          >
+                            <div className="h-3 w-32 bg-white/15 rounded mb-3" />
+                            <div className="h-2 w-20 bg-white/10 rounded mb-4" />
+                            <div className="grid grid-cols-2 gap-2">
+                              <div className="h-2 w-12 bg-white/10 rounded" />
+                              <div className="h-2 w-12 bg-white/10 rounded" />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {!loading && error && (
+                  <div className="glass-deep rounded-2xl p-5 text-sm text-risk-critical bg-risk-critical/5 border border-risk-critical/30">
+                    <div className="font-semibold mb-1">Dashboard data failed to load</div>
+                    <div className="text-white/70 text-xs">{error}</div>
+                    <button
+                      onClick={refresh}
+                      className="mt-3 text-xs glass rounded-md px-3 py-1.5 hover:bg-white/10 transition"
+                    >
+                      Retry
+                    </button>
+                  </div>
+                )}
+                {!loading && !error && data && displayedAccounts.length === 0 && (search || bandFilter) && (
+                  <div className="glass rounded-2xl p-8 text-sm text-white/60 text-center">
+                    <div className="text-white/30 text-2xl mb-2">∅</div>
+                    No customers match
+                    {search && <> &quot;<span className="text-white">{search}</span>&quot;</>}
+                    {bandFilter && <> in band <span className="text-white">{bandFilter}</span></>}.
+                  </div>
+                )}
+                {!loading && !error && data && displayedAccounts.length > 0 && (
+                  <DiagnosticCanvas
+                    accounts={displayedAccounts}
+                    onSelect={setSelected}
+                    selectedId={selected}
+                  />
+                )}
+              </main>
+            </div>
+
+            {/* Right rail: predictive + prescriptive */}
+            <div className="min-h-0">
+              <RightRail
+                followups={data?.pending_followups ?? []}
+                actions={data?.pending_actions ?? []}
+                onSelect={setSelected}
+                onActionDecided={refresh}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Right column: predictive + prescriptive */}
-        <div className="min-h-0">
-          <RightRail
-            followups={data?.pending_followups ?? []}
-            actions={data?.pending_actions ?? []}
-            onSelect={setSelected}
-            onActionDecided={refresh}
-          />
-        </div>
+        {/* Overlays */}
+        <AccountDrawer customerId={selected} onClose={() => setSelected(null)} />
+        <ChatWidget />
       </div>
-
-      {/* Drill-in drawer */}
-      <AccountDrawer customerId={selected} onClose={() => setSelected(null)} />
-
-      {/* Floating chat */}
-      <ChatWidget />
-    </div>
+    </ToastProvider>
   );
 }
