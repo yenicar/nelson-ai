@@ -393,7 +393,7 @@ def make_tools(tenant_id: str) -> list[Callable]:
     def propose_action(
         customer_id: str,
         action_type: str,
-        payload_json: Any,
+        payload_json: str,
         rationale: str,
         confidence: float = 0.7,
     ) -> dict:
@@ -404,12 +404,13 @@ def make_tools(tenant_id: str) -> list[Callable]:
             action_type: one of "send_email", "proactive_outreach", "reclassify_band",
                 "update_lifecycle", "escalate", "schedule_followup", "recommend_credit",
                 "recommend_expedite", "add_note".
-            payload_json: action-specific fields. Pass EITHER a JSON-encoded string
-                OR a dict (both work). Examples:
-                  send_email:        {"to":"a@b.com","subject":"...","body":"..."}
-                  update_lifecycle:  {"new_stage":"Active"}
-                  add_note:          {"text":"Customer reported X..."}
-                  recommend_credit:  {"amount":250,"reason":"late delivery"}
+            payload_json: a JSON-ENCODED STRING with the action-specific fields.
+                IMPORTANT: this must be a string (use json.dumps mentally), NOT a raw
+                object. Examples (each is a string):
+                  send_email:        '{"to":"a@b.com","subject":"...","body":"..."}'
+                  update_lifecycle:  '{"new_stage":"Active"}'
+                  add_note:          '{"text":"Customer reported X..."}'
+                  recommend_credit:  '{"amount":250,"reason":"late delivery"}'
             rationale: 1-2 sentence explanation of why this action is recommended.
             confidence: float 0.0-1.0 expressing how sure you are.
         """
