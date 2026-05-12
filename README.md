@@ -18,10 +18,19 @@ Built as the IS 303 final project (Spring 2026), structured to extend into a pro
 
 | Surface | What it's for |
 |---|---|
-| **Dashboard** (Next.js) | Portfolio-first canvas organized around Gartner's four levels of analytics maturity: descriptive (KPI strip) → diagnostic (lane-grouped cards) → predictive (pending follow-ups) → prescriptive (Nelson's drafts). Floating glass chat with **streaming reasoning trace**. Inline approve/reject. |
+| **Dashboard** (Next.js) | Portfolio-first canvas organized around Gartner's four levels of analytics maturity: descriptive (KPI strip + 8-tile metrics grid) → diagnostic (lane-grouped cards with inline expand) → predictive (pending follow-ups) → prescriptive (Nelson's drafts). Floating glass chat with **streaming reasoning trace**. Inline approve/reject. Dual themes (dark navy + light purple) with a header toggle. **At-risk / Healthy** view toggle for expansion-candidate accounts. |
 | **Telegram bot** | Same Nelson on your phone. Type a customer name → get the card with all 9 action buttons. Approve drafts inline. Edit drafts by replying with feedback. Slash commands for `/risk`, `/actions`, `/find`, etc. |
 
 Both surfaces share session memory and the same `pending_actions` queue.
+
+### Dashboard at a glance
+
+- **Header** — greeting · pending-action notification bell · **theme toggle** (dark navy ↔ light purple, persisted in localStorage) · portfolio-at-risk summary.
+- **Metrics block (3 rows × 4 cols, perfectly aligned)** — Row 1 KPIs: Revenue · At risk · Sentiment (with NPS-style promoter/passive/detractor split) · Action queue. Row 2 economics: Avg deal size · Profit margin · Avg health · Risk distribution. Row 3 operations: Late delivery · Top-10% revenue concentration · Churn flags · Ticket backlog.
+- **Controls** — view toggle (`At risk` ↔ `Healthy` expansion-candidate list) · server-backed search across all 2,000 customers · band filter pills.
+- **Diagnostic canvas** — accounts grouped by primary concern into 4 lanes; each shows its top 3 featured cards with a centered **expand button** that reveals the rest of the lane inline.
+- **Right rail** — predictive (pending follow-ups) above prescriptive (Nelson's drafts awaiting approve/reject).
+- **Floating chat** — glass widget with a live streaming reasoning trace as Nelson chains tool calls.
 
 ## Stack
 
@@ -128,10 +137,11 @@ nelson_ai/
 ├── frontend/                  # Next.js 14 dashboard
 │   ├── app/                   # layout · login · dashboard
 │   └── src/
-│       ├── components/        # KPIStrip · DiagnosticCanvas · RightRail ·
-│       │                      # ChatWidget · CustomerTimeline · AccountDrawer ·
-│       │                      # AccountCard · RiskGauge · DashboardControls · ...
-│       └── lib/               # API client · types · format helpers
+│       ├── components/        # KPIStrip · PortfolioMetrics · DiagnosticCanvas ·
+│       │                      # RightRail · ChatWidget · CustomerTimeline ·
+│       │                      # AccountDrawer · AccountCard · RiskGauge ·
+│       │                      # DashboardControls · ThemeToggle · ...
+│       └── lib/               # API client · types · theme provider · format helpers
 ├── data/
 │   ├── customer_2000/         # 15-table canonical dataset (~28 MB)
 │   ├── data_dictionary/       # schema documentation

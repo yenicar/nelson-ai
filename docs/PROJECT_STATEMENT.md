@@ -20,7 +20,7 @@ Nelson is an always-on AI Account Manager built around a single job description:
 
 Two surfaces, one brain:
 
-- **Dashboard** at `localhost:3000` — a portfolio canvas organized around Gartner's four levels of analytics maturity (descriptive → diagnostic → predictive → prescriptive). Cards group by *primary concern* (open critical tickets, late-delivery risk, health declining, watch list) — not just by name. A right rail surfaces what's coming next (pending review follow-ups) and what Nelson has already drafted that needs your approval.
+- **Dashboard** at `localhost:3000` — a portfolio canvas organized around Gartner's four levels of analytics maturity (descriptive → diagnostic → predictive → prescriptive). Twelve metrics are surfaced in a uniform 3-row × 4-column grid spanning headline KPIs (revenue, at-risk count, sentiment with NPS-style split, action queue), economics (avg deal size, profit margin, avg health, risk distribution), and operational signals (late-delivery rate, top-10% revenue concentration, churn flags, ticket backlog). Cards group by *primary concern* (open critical tickets, late-delivery risk, health declining, watch list) — not just by name — and each lane has an inline expand button that reveals the rest of the lane without leaving the dashboard. A view toggle flips between at-risk customers and healthy expansion candidates. A right rail surfaces what's coming next (pending review follow-ups) and what Nelson has already drafted that needs your approval. Two themes (dark navy + light purple) ship with full typography, color, and contrast compatibility across components.
 - **Telegram bot** — the same Nelson, on a phone. Morning briefings, status checks by customer name, action drafts.
 
 The interaction model:

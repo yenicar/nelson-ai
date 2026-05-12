@@ -64,11 +64,13 @@ Below them: ❌ *does not send*
 **Headline:** *"Organized around Gartner's four levels of analytics: descriptive → diagnostic → predictive → prescriptive."*
 
 **Talking track (90 sec — live demo):**
-1. *(point at top strip)* "Top tiles: 2,000 customers, $10.5M revenue, 427 at risk — that's descriptive, the *what*."
-2. *(point at lane-grouped cards)* "Center groups customers by primary concern — open tickets, late deliveries, health declining. That's diagnostic, the *why*."
-3. *(point at follow-ups in right rail)* "Right rail top: pending review follow-ups — predictive, *what's coming.*"
-4. *(point at pending actions panel)* "Right rail bottom: actions Nelson has drafted, waiting for me — prescriptive, *what to do.*"
-5. *(open chat widget)* "And Nelson is always reachable in plain English. Watch."
+1. *(point at top metrics block)* "12 portfolio metrics in a uniform grid — revenue, at-risk count, sentiment with NPS-style split, profit margin, avg health, late-delivery rate, top-10% revenue concentration, churn flags, ticket backlog. That's descriptive, the *what*."
+2. *(point at lane-grouped cards)* "Center groups customers by primary concern — open tickets, late deliveries, health declining. Each lane shows the top 3 with an expand button for the rest. That's diagnostic, the *why*."
+3. *(flip the At-risk / Healthy toggle)* "Same canvas, healthy view — these are the expansion candidates, sorted by lowest risk."
+4. *(point at follow-ups in right rail)* "Right rail top: pending review follow-ups — predictive, *what's coming.*"
+5. *(point at pending actions panel)* "Right rail bottom: actions Nelson has drafted, waiting for me — prescriptive, *what to do.*"
+6. *(tap the theme toggle in the header)* "Same data, light theme — for daytime use or screen-sharing."
+7. *(open chat widget)* "And Nelson is always reachable in plain English. Watch."
 
 ---
 
