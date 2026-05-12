@@ -1,12 +1,14 @@
 "use client";
 
 // Center of dashboard — Gartner level 2: DIAGNOSTIC.
-// Cards grouped into lanes by primary concern. Tiered visual weight: top accounts
-// in each lane render as full cards, the tail collapses to compact strips.
+// Cards grouped into lanes by primary concern. Each lane shows its top 3
+// accounts as full cards plus a count of what's behind them — clicking
+// through to the Customers view (planned) shows the rest. The previous
+// chip tail made every lane feel cluttered regardless of spacing.
 
 import { useMemo } from "react";
 import { Customer, SentimentBreakdown } from "@/lib/types";
-import { Lane, LANE_DESCRIPTIONS, LANE_LABELS, bandClass, customerLane, fmtMoney, fmtPct } from "@/lib/format";
+import { Lane, LANE_DESCRIPTIONS, LANE_LABELS, customerLane } from "@/lib/format";
 import { AccountCard } from "./AccountCard";
 import { ChevronRight } from "lucide-react";
 
@@ -67,12 +69,8 @@ function Lane({
   onSelect: (customerId: string) => void;
   selectedId?: string | null;
 }) {
-  // Tiered: top 3 = full cards; next 9 = compact strips in a 3-col grid that
-  // lines up under the featured row. Beyond 12 we collapse — three rows of
-  // chips fills the lane without turning it into wallpaper.
   const featured = items.slice(0, 3);
-  const tail = items.slice(3, 12);
-  const overflow = Math.max(0, items.length - 12);
+  const overflow = Math.max(0, items.length - 3);
 
   return (
     <section>
@@ -81,80 +79,35 @@ function Lane({
           <h2 className="text-sm font-semibold text-white/90 tracking-wide">{label}</h2>
           <p className="text-xs text-white/40 mt-0.5">{description}</p>
         </div>
-        <span className="text-xs text-white/40">{items.length} {items.length === 1 ? "account" : "accounts"}</span>
+        <span className="text-xs text-white/40">
+          {items.length} {items.length === 1 ? "account" : "accounts"}
+        </span>
       </header>
 
-      {featured.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-2">
-          {featured.map((c, i) => (
-            <div
-              key={c.customer_id}
-              className="stagger-in"
-              style={{ animationDelay: `${i * 60}ms` }}
-            >
-              <AccountCard
-                customer={c}
-                sentiment={sentiment?.[c.customer_id]}
-                tier="featured"
-                pinned={selectedId === c.customer_id}
-                onClick={() => onSelect(c.customer_id)}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {tail.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          {tail.map((c, i) => (
-            <div
-              key={c.customer_id}
-              className="stagger-in"
-              style={{ animationDelay: `${180 + i * 30}ms` }}
-            >
-              <CompactRow
-                customer={c}
-                pinned={selectedId === c.customer_id}
-                onClick={() => onSelect(c.customer_id)}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        {featured.map((c, i) => (
+          <div
+            key={c.customer_id}
+            className="stagger-in"
+            style={{ animationDelay: `${i * 60}ms` }}
+          >
+            <AccountCard
+              customer={c}
+              sentiment={sentiment?.[c.customer_id]}
+              tier="featured"
+              pinned={selectedId === c.customer_id}
+              onClick={() => onSelect(c.customer_id)}
+            />
+          </div>
+        ))}
+      </div>
 
       {overflow > 0 && (
-        <div className="mt-1.5 text-[11px] text-white/40 text-right">
-          +{overflow} more in this lane
+        <div className="mt-2 flex items-center justify-end text-[11px] text-white/45">
+          <span>+{overflow} more {overflow === 1 ? "account" : "accounts"} in this lane</span>
+          <ChevronRight className="w-3 h-3 ml-1 opacity-60" />
         </div>
       )}
     </section>
-  );
-}
-
-function CompactRow({
-  customer: c,
-  onClick,
-  pinned,
-}: {
-  customer: Customer;
-  onClick?: () => void;
-  pinned?: boolean;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`glass glass-hover rounded-xl px-3 py-2.5 text-left flex items-center gap-2 ${
-        pinned ? "ring-1 ring-accent-500/40" : ""
-      }`}
-    >
-      <span className={bandClass(c.risk_band) + " flex-shrink-0"}>{(c.risk_band || "—").slice(0, 4)}</span>
-      <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-white truncate">{c.customer_full_name}</div>
-        <div className="text-[10px] text-white/40 truncate">
-          {fmtMoney(c.total_sales)} · {fmtPct(c.late_delivery_rate)} late
-        </div>
-      </div>
-      <ChevronRight className="w-3.5 h-3.5 text-white/30 flex-shrink-0" />
-    </button>
   );
 }
