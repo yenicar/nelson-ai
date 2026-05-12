@@ -32,7 +32,7 @@ export function DiagnosticCanvas({ accounts, sentiment, onSelect, selectedId }: 
   }, [accounts]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {LANE_ORDER.map((lane) => {
         const items = grouped[lane];
         if (items.length === 0) return null;
@@ -67,12 +67,12 @@ function Lane({
   onSelect: (customerId: string) => void;
   selectedId?: string | null;
 }) {
-  // Tiered: top 3 = full cards; next 6 = compact strips in a 3-col grid that
-  // lines up under the featured row. Beyond 9 we collapse — too many chips
-  // turns the lane into wallpaper.
+  // Tiered: top 3 = full cards; next 9 = compact strips in a 3-col grid that
+  // lines up under the featured row. Beyond 12 we collapse — three rows of
+  // chips fills the lane without turning it into wallpaper.
   const featured = items.slice(0, 3);
-  const tail = items.slice(3, 9);
-  const overflow = Math.max(0, items.length - 9);
+  const tail = items.slice(3, 12);
+  const overflow = Math.max(0, items.length - 12);
 
   return (
     <section>
@@ -85,7 +85,7 @@ function Lane({
       </header>
 
       {featured.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-2">
           {featured.map((c, i) => (
             <div
               key={c.customer_id}
@@ -123,7 +123,7 @@ function Lane({
       )}
 
       {overflow > 0 && (
-        <div className="mt-2 text-[11px] text-white/40 text-right">
+        <div className="mt-1.5 text-[11px] text-white/40 text-right">
           +{overflow} more in this lane
         </div>
       )}
