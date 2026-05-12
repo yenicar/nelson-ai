@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Bell, Clock, History, Sparkles, X } from "lucide-react";
 import { PortfolioSummary } from "@/lib/types";
 import { fmtMoney } from "@/lib/format";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface Props {
   summary: PortfolioSummary | null;
@@ -84,6 +85,8 @@ export function AppHeader({
             </span>
           </button>
         )}
+
+        <ThemeToggle />
 
         <div className="relative" ref={bellRef}>
           <button
