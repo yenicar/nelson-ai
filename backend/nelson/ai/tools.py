@@ -264,7 +264,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             return {"error": f"customer_id {customer_id} not found"}
         return _slim_customer(c)
 
-    def get_recent_orders(customer_id: str, limit: int = 10) -> list[dict]:
+    def get_recent_orders(customer_id: str, limit: int = 10) -> list:
         """Get a customer's recent orders, newest first. Useful for delivery and revenue history."""
         return [
             {
@@ -280,7 +280,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for o in OrdersRepo.recent(tenant_id, customer_id, limit)
         ]
 
-    def get_recent_tickets(customer_id: str, limit: int = 10) -> list[dict]:
+    def get_recent_tickets(customer_id: str, limit: int = 10) -> list:
         """Get a customer's recent support tickets, newest first."""
         return [
             {
@@ -297,7 +297,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for t in TicketsRepo.recent(tenant_id, customer_id, limit)
         ]
 
-    def get_recent_notes(customer_id: str, limit: int = 10) -> list[dict]:
+    def get_recent_notes(customer_id: str, limit: int = 10) -> list:
         """Get internal notes about a customer, newest first. These are what reviewers wrote."""
         return [
             {
@@ -313,7 +313,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for n in NotesRepo.recent(tenant_id, customer_id, limit)
         ]
 
-    def get_recent_emails(customer_id: str, limit: int = 10) -> list[dict]:
+    def get_recent_emails(customer_id: str, limit: int = 10) -> list:
         """Get recent customer email exchanges, newest first."""
         return [
             {
@@ -330,7 +330,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for e in EmailsRepo.recent(tenant_id, customer_id, limit)
         ]
 
-    def get_engagement_events(customer_id: str, limit: int = 20) -> list[dict]:
+    def get_engagement_events(customer_id: str, limit: int = 20) -> list:
         """Get recent engagement events (campaign opens, clicks, channels) for a customer."""
         return [
             {
@@ -344,7 +344,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for e in EventsRepo.engagement(tenant_id, customer_id, limit)
         ]
 
-    def get_fulfillment_issues(customer_id: str, limit: int = 20) -> list[dict]:
+    def get_fulfillment_issues(customer_id: str, limit: int = 20) -> list:
         """Get fulfillment events (delays, carrier issues, root causes) for a customer."""
         return [
             {
@@ -359,7 +359,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for f in EventsRepo.fulfillment(tenant_id, customer_id, limit)
         ]
 
-    def get_top_by_revenue(limit: int = 10, ascending: bool = False) -> list[dict]:
+    def get_top_by_revenue(limit: int = 10, ascending: bool = False) -> list:
         """Get top-N customers ranked by total revenue (`total_sales`).
 
         Args:
@@ -382,7 +382,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for c in accounts
         ]
 
-    def search_customers_by_prefix(prefix: str, limit: int = 20) -> list[dict]:
+    def search_customers_by_prefix(prefix: str, limit: int = 20) -> list:
         """Find customers whose full name starts with a given prefix (case-insensitive).
 
         Use for queries like "customers starting with A", "names beginning with M",
@@ -400,7 +400,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
             for c in AccountsRepo.search_by_prefix(tenant_id, prefix, limit)
         ]
 
-    def get_top_at_risk(limit: int = 10, band: str = "") -> list[dict]:
+    def get_top_at_risk(limit: int = 10, band: str = "") -> list:
         """Get top-N customers by risk_score (descending), optionally filtered by band.
 
         Args:
@@ -432,7 +432,7 @@ def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callabl
         """Get a portfolio-level summary: total customers, band distribution, total revenue/profit."""
         return AccountsRepo.portfolio_summary(tenant_id)
 
-    def get_pending_review_outcomes(limit: int = 20) -> list[dict]:
+    def get_pending_review_outcomes(limit: int = 20) -> list:
         """Get reviews whose outcome is still Pending — accounts awaiting follow-up."""
         return [
             {
