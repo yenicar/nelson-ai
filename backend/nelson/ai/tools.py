@@ -58,13 +58,21 @@ def _safe_tool(fn: Callable) -> Callable:
     sig = inspect.signature(fn)
 
     @functools.wraps(fn)
-    def wrapper(**kwargs):
+    def wrapper(*args, **kwargs):
+        # Some SDK versions pass positional args; bind them via the signature
+        # to get a consistent kwargs-only view for logging.
+        try:
+            bound = sig.bind(*args, **kwargs)
+            bound.apply_defaults()
+            call_kwargs = dict(bound.arguments)
+        except TypeError:
+            call_kwargs = kwargs  # fall back if signature binding fails
         kw_preview = ", ".join(
-            f"{k}={_short(v)}" for k, v in kwargs.items()
+            f"{k}={_short(v)}" for k, v in call_kwargs.items()
         )
         print(f"  [tool] -> {fn.__name__}({kw_preview})")
         try:
-            result = fn(**kwargs)
+            result = fn(*args, **kwargs)
             if isinstance(result, dict) and "error" in result:
                 print(f"  [tool] <- {fn.__name__} ERROR: {result['error']}")
             else:
