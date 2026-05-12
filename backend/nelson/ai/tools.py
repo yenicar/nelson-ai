@@ -52,8 +52,16 @@ def _safe_tool(fn: Callable) -> Callable:
     """
     @functools.wraps(fn)
     def wrapper(*args, **kwargs):
+        # Log the call up front (truncated kwargs for readability).
+        kw_preview = ", ".join(
+            f"{k}={_short(v)}" for k, v in kwargs.items()
+        )
+        print(f"  [tool] -> {fn.__name__}({kw_preview})")
         try:
-            return fn(*args, **kwargs)
+            result = fn(*args, **kwargs)
+            if isinstance(result, dict) and "error" in result:
+                print(f"  [tool] <- {fn.__name__} returned error: {result['error']}")
+            return result
         except Exception as e:
             tb = traceback.format_exc()
             print(f"  [tool] {fn.__name__} CRASHED: {type(e).__name__}: {e}")
@@ -63,6 +71,12 @@ def _safe_tool(fn: Callable) -> Callable:
                 "tool": fn.__name__,
             }
     return wrapper
+
+
+def _short(v: Any) -> str:
+    """Truncate a value for log output."""
+    s = repr(v)
+    return s if len(s) <= 80 else s[:77] + "..."
 
 
 def _slim_customer(c: Any) -> dict:
@@ -379,7 +393,7 @@ def make_tools(tenant_id: str) -> list[Callable]:
     def propose_action(
         customer_id: str,
         action_type: str,
-        payload_json: str,
+        payload_json: Any,
         rationale: str,
         confidence: float = 0.7,
     ) -> dict:
@@ -390,38 +404,61 @@ def make_tools(tenant_id: str) -> list[Callable]:
             action_type: one of "send_email", "proactive_outreach", "reclassify_band",
                 "update_lifecycle", "escalate", "schedule_followup", "recommend_credit",
                 "recommend_expedite", "add_note".
-            payload_json: JSON-ENCODED string with the action-specific fields.
-                Examples:
-                  send_email:        '{"to":"a@b.com","subject":"...","body":"..."}'
-                  update_lifecycle:  '{"new_stage":"Active"}'
-                  add_note:          '{"text":"Customer reported X..."}'
-                  recommend_credit:  '{"amount":250,"reason":"late delivery"}'
+            payload_json: action-specific fields. Pass EITHER a JSON-encoded string
+                OR a dict (both work). Examples:
+                  send_email:        {"to":"a@b.com","subject":"...","body":"..."}
+                  update_lifecycle:  {"new_stage":"Active"}
+                  add_note:          {"text":"Customer reported X..."}
+                  recommend_credit:  {"amount":250,"reason":"late delivery"}
             rationale: 1-2 sentence explanation of why this action is recommended.
             confidence: float 0.0-1.0 expressing how sure you are.
         """
         if action_type not in VALID_ACTION_TYPES:
             return {"error": f"action_type must be one of {sorted(VALID_ACTION_TYPES)}"}
-        # Validate payload is real JSON (don't reject on shape — actions vary)
-        try:
-            json.loads(payload_json) if payload_json else {}
-        except json.JSONDecodeError as e:
-            return {"error": f"payload_json must be valid JSON. Got: {e.msg}"}
+
+        # Normalize payload to a JSON string — accept dict, str, or anything.
+        if isinstance(payload_json, dict):
+            try:
+                payload_str = json.dumps(payload_json, default=str)
+            except Exception as e:
+                return {"error": f"could not serialize payload dict: {e}"}
+        elif isinstance(payload_json, str):
+            if not payload_json.strip():
+                payload_str = "{}"
+            else:
+                try:
+                    json.loads(payload_json)
+                    payload_str = payload_json
+                except json.JSONDecodeError:
+                    # Model gave us a plain string — wrap it.
+                    payload_str = json.dumps({"text": payload_json})
+        elif payload_json is None:
+            payload_str = "{}"
+        else:
+            # list, number, etc. — coerce to JSON
+            try:
+                payload_str = json.dumps(payload_json, default=str)
+            except Exception:
+                payload_str = json.dumps({"value": str(payload_json)})
+
         cust = AccountsRepo.get_by_id(tenant_id, customer_id)
         if not cust:
             return {"error": f"customer_id '{customer_id}' not found in this portfolio"}
+
         action = PendingAction(
             action_id=f"ACT-{uuid.uuid4().hex[:12]}",
             tenant_id=tenant_id,
             customer_id=customer_id,
             customer_full_name=cust.customer_full_name,
             action_type=action_type,
-            payload_json=payload_json or "{}",
+            payload_json=payload_str,
             status="pending",
             created_at=datetime.utcnow(),
             nelson_rationale=rationale,
             confidence=max(0.0, min(1.0, confidence)),
         )
         ActionsRepo.insert(action)
+        print(f"  [tool] propose_action OK: {action.action_id} {action_type} for {cust.customer_full_name}")
         return {
             "action_id": action.action_id,
             "queued_for": cust.customer_full_name,
