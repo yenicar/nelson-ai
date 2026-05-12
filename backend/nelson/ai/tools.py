@@ -42,28 +42,29 @@ VALID_ACTION_TYPES = {
 
 
 def _safe_tool(fn: Callable) -> Callable:
-    """Wrap a tool so exceptions become structured error returns + log loudly.
+    """Wrap a tool with logging + exception → {"error": ...} fallback.
 
-    Without this, Gemini's auto-function-calling swallows tool exceptions and
-    only the model's secondhand description of the failure reaches the user
-    ("I encountered an error..."). With it, the backend prints a full
-    traceback for debugging AND the model gets a clean {"error": "..."} dict
-    it can react to gracefully.
-
-    Every call logs entry + outcome so you can see in the backend terminal
-    exactly which tools fired and what they returned. If a Nelson reply talks
-    about "tool errors" but the logs show only `<- ok` lines, that's a
-    hallucination — the model invented a failure.
+    Implementation note: the wrapper preserves the wrapped function's
+    `__signature__` and `__annotations__` explicitly (not just via
+    `@functools.wraps`). Some versions of the google.genai SDK introspect
+    parameter types via `inspect.signature(fn, follow_wrapped=False)` or
+    similar and miss the `__wrapped__` link, which would surface as
+    `isinstance() arg 2 must be a type, a tuple of types, or a union` —
+    because the wrapper's literal `*args, **kwargs` has no concrete types.
+    Setting `__signature__` directly fixes that.
     """
+    import inspect
+
+    sig = inspect.signature(fn)
+
     @functools.wraps(fn)
-    def wrapper(*args, **kwargs):
-        # Log the call up front (truncated kwargs for readability).
+    def wrapper(**kwargs):
         kw_preview = ", ".join(
             f"{k}={_short(v)}" for k, v in kwargs.items()
         )
         print(f"  [tool] -> {fn.__name__}({kw_preview})")
         try:
-            result = fn(*args, **kwargs)
+            result = fn(**kwargs)
             if isinstance(result, dict) and "error" in result:
                 print(f"  [tool] <- {fn.__name__} ERROR: {result['error']}")
             else:
@@ -78,6 +79,12 @@ def _safe_tool(fn: Callable) -> Callable:
                 "error": f"Tool '{fn.__name__}' raised {type(e).__name__}: {e}",
                 "tool": fn.__name__,
             }
+
+    # Pin signature + annotations on the wrapper itself so any SDK
+    # introspection path (signature, type_hints, annotations dict) returns
+    # the wrapped function's types, not the wrapper's `**kwargs`.
+    wrapper.__signature__ = sig  # type: ignore[attr-defined]
+    wrapper.__annotations__ = dict(fn.__annotations__)
     return wrapper
 
 
