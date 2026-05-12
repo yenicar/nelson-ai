@@ -2,15 +2,14 @@
 
 // Center of dashboard — Gartner level 2: DIAGNOSTIC.
 // Cards grouped into lanes by primary concern. Each lane shows its top 3
-// accounts as full cards plus a count of what's behind them — clicking
-// through to the Customers view (planned) shows the rest. The previous
-// chip tail made every lane feel cluttered regardless of spacing.
+// featured cards by default; clicking the expand button reveals the rest
+// of the lane inline as a flat 3-col grid.
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Customer, SentimentBreakdown } from "@/lib/types";
 import { Lane, LANE_DESCRIPTIONS, LANE_LABELS, customerLane } from "@/lib/format";
 import { AccountCard } from "./AccountCard";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface Props {
   accounts: Customer[];
@@ -39,7 +38,7 @@ export function DiagnosticCanvas({ accounts, sentiment, onSelect, selectedId }: 
         const items = grouped[lane];
         if (items.length === 0) return null;
         return (
-          <Lane
+          <LaneSection
             key={lane}
             label={LANE_LABELS[lane]}
             description={LANE_DESCRIPTIONS[lane]}
@@ -54,7 +53,7 @@ export function DiagnosticCanvas({ accounts, sentiment, onSelect, selectedId }: 
   );
 }
 
-function Lane({
+function LaneSection({
   label,
   description,
   items,
@@ -69,8 +68,10 @@ function Lane({
   onSelect: (customerId: string) => void;
   selectedId?: string | null;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const featured = items.slice(0, 3);
-  const overflow = Math.max(0, items.length - 3);
+  const rest = items.slice(3);
+  const visible = expanded ? items : featured;
 
   return (
     <section>
@@ -85,16 +86,16 @@ function Lane({
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        {featured.map((c, i) => (
+        {visible.map((c, i) => (
           <div
             key={c.customer_id}
             className="stagger-in"
-            style={{ animationDelay: `${i * 60}ms` }}
+            style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
           >
             <AccountCard
               customer={c}
               sentiment={sentiment?.[c.customer_id]}
-              tier="featured"
+              tier={i < 3 ? "featured" : "standard"}
               pinned={selectedId === c.customer_id}
               onClick={() => onSelect(c.customer_id)}
             />
@@ -102,10 +103,25 @@ function Lane({
         ))}
       </div>
 
-      {overflow > 0 && (
-        <div className="mt-2 flex items-center justify-end text-[11px] text-white/45">
-          <span>+{overflow} more {overflow === 1 ? "account" : "accounts"} in this lane</span>
-          <ChevronRight className="w-3 h-3 ml-1 opacity-60" />
+      {rest.length > 0 && (
+        <div className="mt-3 flex justify-center">
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="glass glass-hover rounded-full px-4 py-1.5 text-xs font-medium text-white/75 hover:text-white flex items-center gap-1.5 transition"
+            aria-expanded={expanded}
+          >
+            {expanded ? (
+              <>
+                <ChevronDown className="w-3.5 h-3.5 rotate-180 transition-transform" />
+                Show less
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-3.5 h-3.5 transition-transform" />
+                Show {rest.length} more {rest.length === 1 ? "account" : "accounts"}
+              </>
+            )}
+          </button>
         </div>
       )}
     </section>
