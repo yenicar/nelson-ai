@@ -1,6 +1,7 @@
 """Build `nelson.duckdb` from the customer_2000 CSVs.
 
-- Drops + recreates every spine table from CSV.
+- Drops + recreates every spine table from CSV (via DuckDB's read_csv_auto —
+  no pandas required at runtime).
 - Adds `tenant_id` to every spine table (default tenant).
 - Creates indexes on hot keys (customer_id, tenant_id).
 - Creates runtime tables (pending_actions, sessions, messages, decisions) only
@@ -15,7 +16,6 @@ from __future__ import annotations
 import sys
 
 import duckdb
-import pandas as pd
 
 from nelson.config.settings import settings
 from nelson.data.db import close_connection, get_connection
@@ -51,11 +51,17 @@ REQUIRED_COLUMNS: dict[str, set[str]] = {
 }
 
 
-def _validate_columns(table: str, df: pd.DataFrame) -> None:
+def _validate_columns(con: duckdb.DuckDBPyConnection, table: str, csv_path: str) -> None:
     expected = REQUIRED_COLUMNS.get(table)
     if not expected:
         return
-    missing = expected - set(df.columns)
+    # DESCRIBE on a SELECT against read_csv_auto returns column metadata.
+    rows = con.execute(
+        f"DESCRIBE SELECT * FROM read_csv_auto(?, HEADER=TRUE)",
+        (csv_path,),
+    ).fetchall()
+    cols = {r[0] for r in rows}
+    missing = expected - cols
     if missing:
         raise RuntimeError(
             f"Schema drift in {table}.csv — missing required columns: {sorted(missing)}"
@@ -163,14 +169,22 @@ def build() -> int:
         csv = data_dir / f"{csv_name}.csv"
         if not csv.exists():
             raise RuntimeError(f"missing {csv}")
-        df = pd.read_csv(csv, low_memory=False)
-        _validate_columns(table, df)
-        df["tenant_id"] = tenant
-        con.register("df_in", df)
-        con.execute(f"CREATE OR REPLACE TABLE {table} AS SELECT * FROM df_in")
-        con.unregister("df_in")
+        csv_str = str(csv)
+        _validate_columns(con, table, csv_str)
+        # Read the CSV directly via DuckDB, append tenant_id in the SELECT.
+        # SAMPLE_SIZE=-1 forces a full-file scan for type inference, matching
+        # pandas' default behavior on mixed-type columns.
+        con.execute(
+            f"""
+            CREATE OR REPLACE TABLE {table} AS
+            SELECT *, ? AS tenant_id
+            FROM read_csv_auto(?, HEADER=TRUE, SAMPLE_SIZE=-1)
+            """,
+            (tenant, csv_str),
+        )
         _index(con, table, ["tenant_id", "customer_id", "ticket_id", "order_id", "review_id"])
-        print(f"  [build] {table:<28} {len(df):>7,} rows")
+        n = con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+        print(f"  [build] {table:<28} {n:>7,} rows")
 
     _create_runtime_tables(con)
     print("  [build] runtime tables ready")

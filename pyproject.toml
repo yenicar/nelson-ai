@@ -17,10 +17,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# `pip install -e ".[dev]"` to run tests / linters.
 dev = [
     "pytest>=8.3",
     "pytest-asyncio>=0.24",
     "ruff>=0.7",
+]
+# `pip install -e ".[scripts]"` if you want to re-run the data audit/repair
+# scripts in scripts/ — those use pandas. The runtime backend does not.
+scripts = [
+    "pandas>=2.0",
 ]
 
 [project.scripts]
