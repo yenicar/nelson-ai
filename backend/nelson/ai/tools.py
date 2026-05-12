@@ -143,8 +143,16 @@ def _slim_customer(c: Any) -> dict:
     }
 
 
-def make_tools(tenant_id: str) -> list[Callable]:
-    """Return Python callables bound to a tenant. Pass to Gemini as `tools=`."""
+def make_tools(tenant_id: str, *, wrap_for_logging: bool = True) -> list[Callable]:
+    """Return Python callables bound to a tenant. Pass to Gemini as `tools=`.
+
+    Args:
+        wrap_for_logging: when True (default), each tool is wrapped with
+            `_safe_tool` which logs entry/exit and converts exceptions to
+            `{"error": ...}` dicts. When False, returns the raw functions —
+            use this when the consuming SDK does its own tool invocation
+            and is sensitive to wrappers (e.g. Gemini's automatic_function_calling).
+    """
 
     def find_customer(name: str) -> dict:
         """Find a customer by full name (case-insensitive, fuzzy).
@@ -530,5 +538,15 @@ def make_tools(tenant_id: str) -> list[Callable]:
         get_pending_review_outcomes,
         propose_action,
     ]
-    # Wrap every tool with the defensive logger.
-    return [_safe_tool(t) for t in raw_tools]
+    # Gemini's auto-function-calling path (used by Telegram via ask()) invokes
+    # tools directly through the SDK and is sensitive to anything between the
+    # SDK and the function — including our _safe_tool wrapper. The streaming
+    # path (used by the dashboard chat via stream_ask()) invokes manually so
+    # the wrapper is safe there. We expose both shapes from this factory.
+    if wrap_for_logging:
+        return [_safe_tool(t) for t in raw_tools]
+    return raw_tools
+
+
+# Backwards-compatible factory signature: callers without the kwarg keep the
+# old behavior (wrapped). New callers can opt out for clean SDK introspection.
