@@ -99,6 +99,26 @@ class AccountsRepo:
         )
 
     @staticmethod
+    def top_healthy(tenant_id: str, limit: int = 60) -> list[Customer]:
+        """Inverse of top_at_risk — the safest, most engaged accounts.
+
+        Sort low → high on risk_score, but only include accounts with at least
+        *some* activity (total_sales > 0) so we don't surface dormant rows
+        that happen to have low risk because we know nothing about them.
+        """
+        return _fetch(
+            Customer,
+            """
+            SELECT * FROM customers
+            WHERE tenant_id=?
+              AND COALESCE(total_sales, 0) > 0
+            ORDER BY risk_score ASC NULLS LAST, total_sales DESC NULLS LAST
+            LIMIT ?
+            """,
+            (tenant_id, limit),
+        )
+
+    @staticmethod
     def by_band(tenant_id: str, band: str, limit: int = 50) -> list[Customer]:
         return _fetch(
             Customer,

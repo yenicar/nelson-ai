@@ -15,7 +15,8 @@ import { api, ApiError } from "@/lib/api";
 import { Customer, DashboardPayload, SessionInfo } from "@/lib/types";
 import { KPIStrip } from "@/components/KPIStrip";
 import { DiagnosticCanvas } from "@/components/DiagnosticCanvas";
-import { DashboardControls } from "@/components/DashboardControls";
+import { AccountView, DashboardControls } from "@/components/DashboardControls";
+import { AccountCard } from "@/components/AccountCard";
 import { RightRail, PrescriptiveTab } from "@/components/RightRail";
 import { ChatWidget } from "@/components/ChatWidget";
 import { AccountDrawer } from "@/components/AccountDrawer";
@@ -33,11 +34,25 @@ export default function Dashboard() {
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
 
-  // Search + filter
+  // Search + filter + view
   const [search, setSearch] = useState("");
   const [bandFilter, setBandFilter] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<Customer[] | null>(null);
   const [searching, setSearching] = useState(false);
+  const [view, setView] = useState<AccountView>("at_risk");
+  const [healthyAccounts, setHealthyAccounts] = useState<Customer[] | null>(null);
+  const [loadingHealthy, setLoadingHealthy] = useState(false);
+
+  // Lazy-load the healthy list the first time the user flips into that view.
+  useEffect(() => {
+    if (view !== "healthy" || healthyAccounts) return;
+    setLoadingHealthy(true);
+    api
+      .topHealthy(60)
+      .then(setHealthyAccounts)
+      .catch(() => setHealthyAccounts([]))
+      .finally(() => setLoadingHealthy(false));
+  }, [view, healthyAccounts]);
 
   // Cross-pane navigation state (sidebar / header bell drive these).
   const [activeNav, setActiveNav] = useState<NavTarget>("dashboard");
@@ -83,14 +98,20 @@ export default function Dashboard() {
     return () => clearTimeout(timer);
   }, [search]);
 
-  // Final account list driving the canvas — search overrides default top-at-risk,
-  // band filter is applied on top.
+  // Final account list driving the canvas. Healthy view bypasses band filter
+  // (bands are risk-shaped, not health-shaped). Search still overrides either view.
   const displayedAccounts = useMemo(() => {
-    const base = searchResults ?? data?.accounts ?? [];
+    if (searchResults) {
+      if (!bandFilter || view === "healthy") return searchResults;
+      const needle = bandFilter.toLowerCase();
+      return searchResults.filter((c) => (c.risk_band || "").toLowerCase().includes(needle));
+    }
+    if (view === "healthy") return healthyAccounts ?? [];
+    const base = data?.accounts ?? [];
     if (!bandFilter) return base;
     const needle = bandFilter.toLowerCase();
     return base.filter((c) => (c.risk_band || "").toLowerCase().includes(needle));
-  }, [searchResults, data?.accounts, bandFilter]);
+  }, [searchResults, data?.accounts, bandFilter, view, healthyAccounts]);
 
   const refresh = useCallback(async () => {
     try {
@@ -178,6 +199,8 @@ export default function Dashboard() {
                 onSearchChange={setSearch}
                 band={bandFilter}
                 onBandChange={setBandFilter}
+                view={view}
+                onViewChange={setView}
                 resultCount={searchResults ? displayedAccounts.length : undefined}
                 loading={searching}
               />
@@ -225,13 +248,58 @@ export default function Dashboard() {
                     {bandFilter && <> in band <span className="text-white">{bandFilter}</span></>}.
                   </div>
                 )}
-                {!loading && !error && data && displayedAccounts.length > 0 && (
+                {!loading && !error && data && displayedAccounts.length > 0 && view === "at_risk" && (
                   <DiagnosticCanvas
                     accounts={displayedAccounts}
                     sentiment={data.sentiment}
                     onSelect={setSelected}
                     selectedId={selected}
                   />
+                )}
+                {!loading && !error && view === "healthy" && (
+                  loadingHealthy && !healthyAccounts ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      {Array.from({ length: 6 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="glass rounded-2xl p-4 animate-pulse-soft h-[140px]"
+                          style={{ animationDelay: `${i * 80}ms` }}
+                        />
+                      ))}
+                    </div>
+                  ) : displayedAccounts.length === 0 ? (
+                    <div className="glass rounded-2xl p-8 text-sm text-white/60 text-center">
+                      <div className="text-white/30 text-2xl mb-2">∅</div>
+                      No healthy accounts to show.
+                    </div>
+                  ) : (
+                    <section>
+                      <header className="mb-3 flex items-baseline justify-between">
+                        <div>
+                          <h2 className="text-sm font-semibold text-white/90 tracking-wide">Healthy accounts</h2>
+                          <p className="text-xs text-white/40 mt-0.5">Lowest risk, sorted by revenue — expansion candidates.</p>
+                        </div>
+                        <span className="text-xs text-white/40">{displayedAccounts.length} accounts</span>
+                      </header>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {displayedAccounts.map((c, i) => (
+                          <div
+                            key={c.customer_id}
+                            className="stagger-in"
+                            style={{ animationDelay: `${i * 30}ms` }}
+                          >
+                            <AccountCard
+                              customer={c}
+                              sentiment={data?.sentiment?.[c.customer_id]}
+                              tier="standard"
+                              pinned={selected === c.customer_id}
+                              onClick={() => setSelected(c.customer_id)}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+                  )
                 )}
               </main>
             </div>

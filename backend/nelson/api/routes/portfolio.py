@@ -20,6 +20,12 @@ def top_at_risk(limit: int = 10, session: dict = Depends(require_session)) -> li
     return [a.model_dump(mode="json") for a in accounts]
 
 
+@router.get("/top-healthy")
+def top_healthy(limit: int = 60, session: dict = Depends(require_session)) -> list[dict]:
+    accounts = AccountsRepo.top_healthy(session["tenant_id"], limit=limit)
+    return [a.model_dump(mode="json") for a in accounts]
+
+
 @router.get("/pending-followups")
 def pending_followups(limit: int = 12, session: dict = Depends(require_session)) -> list[dict]:
     """Predictive lane — reviews awaiting outcome / flagged for follow-up."""

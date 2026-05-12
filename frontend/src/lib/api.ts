@@ -49,6 +49,7 @@ export const api = {
   // Portfolio
   portfolioSummary: () => request<PortfolioSummary>("/api/portfolio/summary"),
   topAtRisk: (limit = 10) => request<Customer[]>(`/api/portfolio/top-at-risk?limit=${limit}`),
+  topHealthy: (limit = 60) => request<Customer[]>(`/api/portfolio/top-healthy?limit=${limit}`),
   pendingFollowups: (limit = 12) =>
     request<PendingFollowup[]>(`/api/portfolio/pending-followups?limit=${limit}`),
   dashboard: () => request<DashboardPayload>("/api/portfolio/dashboard"),
