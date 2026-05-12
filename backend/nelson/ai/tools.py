@@ -189,16 +189,23 @@ def make_tools(tenant_id: str) -> list[Callable]:
             ),
         }
 
-    def get_customers_by_ids(customer_ids: list[str]) -> list[dict]:
+    def get_customers_by_ids(customer_ids: list) -> list:
         """Resolve a list of customer_ids to full profiles in one call.
 
         Use this when you already know IDs (e.g., from a prior get_top_at_risk
         call in this conversation) — it's faster than calling find_customer
         for each name and avoids name-collision ambiguity.
+
+        Pass a list of customer_id strings (e.g. ["C000037", "C000325"]).
         """
-        out: list[dict] = []
-        for cid in customer_ids:
-            c = AccountsRepo.get_by_id(tenant_id, cid)
+        out: list = []
+        # Coerce each ID to a str — Gemini may pass non-Python list types
+        # (protobuf repeated) or non-string elements.
+        for cid in customer_ids or []:
+            sid = str(cid).strip()
+            if not sid:
+                continue
+            c = AccountsRepo.get_by_id(tenant_id, sid)
             if c:
                 out.append(_slim_customer(c))
         return out
