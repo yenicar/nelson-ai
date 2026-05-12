@@ -49,6 +49,11 @@ def _safe_tool(fn: Callable) -> Callable:
     ("I encountered an error..."). With it, the backend prints a full
     traceback for debugging AND the model gets a clean {"error": "..."} dict
     it can react to gracefully.
+
+    Every call logs entry + outcome so you can see in the backend terminal
+    exactly which tools fired and what they returned. If a Nelson reply talks
+    about "tool errors" but the logs show only `<- ok` lines, that's a
+    hallucination — the model invented a failure.
     """
     @functools.wraps(fn)
     def wrapper(*args, **kwargs):
@@ -60,7 +65,10 @@ def _safe_tool(fn: Callable) -> Callable:
         try:
             result = fn(*args, **kwargs)
             if isinstance(result, dict) and "error" in result:
-                print(f"  [tool] <- {fn.__name__} returned error: {result['error']}")
+                print(f"  [tool] <- {fn.__name__} ERROR: {result['error']}")
+            else:
+                summary = _outcome_summary(result)
+                print(f"  [tool] <- {fn.__name__} ok: {summary}")
             return result
         except Exception as e:
             tb = traceback.format_exc()
@@ -71,6 +79,23 @@ def _safe_tool(fn: Callable) -> Callable:
                 "tool": fn.__name__,
             }
     return wrapper
+
+
+def _outcome_summary(result) -> str:
+    if isinstance(result, list):
+        return f"{len(result)} item{'s' if len(result) != 1 else ''}"
+    if isinstance(result, dict):
+        if "action_id" in result:
+            return f"action {result['action_id']} queued"
+        if "match" in result:
+            m = result["match"]
+            return f"matched {m.get('name', '?')} ({m.get('customer_id', '?')})"
+        if "not_found" in result:
+            return "not_found (valid result)"
+        if "total_customers" in result:
+            return f"summary: {result.get('total_customers', 0)} customers"
+        return f"{len(result)} field{'s' if len(result) != 1 else ''}"
+    return _short(result)
 
 
 def _short(v: Any) -> str:
