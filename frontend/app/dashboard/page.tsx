@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { api, ApiError } from "@/lib/api";
 import { Customer, DashboardPayload, SessionInfo } from "@/lib/types";
 import { KPIStrip } from "@/components/KPIStrip";
+import { PortfolioMetrics } from "@/components/PortfolioMetrics";
 import { DiagnosticCanvas } from "@/components/DiagnosticCanvas";
 import { AccountView, DashboardControls } from "@/components/DashboardControls";
 import { AccountCard } from "@/components/AccountCard";
@@ -194,6 +195,7 @@ export default function Dashboard() {
                 pendingFollowupsCount={data?.pending_followups.length ?? 0}
                 pendingActionsCount={data?.pending_actions.length ?? 0}
               />
+              <PortfolioMetrics summary={data?.summary ?? null} />
               <DashboardControls
                 search={search}
                 onSearchChange={setSearch}
