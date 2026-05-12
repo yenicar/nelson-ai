@@ -39,7 +39,7 @@ export function PortfolioMetrics({ summary }: Props) {
     <div className="grid grid-cols-4 gap-3">
       <MiniTile icon={<BarChart3 className="w-3.5 h-3.5" />} label="Avg deal size">
         <div className="text-lg font-semibold tabular-nums">{fmtMoney(avgDeal)}</div>
-        <div className="text-[10px] text-white/45 mt-1">per customer, lifetime</div>
+        <ProfitVsRevenueBar revenue={revenue} profit={profit} />
       </MiniTile>
 
       <MiniTile icon={<PieChart className="w-3.5 h-3.5" />} label="Profit margin">
@@ -98,6 +98,27 @@ function ProgressBar({ pct, tone }: { pct: number; tone: "good" | "okay" | "warn
         className={`h-full ${cls} transition-all duration-700`}
         style={{ width: `${pct}%` }}
       />
+    </div>
+  );
+}
+
+function ProfitVsRevenueBar({ revenue, profit }: { revenue: number; profit: number }) {
+  // Stacked split: profit chunk (green) + cost chunk (muted) of total revenue.
+  // Reads as "of every dollar earned, this much survives as profit."
+  const cost = Math.max(0, revenue - profit);
+  const total = revenue || 1;
+  const profitPct = (profit / total) * 100;
+  const costPct = (cost / total) * 100;
+  return (
+    <div className="mt-2 space-y-1">
+      <div className="flex h-1.5 rounded-full overflow-hidden bg-white/5">
+        <div className="bg-risk-low" style={{ width: `${profitPct}%` }} title={`Profit: ${fmtMoney(profit)}`} />
+        <div className="bg-white/15" style={{ width: `${costPct}%` }} title={`Cost: ${fmtMoney(cost)}`} />
+      </div>
+      <div className="flex justify-between text-[10px] text-white/45">
+        <span><span className="text-risk-low">●</span> {fmtMoney(profit)} profit</span>
+        <span className="text-white/35">{fmtMoney(cost)} cost</span>
+      </div>
     </div>
   );
 }

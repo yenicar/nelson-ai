@@ -67,9 +67,12 @@ function Lane({
   onSelect: (customerId: string) => void;
   selectedId?: string | null;
 }) {
-  // Tiered: top 3 = full cards; rest = compact strips
+  // Tiered: top 3 = full cards; next 6 = compact strips in a 3-col grid that
+  // lines up under the featured row. Beyond 9 we collapse — too many chips
+  // turns the lane into wallpaper.
   const featured = items.slice(0, 3);
-  const tail = items.slice(3);
+  const tail = items.slice(3, 9);
+  const overflow = Math.max(0, items.length - 9);
 
   return (
     <section>
@@ -102,7 +105,7 @@ function Lane({
       )}
 
       {tail.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {tail.map((c, i) => (
             <div
               key={c.customer_id}
@@ -116,6 +119,12 @@ function Lane({
               />
             </div>
           ))}
+        </div>
+      )}
+
+      {overflow > 0 && (
+        <div className="mt-2 text-[11px] text-white/40 text-right">
+          +{overflow} more in this lane
         </div>
       )}
     </section>
