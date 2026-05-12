@@ -1,13 +1,13 @@
 "use client";
 
 // Top of dashboard — Gartner level 1: DESCRIPTIVE.
-// Five tiles answering "what's the state of the portfolio right now?"
+// Four tiles. One number per tile. One short caption. No pipes, no clutter.
 
 import { PortfolioSummary, SentimentBreakdown } from "@/lib/types";
 import { fmtMoney } from "@/lib/format";
-import { Activity, AlertOctagon, DollarSign, MessageCircle, Users } from "lucide-react";
+import { Activity, AlertOctagon, DollarSign, MessageCircle } from "lucide-react";
 import { AnimatedNumber } from "./AnimatedNumber";
-import { SentimentBar, sentimentTone } from "./SentimentBar";
+import { sentimentTone } from "./SentimentBar";
 
 interface Props {
   summary: PortfolioSummary | null;
@@ -22,20 +22,15 @@ export function KPIStrip({
   pendingFollowupsCount,
   pendingActionsCount,
 }: Props) {
-  // Skeleton state when summary hasn't loaded yet
   if (!summary) {
     return (
-      <div className="grid grid-cols-5 gap-3">
-        {Array.from({ length: 5 }).map((_, i) => (
+      <div className="grid grid-cols-4 gap-3">
+        {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
-            className="glass-deep rounded-2xl px-4 py-3 animate-pulse-soft"
+            className="glass-deep rounded-2xl px-5 py-4 animate-pulse-soft h-[104px]"
             style={{ animationDelay: `${i * 80}ms` }}
-          >
-            <div className="h-2.5 w-16 bg-white/10 rounded mb-3" />
-            <div className="h-7 w-24 bg-white/15 rounded mb-2" />
-            <div className="h-2 w-32 bg-white/8 rounded" />
-          </div>
+          />
         ))}
       </div>
     );
@@ -44,35 +39,27 @@ export function KPIStrip({
   const total = summary.total_customers ?? 0;
   const atRisk = (summary.critical_count ?? 0) + (summary.high_count ?? 0);
   const atRiskPct = total > 0 ? Math.round((atRisk / total) * 100) : 0;
+  const queue = pendingFollowupsCount + pendingActionsCount;
 
   return (
-    <div className="grid grid-cols-5 gap-3">
+    <div className="grid grid-cols-4 gap-3">
       <Tile
-        label="Customers"
-        valueNode={<AnimatedNumber value={total} />}
-        sublabel="under management"
-        icon={<Users className="w-4 h-4" />}
-      />
-      <Tile
-        label="Revenue"
-        valueNode={
-          <AnimatedNumber value={summary.total_revenue ?? 0} format={fmtMoney} />
-        }
-        sublabel={`${fmtMoney(summary.total_profit ?? 0)} profit`}
         icon={<DollarSign className="w-4 h-4" />}
+        label="Revenue"
+        value={<AnimatedNumber value={summary.total_revenue ?? 0} format={fmtMoney} />}
+        caption={`${total.toLocaleString()} customers`}
       />
       <Tile
+        icon={<AlertOctagon className="w-4 h-4" />}
         label="At risk"
-        valueNode={<AnimatedNumber value={atRisk} />}
-        sublabel={`${atRiskPct}% of portfolio · ${fmtMoney(summary.revenue_at_risk ?? 0)} exposed`}
-        icon={<AlertOctagon className="w-4 h-4 text-risk-critical" />}
+        value={<AnimatedNumber value={atRisk} />}
+        caption={`${atRiskPct}% · ${fmtMoney(summary.revenue_at_risk ?? 0)} exposed`}
         emphasis={atRiskPct >= 20 ? "critical" : "default"}
-      >
-        <BandBar summary={summary} />
-      </Tile>
+      />
       <Tile
+        icon={<MessageCircle className="w-4 h-4" />}
         label="Sentiment"
-        valueNode={
+        value={
           <span className={sentimentTone(sentiment?.net)}>
             {sentiment ? (
               <>
@@ -84,30 +71,14 @@ export function KPIStrip({
             )}
           </span>
         }
-        sublabel={
-          sentiment
-            ? `${sentiment.total.toLocaleString()} signals · ${sentiment.positive.toLocaleString()} ↑ ${sentiment.negative.toLocaleString()} ↓`
-            : "loading"
-        }
-        icon={<MessageCircle className="w-4 h-4 text-white/60" />}
-        emphasis={
-          sentiment && sentiment.net <= -15
-            ? "critical"
-            : sentiment && sentiment.net >= 15
-              ? "default"
-              : "default"
-        }
-      >
-        <SentimentBar data={sentiment} variant="tile" />
-      </Tile>
+        caption={sentiment ? `net across ${sentiment.total.toLocaleString()} signals` : "loading"}
+      />
       <Tile
-        label="Action queue"
-        valueNode={
-          <AnimatedNumber value={pendingFollowupsCount + pendingActionsCount} />
-        }
-        sublabel={`${pendingFollowupsCount} follow-ups · ${pendingActionsCount} approvals`}
-        icon={<Activity className="w-4 h-4 text-accent-400" />}
-        emphasis={pendingFollowupsCount + pendingActionsCount > 0 ? "accent" : "default"}
+        icon={<Activity className="w-4 h-4" />}
+        label="Queue"
+        value={<AnimatedNumber value={queue} />}
+        caption={queue > 0 ? `${pendingActionsCount} approvals, ${pendingFollowupsCount} follow-ups` : "all clear"}
+        emphasis={queue > 0 ? "accent" : "default"}
       />
     </div>
   );
@@ -115,49 +86,35 @@ export function KPIStrip({
 
 interface TileProps {
   label: string;
-  valueNode: React.ReactNode;
-  sublabel?: string;
+  value: React.ReactNode;
+  caption?: string;
   icon?: React.ReactNode;
   emphasis?: "default" | "critical" | "accent";
-  children?: React.ReactNode;
 }
 
-function Tile({ label, valueNode, sublabel, icon, emphasis = "default", children }: TileProps) {
+function Tile({ label, value, caption, icon, emphasis = "default" }: TileProps) {
   const ring =
     emphasis === "critical"
       ? "ring-1 ring-risk-critical/30"
       : emphasis === "accent"
         ? "ring-1 ring-accent-500/30"
         : "";
+  const iconTone =
+    emphasis === "critical"
+      ? "text-risk-critical"
+      : emphasis === "accent"
+        ? "text-accent-400"
+        : "text-white/45";
   return (
-    <div className={`glass-deep rounded-2xl px-4 py-3 ${ring}`}>
-      <div className="flex items-center justify-between text-white/40 text-[10px] uppercase tracking-wider">
+    <div className={`glass-deep rounded-2xl px-5 py-4 ${ring}`}>
+      <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-white/45">
+        <span className={iconTone}>{icon}</span>
         <span>{label}</span>
-        {icon}
       </div>
-      <div className="text-2xl font-semibold mt-1 leading-tight tabular-nums">{valueNode}</div>
-      {sublabel && <div className="text-[11px] text-white/50 mt-0.5 truncate">{sublabel}</div>}
-      {children && <div className="mt-2">{children}</div>}
-    </div>
-  );
-}
-
-function BandBar({ summary }: { summary: PortfolioSummary | null }) {
-  const total = (summary?.total_customers ?? 0) || 1;
-  const c = summary?.critical_count ?? 0;
-  const h = summary?.high_count ?? 0;
-  const m = summary?.moderate_count ?? 0;
-  const l = summary?.low_count ?? 0;
-  const cw = (c / total) * 100;
-  const hw = (h / total) * 100;
-  const mw = (m / total) * 100;
-  const lw = (l / total) * 100;
-  return (
-    <div className="flex h-1.5 rounded-full overflow-hidden bg-white/5">
-      <div className="bg-risk-critical" style={{ width: `${cw}%` }} title={`Critical: ${c}`} />
-      <div className="bg-risk-high" style={{ width: `${hw}%` }} title={`High: ${h}`} />
-      <div className="bg-risk-moderate" style={{ width: `${mw}%` }} title={`Moderate: ${m}`} />
-      <div className="bg-risk-low" style={{ width: `${lw}%` }} title={`Low: ${l}`} />
+      <div className="text-[28px] font-semibold mt-1.5 leading-none tabular-nums">{value}</div>
+      {caption && (
+        <div className="text-[11px] text-white/45 mt-2 truncate">{caption}</div>
+      )}
     </div>
   );
 }
