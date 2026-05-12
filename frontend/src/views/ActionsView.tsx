@@ -452,6 +452,8 @@ function DecidedCard({
   onSelect: (customerId: string) => void;
 }) {
   const approved = action.status === "approved";
+  const sent = approved && !!action.sent_at;
+  const sendFailed = approved && !sent && !!action.send_error;
   let payload: Record<string, unknown> = {};
   try {
     payload = action.payload_json ? JSON.parse(action.payload_json) : {};
@@ -459,19 +461,30 @@ function DecidedCard({
     /* ignore */
   }
   const subject = (payload.subject as string) || "";
+  const to = (payload.to as string) || "";
   const bodyPreview =
     ((payload.body as string) ||
       (payload.text as string) ||
       (payload.message as string) ||
       "").slice(0, 240);
 
+  const badge = sent
+    ? { text: "📧 SENT", cls: "bg-accent-500/15 text-accent-400 border-accent-500/30" }
+    : approved
+      ? sendFailed
+        ? { text: "✓ APPROVED · not sent", cls: "bg-risk-moderate/15 text-risk-moderate border-risk-moderate/30" }
+        : { text: "✓ APPROVED", cls: "bg-risk-low/15 text-risk-low border-risk-low/30" }
+      : { text: "✗ REJECTED", cls: "bg-white/5 text-white/55 border-white/10" };
+
   return (
     <button
       onClick={() => onSelect(action.customer_id)}
       className={`glass rounded-2xl p-4 text-left transition border ${
-        approved
-          ? "border-risk-low/20 hover:border-risk-low/40"
-          : "border-white/10 hover:border-white/20 opacity-80"
+        sent
+          ? "border-accent-500/20 hover:border-accent-500/40"
+          : approved
+            ? "border-risk-low/20 hover:border-risk-low/40"
+            : "border-white/10 hover:border-white/20 opacity-80"
       }`}
     >
       <div className="flex items-start justify-between gap-2 mb-1.5">
@@ -483,14 +496,8 @@ function DecidedCard({
             {action.action_type.replace(/_/g, " ")}
           </div>
         </div>
-        <span
-          className={`text-[10px] font-semibold px-2 py-0.5 rounded flex-shrink-0 ${
-            approved
-              ? "bg-risk-low/15 text-risk-low border border-risk-low/30"
-              : "bg-white/5 text-white/55 border border-white/10"
-          }`}
-        >
-          {approved ? "✓ APPROVED" : "✗ REJECTED"}
+        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded flex-shrink-0 border ${badge.cls}`}>
+          {badge.text}
         </span>
       </div>
       {action.nelson_rationale && (
@@ -500,13 +507,23 @@ function DecidedCard({
       )}
       {(subject || bodyPreview) && (
         <div className="bg-white/3 rounded px-2 py-1.5 text-[11px] text-white/65 mb-2 max-h-20 overflow-hidden">
+          {to && <div className="text-white/40 text-[10px]">To: {to}</div>}
           {subject && <div className="font-medium text-white/80">{subject}</div>}
           {bodyPreview && <div className="line-clamp-2">{bodyPreview}</div>}
         </div>
       )}
+      {sendFailed && action.send_error && (
+        <div className="text-[10px] text-risk-moderate/90 mb-1.5 line-clamp-1">
+          ⚠️ {action.send_error}
+        </div>
+      )}
       <div className="flex items-center justify-between text-[10px] text-white/35">
         <span>by {action.decided_by || "—"}</span>
-        <span>{relativeDate(action.decided_at)}</span>
+        <span>
+          {sent
+            ? `sent ${relativeDate(action.sent_at)}`
+            : relativeDate(action.decided_at)}
+        </span>
       </div>
     </button>
   );

@@ -7,6 +7,8 @@ import {
   ChevronRight,
   Loader2,
   MessageCircle,
+  Pencil,
+  Save,
   Send,
   Sparkles,
   Wrench,
@@ -306,42 +308,70 @@ function MessageBubble({
 }
 
 function InlineActionCard({
-  action,
+  action: actionProp,
   onDecided,
 }: {
   action: PendingAction;
   onDecided: (actionId: string, status: string) => void;
 }) {
-  const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
+  // Maintain a local copy so edits update in place without parent re-renders.
+  const [action, setAction] = useState(actionProp);
+  useEffect(() => setAction(actionProp), [actionProp]);
+
+  const [busy, setBusy] = useState<"approve" | "reject" | "save" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
   const toast = useToast();
   const decided = action.status === "approved" || action.status === "rejected";
   const approved = action.status === "approved";
+  const isEmail = action.action_type === "send_email";
 
-  let payload: Record<string, unknown> = {};
-  try {
-    payload = action.payload_json ? JSON.parse(action.payload_json) : {};
-  } catch {
-    /* ignore */
-  }
-  const subject = (payload.subject as string) || "";
+  const parsedPayload = (() => {
+    try {
+      return action.payload_json ? JSON.parse(action.payload_json) : {};
+    } catch {
+      return {};
+    }
+  })() as Record<string, unknown>;
+  const subject = (parsedPayload.subject as string) || "";
   const body =
-    (payload.body as string) ||
-    (payload.text as string) ||
-    (payload.message as string) ||
+    (parsedPayload.body as string) ||
+    (parsedPayload.text as string) ||
+    (parsedPayload.message as string) ||
     "";
+  const to = (parsedPayload.to as string) || "";
+
+  const [draftTo, setDraftTo] = useState(to);
+  const [draftSubject, setDraftSubject] = useState(subject);
+  const [draftBody, setDraftBody] = useState(body);
 
   async function decide(verb: "approve" | "reject") {
     setBusy(verb);
     setError(null);
     try {
-      if (verb === "approve") await api.approveAction(action.action_id);
-      else await api.rejectAction(action.action_id);
-      toast.push({
-        kind: verb === "approve" ? "success" : "info",
-        title: `${verb === "approve" ? "Approved" : "Rejected"}: ${action.action_type.replace(/_/g, " ")}`,
-        body: action.customer_full_name || undefined,
-      });
+      const result =
+        verb === "approve"
+          ? await api.approveAction(action.action_id)
+          : await api.rejectAction(action.action_id);
+      if (verb === "approve" && isEmail && result.sent) {
+        toast.push({
+          kind: "success",
+          title: `📧 Sent to ${result.sent_to}`,
+          body: subject || undefined,
+        });
+      } else if (verb === "approve" && isEmail && result.send_error) {
+        toast.push({
+          kind: "info",
+          title: "Approved — not sent",
+          body: result.send_error.slice(0, 120),
+        });
+      } else {
+        toast.push({
+          kind: verb === "approve" ? "success" : "info",
+          title: `${verb === "approve" ? "Approved" : "Rejected"}: ${action.action_type.replace(/_/g, " ")}`,
+          body: action.customer_full_name || undefined,
+        });
+      }
       onDecided(action.action_id, verb === "approve" ? "approved" : "rejected");
     } catch (e) {
       const msg = e instanceof ApiError ? e.body || e.message : String(e);
@@ -349,6 +379,42 @@ function InlineActionCard({
       toast.push({ kind: "error", title: "Action failed", body: msg });
       setBusy(null);
     }
+  }
+
+  async function saveEdit() {
+    setBusy("save");
+    setError(null);
+    try {
+      const newPayload = {
+        ...parsedPayload,
+        to: draftTo,
+        subject: draftSubject,
+        body: draftBody,
+      };
+      await api.editActionPayload(action.action_id, newPayload);
+      // Update local action in place so the card reflects the new content.
+      setAction({ ...action, payload_json: JSON.stringify(newPayload) });
+      toast.push({
+        kind: "success",
+        title: "Draft updated",
+        body: action.customer_full_name || undefined,
+      });
+      setEditing(false);
+    } catch (e) {
+      const msg = e instanceof ApiError ? e.body || e.message : String(e);
+      setError(msg);
+      toast.push({ kind: "error", title: "Save failed", body: msg });
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  function cancelEdit() {
+    setDraftTo(to);
+    setDraftSubject(subject);
+    setDraftBody(body);
+    setEditing(false);
+    setError(null);
   }
 
   return (
@@ -367,6 +433,7 @@ function InlineActionCard({
             <Sparkles className="w-3 h-3 text-accent-400" />
             <span className="text-[10px] uppercase tracking-wider font-semibold text-accent-400">
               {action.action_type.replace(/_/g, " ")}
+              {editing && <span className="ml-1.5 text-white/40 normal-case tracking-normal">· editing</span>}
             </span>
           </div>
           {decided ? (
@@ -380,7 +447,7 @@ function InlineActionCard({
               {approved ? "✓ APPROVED" : "✗ REJECTED"}
             </span>
           ) : (
-            action.confidence != null && (
+            !editing && action.confidence != null && (
               <span className="text-[10px] text-white/40">
                 {Math.round(action.confidence * 100)}% conf
               </span>
@@ -390,19 +457,68 @@ function InlineActionCard({
         <div className="text-sm font-medium text-white mb-1">
           {action.customer_full_name || "—"}
         </div>
-        {action.nelson_rationale && (
+        {action.nelson_rationale && !editing && (
           <div className="text-[11px] text-white/65 italic mb-2">
             {action.nelson_rationale}
           </div>
         )}
-        {(subject || body) && (
-          <div className="bg-white/5 rounded-lg px-2.5 py-2 text-[11px] text-white/75 mb-2 max-h-32 overflow-y-auto scrollbar-thin">
-            {subject && <div className="font-medium text-white/85 mb-1">{subject}</div>}
-            {body && <div className="whitespace-pre-wrap leading-relaxed">{body}</div>}
+
+        {editing && isEmail ? (
+          <div className="space-y-1.5 mt-2">
+            <input
+              type="text"
+              value={draftTo}
+              onChange={(e) => setDraftTo(e.target.value)}
+              placeholder="To: recipient@example.com"
+              className="w-full bg-white/5 border border-white/10 rounded px-2.5 py-1.5 text-[11px] text-white placeholder-white/30 focus:outline-none focus:border-accent-500/60"
+            />
+            <input
+              type="text"
+              value={draftSubject}
+              onChange={(e) => setDraftSubject(e.target.value)}
+              placeholder="Subject"
+              className="w-full bg-white/5 border border-white/10 rounded px-2.5 py-1.5 text-[11px] text-white placeholder-white/30 focus:outline-none focus:border-accent-500/60"
+            />
+            <textarea
+              value={draftBody}
+              onChange={(e) => setDraftBody(e.target.value)}
+              rows={6}
+              placeholder="Body…"
+              className="w-full bg-white/5 border border-white/10 rounded px-2.5 py-1.5 text-[11px] text-white placeholder-white/30 focus:outline-none focus:border-accent-500/60 leading-relaxed resize-none font-sans"
+            />
           </div>
+        ) : (
+          (subject || body) && (
+            <div className="bg-white/5 rounded-lg px-2.5 py-2 text-[11px] text-white/75 mb-1 max-h-32 overflow-y-auto scrollbar-thin">
+              {to && <div className="text-white/45 mb-1 text-[10px]">To: {to}</div>}
+              {subject && <div className="font-medium text-white/85 mb-1">{subject}</div>}
+              {body && <div className="whitespace-pre-wrap leading-relaxed">{body}</div>}
+            </div>
+          )
         )}
       </div>
-      {!decided && (
+
+      {!decided && editing && (
+        <div className="flex border-t border-white/10">
+          <button
+            onClick={saveEdit}
+            disabled={!!busy}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-accent-400 hover:bg-accent-500/10 transition border-r border-white/10 disabled:opacity-50"
+          >
+            {busy === "save" ? <Loader2 className="w-3 h-3 animate-spin" /> : <Save className="w-3 h-3" />}
+            Save
+          </button>
+          <button
+            onClick={cancelEdit}
+            disabled={!!busy}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-white/60 hover:bg-white/5 transition disabled:opacity-50"
+          >
+            <X className="w-3 h-3" />
+            Cancel
+          </button>
+        </div>
+      )}
+      {!decided && !editing && (
         <div className="flex border-t border-white/10">
           <button
             onClick={() => decide("approve")}
@@ -411,11 +527,23 @@ function InlineActionCard({
           >
             {busy === "approve" ? (
               <Loader2 className="w-3 h-3 animate-spin" />
+            ) : isEmail ? (
+              <Send className="w-3 h-3" />
             ) : (
               <Check className="w-3 h-3" />
             )}
-            Approve
+            {isEmail ? "Approve & send" : "Approve"}
           </button>
+          {isEmail && (
+            <button
+              onClick={() => setEditing(true)}
+              disabled={!!busy}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-accent-400 hover:bg-accent-500/10 transition border-r border-white/10 disabled:opacity-50"
+            >
+              <Pencil className="w-3 h-3" />
+              Edit
+            </button>
+          )}
           <button
             onClick={() => decide("reject")}
             disabled={!!busy}

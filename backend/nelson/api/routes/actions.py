@@ -6,12 +6,13 @@ GET   /api/actions/{id}              → single action
 PATCH /api/actions/{id}              → edit pending action payload
 POST  /api/actions/{id}/approve      → approve (and, for send_email, actually send)
 POST  /api/actions/{id}/reject       → reject
+
+All decide-and-send logic is shared with the Telegram surface via
+`services.actions.decide_action`.
 """
 from __future__ import annotations
 
 import json
-import uuid
-from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
@@ -19,7 +20,7 @@ from pydantic import BaseModel
 from nelson.api.middleware import require_session
 from nelson.data.db import get_connection
 from nelson.data.repositories import ActionsRepo
-from nelson.integrations.mail import MailError, NotConfiguredError, send_email
+from nelson.services.actions import DecisionError, decide_action
 
 router = APIRouter(prefix="/api/actions", tags=["actions"])
 
@@ -78,76 +79,16 @@ def get_action(action_id: str, session: dict = Depends(require_session)) -> dict
 
 
 def _decide(action_id: str, status_value: str, session: dict, notes: str | None) -> dict:
-    full = ActionsRepo.get(session["tenant_id"], action_id)
-    if not full:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, f"action {action_id} not found")
-
-    decided_at = datetime.utcnow()
-    ActionsRepo.decide(action_id, status_value, session["user_id"], decided_at)
-    con = get_connection()
-    con.execute(
-        """
-        INSERT INTO human_decisions
-        (decision_id, tenant_id, customer_id, customer_full_name, decision,
-         decided_by, decided_at, decision_notes, related_action_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (
-            f"DEC-{uuid.uuid4().hex[:12]}",
-            session["tenant_id"],
-            full["customer_id"],
-            full["customer_full_name"],
-            status_value,
-            session["user_id"],
-            decided_at,
-            notes,
-            action_id,
-        ),
-    )
-
-    result = {
-        "action_id": action_id,
-        "status": status_value,
-        "decided_at": str(decided_at),
-    }
-
-    # On approval of a send_email action, actually send via Gmail SMTP.
-    if status_value == "approved" and full["action_type"] == "send_email":
-        try:
-            payload = json.loads(full["payload_json"] or "{}")
-        except json.JSONDecodeError as e:
-            err = f"payload not parseable: {e.msg}"
-            ActionsRepo.mark_sent(action_id, None, err)
-            result["sent"] = False
-            result["send_error"] = err
-            return result
-
-        try:
-            send_email(
-                to=payload.get("to") or "",
-                subject=payload.get("subject") or "",
-                body=payload.get("body") or "",
-                reply_to=payload.get("reply_to"),
-            )
-            sent_at = datetime.utcnow()
-            ActionsRepo.mark_sent(action_id, sent_at, None)
-            result["sent"] = True
-            result["sent_at"] = str(sent_at)
-            result["sent_to"] = payload.get("to")
-            print(f"  [mail] sent {action_id} -> {payload.get('to')}")
-        except NotConfiguredError as e:
-            # Not an error per se — the human still approved; just no auto-send.
-            ActionsRepo.mark_sent(action_id, None, str(e))
-            result["sent"] = False
-            result["send_error"] = str(e)
-            print(f"  [mail] approved but not sent (gmail not configured): {action_id}")
-        except MailError as e:
-            ActionsRepo.mark_sent(action_id, None, str(e))
-            result["sent"] = False
-            result["send_error"] = str(e)
-            print(f"  [mail] send FAILED for {action_id}: {e}")
-
-    return result
+    try:
+        return decide_action(
+            tenant_id=session["tenant_id"],
+            user_id=session["user_id"],
+            action_id=action_id,
+            status_value=status_value,
+            notes=notes,
+        )
+    except DecisionError as e:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, str(e))
 
 
 @router.patch("/{action_id}")

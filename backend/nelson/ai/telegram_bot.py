@@ -36,6 +36,7 @@ from nelson.data.repositories import (
     OutcomesRepo,
     TicketsRepo,
 )
+from nelson.services.actions import DecisionError, decide_action
 
 
 WELCOME = (
@@ -698,36 +699,41 @@ async def _handle_callback(
                 return
 
             new_status = "approved" if verb == "appr" else "rejected"
-            decided_at = datetime.utcnow()
-            ActionsRepo.decide(action_id, new_status, str(user_id), decided_at)
-            con.execute(
-                """
-                INSERT INTO human_decisions
-                (decision_id, tenant_id, customer_id, customer_full_name, decision,
-                 decided_by, decided_at, decision_notes, related_action_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    f"DEC-{uuid.uuid4().hex[:12]}",
-                    settings.default_tenant_id,
-                    row[0],
-                    row[1],
-                    new_status,
-                    str(user_id),
-                    decided_at,
-                    None,
-                    action_id,
-                ),
-            )
-            await _answer_callback(
-                client, callback_id, "✓ Approved" if verb == "appr" else "✗ Rejected"
-            )
-            # Edit the original card so it shows the decision and removes buttons.
-            if message_id and msg.get("text"):
+            try:
+                result = decide_action(
+                    tenant_id=settings.default_tenant_id,
+                    user_id=str(user_id),
+                    action_id=action_id,
+                    status_value=new_status,
+                )
+            except DecisionError as e:
+                await _answer_callback(client, callback_id, "Not found")
+                await _send(client, chat_id, f"⚠️ {e}")
+                return
+
+            # Build the toast + card update based on whether email actually sent.
+            if new_status == "approved" and result.get("sent"):
+                ack = f"📧 Sent to {result.get('sent_to')}"
+                marker = f"📧 SENT to {result.get('sent_to')}"
+                follow_up = f"📧 *Email sent* to `{result.get('sent_to')}`"
+            elif new_status == "approved" and result.get("send_error"):
+                ack = "✓ Approved (not sent)"
+                marker = "✓ APPROVED · not sent"
+                follow_up = (
+                    f"✓ *Approved* — but the email was not sent.\n\n"
+                    f"_{result.get('send_error')}_"
+                )
+            else:
+                ack = "✓ Approved" if verb == "appr" else "✗ Rejected"
                 marker = "✓ APPROVED" if verb == "appr" else "✗ REJECTED"
+                follow_up = None
+
+            await _answer_callback(client, callback_id, ack)
+            if message_id and msg.get("text"):
                 old_text = msg["text"]
-                new_text = f"{marker}\n\n{old_text}"
-                await _edit(client, chat_id, message_id, new_text, reply_markup=None)
+                await _edit(client, chat_id, message_id, f"{marker}\n\n{old_text}", reply_markup=None)
+            if follow_up:
+                await _send(client, chat_id, follow_up)
             return
 
         # ---- Trigger Nelson to draft an action for a customer ----

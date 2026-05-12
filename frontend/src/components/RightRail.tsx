@@ -218,6 +218,12 @@ function DecidedRow({
   onSelect: (customerId: string) => void;
 }) {
   const isApproved = action.status === "approved";
+  const sent = isApproved && !!action.sent_at;
+  const badge = sent
+    ? { text: "📧 Sent", cls: "bg-accent-500/15 text-accent-400 border-accent-500/30" }
+    : isApproved
+      ? { text: "✓ Approved", cls: "bg-risk-low/15 text-risk-low border-risk-low/30" }
+      : { text: "✗ Rejected", cls: "bg-white/5 text-white/50 border-white/10" };
   return (
     <button
       onClick={() => onSelect(action.customer_id)}
@@ -227,14 +233,8 @@ function DecidedRow({
         <div className="text-sm font-medium text-white truncate flex-1">
           {action.customer_full_name || "—"}
         </div>
-        <span
-          className={`text-[10px] font-semibold px-1.5 py-0.5 rounded flex-shrink-0 ${
-            isApproved
-              ? "bg-risk-low/15 text-risk-low border border-risk-low/30"
-              : "bg-white/5 text-white/50 border border-white/10"
-          }`}
-        >
-          {isApproved ? "✓ Approved" : "✗ Rejected"}
+        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded flex-shrink-0 border ${badge.cls}`}>
+          {badge.text}
         </span>
       </div>
       <div className="text-[10px] uppercase tracking-wider text-accent-400 mb-1">
@@ -248,7 +248,7 @@ function DecidedRow({
       <div className="text-[10px] text-white/35 flex items-center gap-2">
         <span>by {action.decided_by || "—"}</span>
         <span>·</span>
-        <span>{relativeDate(action.decided_at)}</span>
+        <span>{sent ? `sent ${relativeDate(action.sent_at)}` : relativeDate(action.decided_at)}</span>
       </div>
     </button>
   );
