@@ -246,6 +246,16 @@ class AccountsRepo:
         con = get_connection()
         cur = con.execute(
             """
+            WITH ranked AS (
+                SELECT
+                    total_sales,
+                    NTILE(10) OVER (ORDER BY COALESCE(total_sales, 0) DESC) AS decile
+                FROM customers
+                WHERE tenant_id = ?
+            ),
+            top_decile AS (
+                SELECT SUM(total_sales) AS top10_revenue FROM ranked WHERE decile = 1
+            )
             SELECT
                 COUNT(*)                                                    AS total_customers,
                 SUM(CASE WHEN risk_band ILIKE '%critical%' THEN 1 ELSE 0 END) AS critical_count,
@@ -256,16 +266,20 @@ class AccountsRepo:
                 AVG(health_score)                                           AS avg_health_score,
                 SUM(total_sales)                                            AS total_revenue,
                 SUM(total_profit)                                           AS total_profit,
-                SUM(CASE WHEN risk_band ILIKE '%critical%' OR risk_band ILIKE '%high%' THEN total_sales ELSE 0 END) AS revenue_at_risk
+                SUM(CASE WHEN risk_band ILIKE '%critical%' OR risk_band ILIKE '%high%' THEN total_sales ELSE 0 END) AS revenue_at_risk,
+                AVG(late_delivery_rate)                                     AS avg_late_delivery_rate,
+                SUM(CASE WHEN churn_risk_reason IS NOT NULL AND TRIM(churn_risk_reason) <> '' THEN 1 ELSE 0 END) AS churn_flag_count,
+                SUM(COALESCE(open_support_ticket_count, 0))                 AS open_ticket_backlog,
+                (SELECT top10_revenue FROM top_decile)                      AS revenue_top10
             FROM customers
             WHERE tenant_id = ?
             """,
-            (tenant_id,),
+            (tenant_id, tenant_id),
         )
         cols = [c[0] for c in cur.description]
         row = cur.fetchone()
         if not row:
-            row = (0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            row = (0, 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0)
         out = dict(zip(cols, row, strict=False))
         out["tenant_id"] = tenant_id
         # Coerce nulls → zeros so the frontend never sees `null` here.
@@ -273,6 +287,8 @@ class AccountsRepo:
             "total_customers", "critical_count", "high_count", "moderate_count",
             "low_count", "avg_risk_score", "avg_health_score",
             "total_revenue", "total_profit", "revenue_at_risk",
+            "avg_late_delivery_rate", "churn_flag_count", "open_ticket_backlog",
+            "revenue_top10",
         ):
             if out.get(k) is None:
                 out[k] = 0

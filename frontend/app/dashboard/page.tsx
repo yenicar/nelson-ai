@@ -206,7 +206,10 @@ export default function Dashboard() {
                 pendingFollowupsCount={data?.pending_followups.length ?? 0}
                 pendingActionsCount={data?.pending_actions.length ?? 0}
               />
-              <PortfolioMetrics summary={data?.summary ?? null} />
+              <PortfolioMetrics
+                summary={data?.summary ?? null}
+                sentiment={data?.portfolio_sentiment ?? null}
+              />
               <DashboardControls
                 search={search}
                 onSearchChange={setSearch}

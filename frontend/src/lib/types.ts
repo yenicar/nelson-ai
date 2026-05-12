@@ -93,6 +93,10 @@ export interface PortfolioSummary {
   total_revenue?: number;
   total_profit?: number;
   revenue_at_risk?: number;
+  avg_late_delivery_rate?: number;
+  churn_flag_count?: number;
+  open_ticket_backlog?: number;
+  revenue_top10?: number;
 }
 
 export interface PendingFollowup {
