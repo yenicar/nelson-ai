@@ -43,15 +43,26 @@ export default function Dashboard() {
   const [view, setView] = useState<AccountView>("at_risk");
   const [healthyAccounts, setHealthyAccounts] = useState<Customer[] | null>(null);
   const [loadingHealthy, setLoadingHealthy] = useState(false);
+  const [healthyError, setHealthyError] = useState<string | null>(null);
 
   // Lazy-load the healthy list the first time the user flips into that view.
   useEffect(() => {
     if (view !== "healthy" || healthyAccounts) return;
     setLoadingHealthy(true);
+    setHealthyError(null);
     api
       .topHealthy(60)
       .then(setHealthyAccounts)
-      .catch(() => setHealthyAccounts([]))
+      .catch((e) => {
+        const msg =
+          e instanceof ApiError
+            ? `${e.status} from /api/portfolio/top-healthy${e.status === 404 ? " — restart the backend so it picks up the new route" : ""}`
+            : e instanceof Error
+              ? e.message
+              : "Unknown error";
+        setHealthyError(msg);
+        setHealthyAccounts([]);
+      })
       .finally(() => setLoadingHealthy(false));
   }, [view, healthyAccounts]);
 
@@ -268,6 +279,11 @@ export default function Dashboard() {
                           style={{ animationDelay: `${i * 80}ms` }}
                         />
                       ))}
+                    </div>
+                  ) : healthyError ? (
+                    <div className="glass-deep rounded-2xl p-5 text-sm text-risk-critical bg-risk-critical/5 border border-risk-critical/30">
+                      <div className="font-semibold mb-1">Couldn&apos;t load healthy accounts</div>
+                      <div className="text-white/70 text-xs">{healthyError}</div>
                     </div>
                   ) : displayedAccounts.length === 0 ? (
                     <div className="glass rounded-2xl p-8 text-sm text-white/60 text-center">
