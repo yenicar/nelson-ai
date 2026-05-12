@@ -122,21 +122,37 @@
 
   /* Light-mode text remaps. Tailwind's white-on-opacity utilities still
      render literal white in light theme without these. We flip them to
-     dark text at matching opacities. */
+     dark text at matching opacities — slightly lifted so light-mode text
+     stays readable on the off-white background. */
   [data-theme="light"] .text-white { color: rgba(28, 18, 56, 0.94) !important; }
   [data-theme="light"] .text-white\/95 { color: rgba(28, 18, 56, 0.92) !important; }
   [data-theme="light"] .text-white\/90 { color: rgba(28, 18, 56, 0.88) !important; }
   [data-theme="light"] .text-white\/85 { color: rgba(28, 18, 56, 0.84) !important; }
   [data-theme="light"] .text-white\/80 { color: rgba(28, 18, 56, 0.78) !important; }
+  [data-theme="light"] .text-white\/75 { color: rgba(28, 18, 56, 0.72) !important; }
   [data-theme="light"] .text-white\/70 { color: rgba(28, 18, 56, 0.68) !important; }
   [data-theme="light"] .text-white\/65 { color: rgba(28, 18, 56, 0.63) !important; }
   [data-theme="light"] .text-white\/60 { color: rgba(28, 18, 56, 0.58) !important; }
-  [data-theme="light"] .text-white\/55 { color: rgba(28, 18, 56, 0.53) !important; }
-  [data-theme="light"] .text-white\/50 { color: rgba(28, 18, 56, 0.48) !important; }
-  [data-theme="light"] .text-white\/45 { color: rgba(28, 18, 56, 0.43) !important; }
-  [data-theme="light"] .text-white\/40 { color: rgba(28, 18, 56, 0.40) !important; }
-  [data-theme="light"] .text-white\/35 { color: rgba(28, 18, 56, 0.36) !important; }
-  [data-theme="light"] .text-white\/30 { color: rgba(28, 18, 56, 0.32) !important; }
+  [data-theme="light"] .text-white\/55 { color: rgba(28, 18, 56, 0.55) !important; }
+  [data-theme="light"] .text-white\/50 { color: rgba(28, 18, 56, 0.52) !important; }
+  [data-theme="light"] .text-white\/45 { color: rgba(28, 18, 56, 0.48) !important; }
+  [data-theme="light"] .text-white\/40 { color: rgba(28, 18, 56, 0.45) !important; }
+  [data-theme="light"] .text-white\/35 { color: rgba(28, 18, 56, 0.42) !important; }
+  [data-theme="light"] .text-white\/30 { color: rgba(28, 18, 56, 0.38) !important; }
+  [data-theme="light"] .text-white\/25 { color: rgba(28, 18, 56, 0.34) !important; }
+  [data-theme="light"] .text-white\/20 { color: rgba(28, 18, 56, 0.30) !important; }
+
+  /* Hover variants — common pattern is hover:text-white. */
+  [data-theme="light"] .hover\:text-white:hover { color: rgba(28, 18, 56, 0.94) !important; }
+  [data-theme="light"] .hover\:text-white\/80:hover { color: rgba(28, 18, 56, 0.78) !important; }
+  [data-theme="light"] .hover\:text-white\/85:hover { color: rgba(28, 18, 56, 0.84) !important; }
+  [data-theme="light"] .hover\:text-white\/90:hover { color: rgba(28, 18, 56, 0.88) !important; }
+  [data-theme="light"] .hover\:text-white\/70:hover { color: rgba(28, 18, 56, 0.68) !important; }
+
+  /* Input placeholders. */
+  [data-theme="light"] .placeholder-white\/30::placeholder { color: rgba(28, 18, 56, 0.40) !important; }
+  [data-theme="light"] .placeholder-white\/40::placeholder { color: rgba(28, 18, 56, 0.45) !important; }
+  [data-theme="light"] .placeholder-white\/50::placeholder { color: rgba(28, 18, 56, 0.50) !important; }
 
   /* Light-mode subtle backgrounds — purple-tinted instead of white-tinted. */
   [data-theme="light"] .bg-white\/5  { background-color: rgba(124, 58, 237, 0.04) !important; }
@@ -144,6 +160,15 @@
   [data-theme="light"] .bg-white\/10 { background-color: rgba(124, 58, 237, 0.08) !important; }
   [data-theme="light"] .bg-white\/15 { background-color: rgba(124, 58, 237, 0.12) !important; }
   [data-theme="light"] .bg-white\/20 { background-color: rgba(124, 58, 237, 0.16) !important; }
+  [data-theme="light"] .bg-white\/25 { background-color: rgba(124, 58, 237, 0.20) !important; }
+  [data-theme="light"] .bg-white\/30 { background-color: rgba(124, 58, 237, 0.24) !important; }
+
+  /* Hover backgrounds. */
+  [data-theme="light"] .hover\:bg-white\/5:hover  { background-color: rgba(124, 58, 237, 0.05) !important; }
+  [data-theme="light"] .hover\:bg-white\/8:hover  { background-color: rgba(124, 58, 237, 0.07) !important; }
+  [data-theme="light"] .hover\:bg-white\/10:hover { background-color: rgba(124, 58, 237, 0.10) !important; }
+  [data-theme="light"] .hover\:bg-white\/15:hover { background-color: rgba(124, 58, 237, 0.14) !important; }
+  [data-theme="light"] .hover\:bg-white\/20:hover { background-color: rgba(124, 58, 237, 0.18) !important; }
 
   /* Light-mode borders — purple-tinted. */
   [data-theme="light"] .border-white\/5  { border-color: rgba(124, 58, 237, 0.08) !important; }
@@ -151,6 +176,14 @@
   [data-theme="light"] .border-white\/10 { border-color: rgba(124, 58, 237, 0.14) !important; }
   [data-theme="light"] .border-white\/15 { border-color: rgba(124, 58, 237, 0.18) !important; }
   [data-theme="light"] .border-white\/20 { border-color: rgba(124, 58, 237, 0.22) !important; }
+  [data-theme="light"] .border-white\/25 { border-color: rgba(124, 58, 237, 0.26) !important; }
+  [data-theme="light"] .border-white\/30 { border-color: rgba(124, 58, 237, 0.30) !important; }
+  [data-theme="light"] .hover\:border-white\/20:hover { border-color: rgba(124, 58, 237, 0.24) !important; }
+
+  /* Rings (focus outlines, pinned state). */
+  [data-theme="light"] .ring-white\/10 { --tw-ring-color: rgba(124, 58, 237, 0.14) !important; }
+  [data-theme="light"] .ring-white\/20 { --tw-ring-color: rgba(124, 58, 237, 0.22) !important; }
+  [data-theme="light"] .ring-white\/30 { --tw-ring-color: rgba(124, 58, 237, 0.30) !important; }
 
   /* Light-mode: accent gradient becomes purple instead of blue. */
   [data-theme="light"] .bg-accent-500 { background-color: #7c3aed !important; }
@@ -170,6 +203,32 @@
   [data-theme="light"] .bg-ink-900\/50 { background-color: rgba(255, 255, 255, 0.55) !important; }
   [data-theme="light"] .bg-ink-900 { background-color: #f8f6ff !important; }
   [data-theme="light"] .ring-ink-900 { --tw-ring-color: #f8f6ff !important; }
+
+  /* Typography compatibility — light mode benefits from slightly heavier
+     small-text weights for contrast on the off-white background, and
+     tighter letter-spacing for the high-density numeric labels. */
+  [data-theme="light"] .text-\[10px\],
+  [data-theme="light"] .text-\[11px\] {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  [data-theme="light"] .font-medium { font-weight: 550 !important; }
+  [data-theme="light"] .font-semibold { font-weight: 650 !important; }
+
+  /* Risk chip backgrounds — the /20 alpha on a dark navy background reads
+     fine, but on light off-white the chips wash out. Bump the chip fill
+     and tighten the border for legibility. */
+  [data-theme="light"] .chip-critical { background-color: rgba(220, 38, 38, 0.14) !important; border-color: rgba(220, 38, 38, 0.45) !important; color: rgb(185, 28, 28) !important; }
+  [data-theme="light"] .chip-high     { background-color: rgba(234, 88, 12, 0.14) !important; border-color: rgba(234, 88, 12, 0.45) !important; color: rgb(194, 65, 12) !important; }
+  [data-theme="light"] .chip-moderate { background-color: rgba(202, 138, 4, 0.14) !important; border-color: rgba(202, 138, 4, 0.45) !important; color: rgb(161, 98, 7) !important; }
+  [data-theme="light"] .chip-low      { background-color: rgba(22, 163, 74, 0.14) !important; border-color: rgba(22, 163, 74, 0.45) !important; color: rgb(21, 128, 61) !important; }
+
+  /* Risk text colors — defaults are tuned for dark mode; on light bg they
+     need slightly darker shades to maintain WCAG contrast. */
+  [data-theme="light"] .text-risk-critical { color: rgb(185, 28, 28) !important; }
+  [data-theme="light"] .text-risk-high     { color: rgb(194, 65, 12) !important; }
+  [data-theme="light"] .text-risk-moderate { color: rgb(161, 98, 7) !important; }
+  [data-theme="light"] .text-risk-low      { color: rgb(21, 128, 61) !important; }
 
   /* Subtle scrollbars */
   .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
