@@ -200,16 +200,20 @@ export default function Dashboard() {
           <div className="flex-1 min-h-0 grid grid-cols-[1fr_340px] gap-4 p-4">
             {/* Left content: KPI strip + controls + diagnostic canvas */}
             <div className="flex flex-col gap-4 min-h-0">
-              <KPIStrip
-                summary={data?.summary ?? null}
-                sentiment={data?.portfolio_sentiment ?? null}
-                pendingFollowupsCount={data?.pending_followups.length ?? 0}
-                pendingActionsCount={data?.pending_actions.length ?? 0}
-              />
-              <PortfolioMetrics
-                summary={data?.summary ?? null}
-                sentiment={data?.portfolio_sentiment ?? null}
-              />
+              {/* Top metrics block — KPIStrip and PortfolioMetrics share a
+                  4-col grid so all three rows visually line up as one unit. */}
+              <div className="space-y-3">
+                <KPIStrip
+                  summary={data?.summary ?? null}
+                  sentiment={data?.portfolio_sentiment ?? null}
+                  pendingFollowupsCount={data?.pending_followups.length ?? 0}
+                  pendingActionsCount={data?.pending_actions.length ?? 0}
+                />
+                <PortfolioMetrics
+                  summary={data?.summary ?? null}
+                  sentiment={data?.portfolio_sentiment ?? null}
+                />
+              </div>
               <DashboardControls
                 search={search}
                 onSearchChange={setSearch}

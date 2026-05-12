@@ -71,7 +71,8 @@ export function KPIStrip({
             )}
           </span>
         }
-        caption={sentiment ? `net across ${sentiment.total.toLocaleString()} signals` : "loading"}
+        caption={sentiment ? `NPS-style net · ${sentiment.total.toLocaleString()} signals` : "loading"}
+        footer={sentiment ? <NPSSplit sentiment={sentiment} /> : null}
       />
       <Tile
         icon={<Activity className="w-4 h-4" />}
@@ -90,9 +91,10 @@ interface TileProps {
   caption?: string;
   icon?: React.ReactNode;
   emphasis?: "default" | "critical" | "accent";
+  footer?: React.ReactNode;
 }
 
-function Tile({ label, value, caption, icon, emphasis = "default" }: TileProps) {
+function Tile({ label, value, caption, icon, emphasis = "default", footer }: TileProps) {
   const ring =
     emphasis === "critical"
       ? "ring-1 ring-risk-critical/30"
@@ -115,6 +117,21 @@ function Tile({ label, value, caption, icon, emphasis = "default" }: TileProps) 
       {caption && (
         <div className="text-[11px] text-white/45 mt-2 truncate">{caption}</div>
       )}
+      {footer && <div className="mt-2">{footer}</div>}
+    </div>
+  );
+}
+
+function NPSSplit({ sentiment }: { sentiment: NonNullable<Props["sentiment"]> }) {
+  const total = sentiment.total || 1;
+  const p = (sentiment.positive / total) * 100;
+  const n = (sentiment.neutral / total) * 100;
+  const d = (sentiment.negative / total) * 100;
+  return (
+    <div className="flex h-1 rounded-full overflow-hidden bg-white/5">
+      <div className="bg-risk-low" style={{ width: `${p}%` }} title={`Promoters: ${sentiment.positive}`} />
+      <div className="bg-white/15" style={{ width: `${n}%` }} title={`Passives: ${sentiment.neutral}`} />
+      <div className="bg-risk-critical" style={{ width: `${d}%` }} title={`Detractors: ${sentiment.negative}`} />
     </div>
   );
 }

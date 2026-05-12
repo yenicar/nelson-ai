@@ -13,7 +13,6 @@ import {
   Heart,
   Inbox,
   PieChart,
-  ThumbsUp,
   TrendingDown,
   Trophy,
 } from "lucide-react";
@@ -85,8 +84,8 @@ export function PortfolioMetrics({ summary, sentiment }: Props) {
         </MiniTile>
       </div>
 
-      {/* Row 2 — operational signals (5 cols since user asked for all of these) */}
-      <div className="grid grid-cols-5 gap-3">
+      {/* Row 2 — operational signals (matches row 1 width: 4 cols) */}
+      <div className="grid grid-cols-4 gap-3">
         <MiniTile icon={<TrendingDown className="w-3.5 h-3.5" />} label="Late delivery">
           <div className="flex items-baseline gap-2">
             <div className="text-lg font-semibold tabular-nums">{lateRate.toFixed(1)}%</div>
@@ -117,20 +116,6 @@ export function PortfolioMetrics({ summary, sentiment }: Props) {
             <div className="text-[10px] text-white/45">open tickets</div>
           </div>
           <TicketDensity backlog={ticketBacklog} customers={customers} />
-        </MiniTile>
-
-        <MiniTile icon={<ThumbsUp className="w-3.5 h-3.5" />} label="NPS-style">
-          <div className="flex items-baseline gap-2">
-            <div
-              className={`text-lg font-semibold tabular-nums ${
-                sentiment && sentiment.net >= 0 ? "text-risk-low" : sentiment ? "text-risk-critical" : ""
-              }`}
-            >
-              {sentiment ? (sentiment.net > 0 ? "+" : "") + sentiment.net : "—"}
-            </div>
-            <div className="text-[10px] text-white/45">net score</div>
-          </div>
-          <NPSBar sentiment={sentiment} />
         </MiniTile>
       </div>
     </div>
@@ -224,31 +209,6 @@ function BandDistribution({ summary }: { summary: PortfolioSummary }) {
         <span><span className="text-risk-low">●</span> {l}</span>
       </div>
     </>
-  );
-}
-
-function NPSBar({ sentiment }: { sentiment?: SentimentBreakdown | null }) {
-  // No time series → static promoter/passive/detractor split across all
-  // signals. Labels under the bar give the actual counts.
-  if (!sentiment || sentiment.total === 0) {
-    return <div className="mt-2 h-1.5 rounded-full bg-white/5" />;
-  }
-  const total = sentiment.total;
-  const p = (sentiment.positive / total) * 100;
-  const n = (sentiment.neutral / total) * 100;
-  const d = (sentiment.negative / total) * 100;
-  return (
-    <div className="mt-2 space-y-1">
-      <div className="flex h-1.5 rounded-full overflow-hidden bg-white/5">
-        <div className="bg-risk-low" style={{ width: `${p}%` }} title={`Promoters: ${sentiment.positive}`} />
-        <div className="bg-white/15" style={{ width: `${n}%` }} title={`Passives: ${sentiment.neutral}`} />
-        <div className="bg-risk-critical" style={{ width: `${d}%` }} title={`Detractors: ${sentiment.negative}`} />
-      </div>
-      <div className="flex justify-between text-[10px] text-white/45 tabular-nums">
-        <span><span className="text-risk-low">●</span> {sentiment.positive}</span>
-        <span><span className="text-risk-critical">●</span> {sentiment.negative}</span>
-      </div>
-    </div>
   );
 }
 
