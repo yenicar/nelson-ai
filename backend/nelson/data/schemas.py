@@ -201,6 +201,9 @@ class PendingAction(_Base):
     decided_by: str | None = None
     nelson_rationale: str | None = None
     confidence: float | None = None
+    # Send-side bookkeeping (currently used for send_email actions via Gmail SMTP).
+    sent_at: datetime | None = None
+    send_error: str | None = None
 
 
 class NelsonSession(_Base):

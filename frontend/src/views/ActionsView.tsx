@@ -5,7 +5,7 @@
 // full email body, full rationale, filter by action_type.
 
 import { useEffect, useMemo, useState } from "react";
-import { Check, History, Loader2, Sparkles, X } from "lucide-react";
+import { Check, History, Loader2, Pencil, Save, Send, Sparkles, X } from "lucide-react";
 import { api, ApiError } from "@/lib/api";
 import { DecidedAction, PendingAction } from "@/lib/types";
 import { relativeDate } from "@/lib/format";
@@ -185,35 +185,66 @@ function PendingCard({
   onSelect: (customerId: string) => void;
   onDecided: () => void;
 }) {
-  const [busy, setBusy] = useState<"approve" | "reject" | null>(null);
+  const [busy, setBusy] = useState<"approve" | "reject" | "save" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
   const toast = useToast();
 
-  let payload: Record<string, unknown> = {};
-  try {
-    payload = action.payload_json ? JSON.parse(action.payload_json) : {};
-  } catch {
-    /* ignore */
-  }
-  const subject = (payload.subject as string) || "";
+  // Parse current payload + maintain local editable copy
+  const parsedPayload = useMemo<Record<string, unknown>>(() => {
+    try {
+      return action.payload_json ? JSON.parse(action.payload_json) : {};
+    } catch {
+      return {};
+    }
+  }, [action.payload_json]);
+
+  const [draftTo, setDraftTo] = useState((parsedPayload.to as string) || "");
+  const [draftSubject, setDraftSubject] = useState((parsedPayload.subject as string) || "");
+  const [draftBody, setDraftBody] = useState(
+    (parsedPayload.body as string) ||
+      (parsedPayload.text as string) ||
+      (parsedPayload.message as string) ||
+      "",
+  );
+
+  const isEmail = action.action_type === "send_email";
+  const to = (parsedPayload.to as string) || "";
+  const subject = (parsedPayload.subject as string) || "";
   const body =
-    (payload.body as string) ||
-    (payload.text as string) ||
-    (payload.message as string) ||
+    (parsedPayload.body as string) ||
+    (parsedPayload.text as string) ||
+    (parsedPayload.message as string) ||
     "";
-  const to = (payload.to as string) || "";
 
   async function decide(verb: "approve" | "reject") {
     setBusy(verb);
     setError(null);
     try {
-      if (verb === "approve") await api.approveAction(action.action_id);
-      else await api.rejectAction(action.action_id);
-      toast.push({
-        kind: verb === "approve" ? "success" : "info",
-        title: `${verb === "approve" ? "Approved" : "Rejected"}: ${action.action_type.replace(/_/g, " ")}`,
-        body: action.customer_full_name || undefined,
-      });
+      const result =
+        verb === "approve"
+          ? await api.approveAction(action.action_id)
+          : await api.rejectAction(action.action_id);
+
+      if (verb === "approve" && isEmail && result.sent) {
+        toast.push({
+          kind: "success",
+          title: `📧 Sent to ${result.sent_to}`,
+          body: `Subject: ${subject || "(no subject)"}`,
+        });
+      } else if (verb === "approve" && isEmail && result.send_error) {
+        toast.push({
+          kind: "info",
+          title: "Approved — not sent",
+          body: result.send_error.slice(0, 120),
+        });
+      } else {
+        toast.push({
+          kind: verb === "approve" ? "success" : "info",
+          title: `${verb === "approve" ? "Approved" : "Rejected"}: ${action.action_type.replace(/_/g, " ")}`,
+          body: action.customer_full_name || undefined,
+        });
+      }
       onDecided();
     } catch (e) {
       const msg = e instanceof ApiError ? e.body || e.message : String(e);
@@ -221,6 +252,42 @@ function PendingCard({
       toast.push({ kind: "error", title: "Action failed", body: msg });
       setBusy(null);
     }
+  }
+
+  async function saveEdit() {
+    setBusy("save");
+    setError(null);
+    try {
+      const newPayload = {
+        ...parsedPayload,
+        to: draftTo,
+        subject: draftSubject,
+        body: draftBody,
+      };
+      await api.editActionPayload(action.action_id, newPayload);
+      toast.push({ kind: "success", title: "Draft updated", body: action.customer_full_name || undefined });
+      setEditing(false);
+      onDecided(); // refresh list to pick up new content
+    } catch (e) {
+      const msg = e instanceof ApiError ? e.body || e.message : String(e);
+      setError(msg);
+      toast.push({ kind: "error", title: "Save failed", body: msg });
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  function cancelEdit() {
+    setDraftTo((parsedPayload.to as string) || "");
+    setDraftSubject((parsedPayload.subject as string) || "");
+    setDraftBody(
+      (parsedPayload.body as string) ||
+        (parsedPayload.text as string) ||
+        (parsedPayload.message as string) ||
+        "",
+    );
+    setEditing(false);
+    setError(null);
   }
 
   return (
@@ -236,73 +303,138 @@ function PendingCard({
             </div>
             <div className="text-[10px] uppercase tracking-wider text-accent-400 font-semibold mt-0.5">
               {action.action_type.replace(/_/g, " ")}
+              {editing && <span className="ml-2 text-white/40 normal-case tracking-normal">· editing</span>}
             </div>
           </button>
-          {action.confidence != null && (
+          {action.confidence != null && !editing && (
             <span className="text-[10px] font-medium text-white/40 flex-shrink-0">
               {Math.round(action.confidence * 100)}% confident
             </span>
           )}
         </div>
 
-        {action.nelson_rationale && (
-          <div className="text-xs text-white/70 italic mb-3">
-            {action.nelson_rationale}
-          </div>
+        {action.nelson_rationale && !editing && (
+          <div className="text-xs text-white/70 italic mb-3">{action.nelson_rationale}</div>
         )}
 
-        {(to || subject || body) && (
-          <div className="bg-white/5 rounded-lg px-3 py-2.5 text-xs text-white/80 max-h-40 overflow-y-auto scrollbar-thin">
-            {to && (
-              <div className="text-white/45 mb-1">
-                <span className="font-mono text-[10px]">To:</span> {to}
-              </div>
-            )}
-            {subject && (
-              <div className="font-medium text-white/90 mb-1">{subject}</div>
-            )}
-            {body && (
-              <div className="whitespace-pre-wrap leading-relaxed">{body}</div>
-            )}
-            {!to && !subject && !body && (
-              <pre className="text-[10px] font-mono text-white/55 overflow-x-auto">
-                {JSON.stringify(payload, null, 2)}
-              </pre>
-            )}
+        {/* Edit mode: inline form for email fields */}
+        {editing && isEmail ? (
+          <div className="space-y-2.5">
+            <div>
+              <label className="text-[10px] uppercase tracking-wider text-white/40 mb-1 block">To</label>
+              <input
+                type="text"
+                value={draftTo}
+                onChange={(e) => setDraftTo(e.target.value)}
+                placeholder="recipient@example.com"
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder-white/30 focus:outline-none focus:border-accent-500/60"
+              />
+            </div>
+            <div>
+              <label className="text-[10px] uppercase tracking-wider text-white/40 mb-1 block">Subject</label>
+              <input
+                type="text"
+                value={draftSubject}
+                onChange={(e) => setDraftSubject(e.target.value)}
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder-white/30 focus:outline-none focus:border-accent-500/60"
+              />
+            </div>
+            <div>
+              <label className="text-[10px] uppercase tracking-wider text-white/40 mb-1 block">Body</label>
+              <textarea
+                value={draftBody}
+                onChange={(e) => setDraftBody(e.target.value)}
+                rows={8}
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-accent-500/60 leading-relaxed font-sans resize-none"
+              />
+            </div>
           </div>
+        ) : (
+          (to || subject || body) && (
+            <div className="bg-white/5 rounded-lg px-3 py-2.5 text-xs text-white/80 max-h-40 overflow-y-auto scrollbar-thin">
+              {to && (
+                <div className="text-white/45 mb-1">
+                  <span className="font-mono text-[10px]">To:</span> {to}
+                </div>
+              )}
+              {subject && <div className="font-medium text-white/90 mb-1">{subject}</div>}
+              {body && <div className="whitespace-pre-wrap leading-relaxed">{body}</div>}
+              {!to && !subject && !body && (
+                <pre className="text-[10px] font-mono text-white/55 overflow-x-auto">
+                  {JSON.stringify(parsedPayload, null, 2)}
+                </pre>
+              )}
+            </div>
+          )
         )}
 
-        <div className="text-[10px] text-white/35 mt-2">
-          Drafted {relativeDate(action.created_at)}
-        </div>
+        {!editing && (
+          <div className="text-[10px] text-white/35 mt-2">
+            Drafted {relativeDate(action.created_at)}
+          </div>
+        )}
       </div>
 
-      <div className="flex border-t border-white/10">
-        <button
-          onClick={() => decide("approve")}
-          disabled={!!busy}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-risk-low hover:bg-risk-low/10 transition border-r border-white/10 disabled:opacity-50"
-        >
-          {busy === "approve" ? (
-            <Loader2 className="w-3.5 h-3.5 animate-spin" />
-          ) : (
-            <Check className="w-3.5 h-3.5" />
-          )}
-          Approve
-        </button>
-        <button
-          onClick={() => decide("reject")}
-          disabled={!!busy}
-          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-white/60 hover:bg-white/5 transition disabled:opacity-50"
-        >
-          {busy === "reject" ? (
-            <Loader2 className="w-3.5 h-3.5 animate-spin" />
-          ) : (
+      {/* Action buttons — edit mode vs default */}
+      {editing ? (
+        <div className="flex border-t border-white/10">
+          <button
+            onClick={saveEdit}
+            disabled={!!busy}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-accent-400 hover:bg-accent-500/10 transition border-r border-white/10 disabled:opacity-50"
+          >
+            {busy === "save" ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
+            Save draft
+          </button>
+          <button
+            onClick={cancelEdit}
+            disabled={!!busy}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-white/60 hover:bg-white/5 transition disabled:opacity-50"
+          >
             <X className="w-3.5 h-3.5" />
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <div className="flex border-t border-white/10">
+          <button
+            onClick={() => decide("approve")}
+            disabled={!!busy}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-risk-low hover:bg-risk-low/10 transition border-r border-white/10 disabled:opacity-50"
+          >
+            {busy === "approve" ? (
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+            ) : isEmail ? (
+              <Send className="w-3.5 h-3.5" />
+            ) : (
+              <Check className="w-3.5 h-3.5" />
+            )}
+            {isEmail ? "Approve & send" : "Approve"}
+          </button>
+          {isEmail && (
+            <button
+              onClick={() => setEditing(true)}
+              disabled={!!busy}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-accent-400 hover:bg-accent-500/10 transition border-r border-white/10 disabled:opacity-50"
+            >
+              <Pencil className="w-3.5 h-3.5" />
+              Edit
+            </button>
           )}
-          Reject
-        </button>
-      </div>
+          <button
+            onClick={() => decide("reject")}
+            disabled={!!busy}
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 text-sm font-medium text-white/60 hover:bg-white/5 transition disabled:opacity-50"
+          >
+            {busy === "reject" ? (
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+            ) : (
+              <X className="w-3.5 h-3.5" />
+            )}
+            Reject
+          </button>
+        </div>
+      )}
       {error && (
         <div className="px-3 py-1.5 text-[10px] text-risk-critical border-t border-risk-critical/30 bg-risk-critical/5">
           {error}

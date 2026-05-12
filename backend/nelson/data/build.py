@@ -91,9 +91,21 @@ def _create_runtime_tables(con: duckdb.DuckDBPyConnection) -> None:
             decided_at          TIMESTAMP,
             decided_by          VARCHAR,
             nelson_rationale    VARCHAR,
-            confidence          DOUBLE
+            confidence          DOUBLE,
+            sent_at             TIMESTAMP,
+            send_error          VARCHAR
         )
     """)
+    # Migration: add columns to existing tables that pre-date the send-tracking feature.
+    for col, ddl in [
+        ("sent_at", "ALTER TABLE pending_actions ADD COLUMN sent_at TIMESTAMP"),
+        ("send_error", "ALTER TABLE pending_actions ADD COLUMN send_error VARCHAR"),
+    ]:
+        try:
+            con.execute(ddl)
+            print(f"  [build] migrated: pending_actions.{col} added")
+        except Exception:
+            pass  # column already exists
     con.execute("""
         CREATE TABLE IF NOT EXISTS nelson_sessions (
             session_id     VARCHAR PRIMARY KEY,

@@ -12,10 +12,27 @@ from nelson.config.settings import settings
 from nelson.data.db import close_connection, get_connection
 
 
+def _apply_runtime_migrations() -> None:
+    """Add columns/tables that newer code expects but older DBs may lack.
+    Idempotent — safe to run on every startup."""
+    con = get_connection()
+    for ddl in [
+        "ALTER TABLE pending_actions ADD COLUMN IF NOT EXISTS sent_at TIMESTAMP",
+        "ALTER TABLE pending_actions ADD COLUMN IF NOT EXISTS send_error VARCHAR",
+    ]:
+        try:
+            con.execute(ddl)
+        except Exception as e:
+            # Column may already exist on older DuckDB (no IF NOT EXISTS support).
+            if "already exists" not in str(e).lower():
+                print(f"  [migration] warn: {ddl} -> {type(e).__name__}: {e}")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # warm the DuckDB connection at startup
     get_connection()
+    _apply_runtime_migrations()
 
     # If a Telegram token is set, run the bot in-process (DuckDB allows only
     # one writer per file, so we co-locate both surfaces in one process).

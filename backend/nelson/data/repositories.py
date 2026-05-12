@@ -510,6 +510,57 @@ class ActionsRepo:
         )
 
     @staticmethod
+    def update_payload(action_id: str, tenant_id: str, payload_json: str) -> bool:
+        """Edit a still-pending action's payload (e.g. revise email body). Returns
+        True on success, False if the action doesn't exist or isn't pending."""
+        con = get_connection()
+        row = con.execute(
+            "SELECT status FROM pending_actions WHERE action_id=? AND tenant_id=?",
+            (action_id, tenant_id),
+        ).fetchone()
+        if not row:
+            return False
+        if row[0] != "pending":
+            return False
+        con.execute(
+            "UPDATE pending_actions SET payload_json=? WHERE action_id=?",
+            (payload_json, action_id),
+        )
+        return True
+
+    @staticmethod
+    def mark_sent(action_id: str, sent_at, error: str | None = None) -> None:
+        """Record send outcome for an email action."""
+        con = get_connection()
+        con.execute(
+            "UPDATE pending_actions SET sent_at=?, send_error=? WHERE action_id=?",
+            (sent_at if error is None else None, error, action_id),
+        )
+
+    @staticmethod
+    def get(tenant_id: str, action_id: str) -> dict | None:
+        """Fetch a single pending_action row (any status) as a dict."""
+        con = get_connection()
+        row = con.execute(
+            """
+            SELECT action_id, tenant_id, customer_id, customer_full_name,
+                   action_type, payload_json, status, created_at, decided_at,
+                   decided_by, nelson_rationale, confidence, sent_at, send_error
+            FROM pending_actions
+            WHERE action_id=? AND tenant_id=?
+            """,
+            (action_id, tenant_id),
+        ).fetchone()
+        if not row:
+            return None
+        cols = [
+            "action_id", "tenant_id", "customer_id", "customer_full_name",
+            "action_type", "payload_json", "status", "created_at", "decided_at",
+            "decided_by", "nelson_rationale", "confidence", "sent_at", "send_error",
+        ]
+        return dict(zip(cols, row, strict=False))
+
+    @staticmethod
     def list_decided(tenant_id: str, limit: int = 20) -> list[dict]:
         """Recently decided actions joined with human_decisions for full provenance."""
         con = get_connection()
@@ -519,6 +570,7 @@ class ActionsRepo:
                 a.action_id, a.tenant_id, a.customer_id, a.customer_full_name,
                 a.action_type, a.payload_json, a.status, a.created_at,
                 a.decided_at, a.decided_by, a.nelson_rationale, a.confidence,
+                a.sent_at, a.send_error,
                 d.decision_id, d.decision_notes
             FROM pending_actions a
             LEFT JOIN human_decisions d ON d.related_action_id = a.action_id
@@ -542,8 +594,10 @@ class ActionsRepo:
                 "decided_by": r[9],
                 "nelson_rationale": r[10],
                 "confidence": r[11],
-                "decision_id": r[12],
-                "decision_notes": r[13],
+                "sent_at": str(r[12]) if r[12] else None,
+                "send_error": r[13],
+                "decision_id": r[14],
+                "decision_notes": r[15],
             }
             for r in rows
         ]

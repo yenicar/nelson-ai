@@ -46,6 +46,14 @@ class Settings(BaseSettings):
     default_tenant_id: str = "demo-tenant"
     default_tenant_name: str = "Acme Manufacturing"
 
+    # Gmail (optional — for actually sending approved emails via SMTP)
+    gmail_from: str = ""
+    gmail_app_password: str = ""
+
+    @property
+    def gmail_configured(self) -> bool:
+        return bool(self.gmail_from and self.gmail_app_password)
+
     @property
     def telegram_user_ids(self) -> list[int]:
         raw = self.telegram_allowed_user_ids or ""

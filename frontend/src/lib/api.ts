@@ -1,6 +1,7 @@
 // Thin API client. All requests include credentials so the session cookie flows.
 
 import type {
+  ApproveResponse,
   ChatResponse,
   Customer,
   DashboardPayload,
@@ -126,13 +127,18 @@ export const api = {
   getAction: (actionId: string) =>
     request<PendingAction>(`/api/actions/${actionId}`),
   approveAction: (actionId: string, notes?: string) =>
-    request<{ action_id: string; status: string }>(`/api/actions/${actionId}/approve`, {
+    request<ApproveResponse>(`/api/actions/${actionId}/approve`, {
       method: "POST",
       body: JSON.stringify({ notes }),
     }),
   rejectAction: (actionId: string, notes?: string) =>
-    request<{ action_id: string; status: string }>(`/api/actions/${actionId}/reject`, {
+    request<ApproveResponse>(`/api/actions/${actionId}/reject`, {
       method: "POST",
       body: JSON.stringify({ notes }),
+    }),
+  editActionPayload: (actionId: string, payload: Record<string, unknown>) =>
+    request<{ action_id: string; updated: boolean }>(`/api/actions/${actionId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ payload_json: JSON.stringify(payload) }),
     }),
 };

@@ -169,9 +169,21 @@ export interface PendingAction {
   decided_by?: string | null;
   nelson_rationale?: string | null;
   confidence?: number | null;
+  sent_at?: string | null;
+  send_error?: string | null;
 }
 
 export interface DecidedAction extends PendingAction {
   decision_id?: string | null;
   decision_notes?: string | null;
+}
+
+export interface ApproveResponse {
+  action_id: string;
+  status: string;
+  decided_at: string;
+  sent?: boolean;
+  sent_at?: string;
+  sent_to?: string;
+  send_error?: string;
 }
