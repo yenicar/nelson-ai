@@ -103,7 +103,7 @@ Below them: ❌ *does not send*
         ↓
 [ FastAPI · auth · routes ]
         ↓
-[ Nelson agent · Gemini Flash · 13 tools · memory ]
+[ Nelson agent · Gemini Flash · 15 tools · memory ]
         ↓
 [ Repository layer · pydantic schemas ]
         ↓
@@ -199,7 +199,7 @@ Below them: ❌ *does not send*
 ### A1 — The 5 AI design elements with file:line refs
 
 1. Multi-step workflow → `backend/nelson/ai/agent.py`
-2. Tool calling → `backend/nelson/ai/tools.py` (13 tools)
+2. Tool calling → `backend/nelson/ai/tools.py` (15 tools)
 3. Structured outputs → `backend/nelson/eval.py` + `backend/nelson/data/schemas.py`
 4. Memory → `nelson_sessions` + `nelson_messages` DuckDB tables
 5. Audit trail → `pending_actions` + `human_decisions` DuckDB tables

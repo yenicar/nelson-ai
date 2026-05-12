@@ -19,7 +19,7 @@ Built as the IS 303 final project (Spring 2026), structured to extend into a pro
 | Surface | What it's for |
 |---|---|
 | **Dashboard** (Next.js) | Portfolio-first canvas organized around Gartner's four levels of analytics maturity: descriptive (KPI strip + 8-tile metrics grid) → diagnostic (lane-grouped cards with inline expand) → predictive (pending follow-ups) → prescriptive (Nelson's drafts). Floating glass chat with **streaming reasoning trace**. Inline approve/reject. Dual themes (dark navy + light purple) with a header toggle. **At-risk / Healthy** view toggle for expansion-candidate accounts. |
-| **Telegram bot** | Same Nelson on your phone. Type a customer name → get the card with all 9 action buttons. Approve drafts inline. Edit drafts by replying with feedback. Slash commands for `/risk`, `/actions`, `/find`, etc. |
+| **Telegram bot** | Same Nelson on your phone. Type a customer name → get the card with all 8 action buttons. Approve drafts inline. Edit drafts by replying with feedback. Slash commands for `/risk`, `/actions`, `/find`, etc. |
 
 Both surfaces share session memory and the same `pending_actions` queue.
 

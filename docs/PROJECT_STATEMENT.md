@@ -1,7 +1,7 @@
 # Nelson AI — Project Statement
 
 **Course:** IS 303 — AI for Business Development & Data Analytics, Spring 2026
-**Submitted:** 2026-05-11
+**Submitted:** 2026-05-12
 
 ## The problem
 
@@ -36,12 +36,12 @@ The interaction model:
 A chatbot answers questions. Nelson does **work**. The system has visible structure beyond a single LLM call:
 
 1. **Multi-step orchestration.** Each user question triggers up to 10 sequential tool calls — `find_customer` → `get_customer_profile` → `get_recent_tickets` → `propose_action`. The model is making decisions about which tools to call, in what order, with what arguments.
-2. **Tool use over a real data layer.** 13 typed Python tools backed by a DuckDB store with pydantic-validated schemas. The agent operates against structured records, not free-text retrieval.
+2. **Tool use over a real data layer.** 15 typed Python tools backed by a DuckDB store with pydantic-validated schemas. The agent operates against structured records, not free-text retrieval.
 3. **Structured outputs with validators.** Eval predictions are JSON-schema-constrained; data reads are pydantic-typed; tool outputs are dictionaries with stable contracts.
 4. **Memory across sessions.** Conversation history persists in DuckDB. Closing the dashboard chat or the Telegram conversation and returning later picks up the context.
 5. **Traceable audit trail.** Every Nelson-drafted action is recorded with a rationale, confidence score, and timestamp. Every human decision is recorded with attribution. The system is auditable end-to-end without log scraping.
 
-The design also enforces a hard product boundary: **Nelson does not act on customers.** The 8 categories of action he can propose (send_email, proactive_outreach, reclassify_band, update_lifecycle, escalate, schedule_followup, recommend_credit, recommend_expedite, add_note) all queue for human approval. The system cannot bypass this — there is no "execute" path in the codebase.
+The design also enforces a hard product boundary: **Nelson does not act on customers.** The 8 categories of action he can propose (send_email, proactive_outreach, reclassify_band, update_lifecycle, escalate, schedule_followup, recommend_credit, recommend_expedite) all queue for human approval. The system cannot bypass this — there is no "execute" path in the codebase.
 
 ## The data story
 
