@@ -88,6 +88,7 @@ SLASH_COMMANDS = [
     {"command": "actions", "description": "Actions awaiting your approval"},
     {"command": "pending", "description": "Pending review follow-ups"},
     {"command": "portfolio", "description": "Portfolio summary stats"},
+    {"command": "diag", "description": "Run a self-test (tools + DB + Gemini)"},
     {"command": "help", "description": "Full capabilities"},
     {"command": "start", "description": "Restart this conversation"},
 ]
@@ -632,6 +633,75 @@ async def _send_recent_activity(
 
 # ---------- callback handler ----------
 
+async def _run_diagnostics(
+    client: httpx.AsyncClient,
+    chat_id: int,
+    user_id: int,
+    sessions: dict[int, str],
+) -> None:
+    """Exercise every layer the buttons depend on and report PASS/FAIL.
+
+    Runs four checks in order. If any fail, we surface the exception class
+    + message so the user (or me) can see exactly what broke instead of
+    Nelson saying "I am unable to retrieve…".
+    """
+    lines = ["*🔧 Nelson self-test*\n"]
+
+    # 1. Settings — API key and tenant configured.
+    if not settings.gemini_api_key:
+        lines.append("❌ *GEMINI_API_KEY* — missing from environment")
+    else:
+        lines.append("✅ *GEMINI_API_KEY* — configured")
+    lines.append(f"✅ *Tenant* — `{settings.default_tenant_id}`")
+
+    # 2. Database read — make sure DuckDB is reachable.
+    try:
+        c = AccountsRepo.top_at_risk(settings.default_tenant_id, limit=1)
+        if c:
+            lines.append(f"✅ *Database* — read OK ({c[0].customer_full_name})")
+        else:
+            lines.append("⚠️ *Database* — read OK but zero rows")
+    except Exception as e:
+        lines.append(f"❌ *Database* — `{type(e).__name__}: {e}`")
+        await _send(client, chat_id, "\n".join(lines))
+        return
+
+    # 3. Tool-layer sanity — call a tool directly without Gemini in the loop.
+    try:
+        from nelson.ai.tools import make_tools
+        tools = make_tools(settings.default_tenant_id, wrap_for_logging=True)
+        find_customer = next(t for t in tools if t.__name__ == "find_customer")
+        out = find_customer(name=c[0].customer_full_name)
+        if isinstance(out, dict) and "match" in out:
+            lines.append(f"✅ *Tools* — `find_customer` OK")
+        elif isinstance(out, dict) and "error" in out:
+            lines.append(f"❌ *Tools* — `find_customer` returned error: {out['error']}")
+        else:
+            lines.append(f"⚠️ *Tools* — unexpected return: `{str(out)[:80]}`")
+    except Exception as e:
+        lines.append(f"❌ *Tools* — `{type(e).__name__}: {e}`")
+        await _send(client, chat_id, "\n".join(lines))
+        return
+
+    # 4. Full agent round-trip — single Gemini call with auto-function-calling.
+    try:
+        result = await asyncio.to_thread(
+            ask,
+            "In one sentence: how many customers are in this portfolio? Use get_portfolio_summary.",
+            user_id=str(user_id),
+            surface="telegram",
+            session_id=sessions.get(user_id),
+            use_cache=False,
+        )
+        sessions[user_id] = result["session_id"]
+        snippet = (result["response"] or "")[:120]
+        lines.append(f"✅ *Agent* — round-trip OK\n_{snippet}_")
+    except Exception as e:
+        lines.append(f"❌ *Agent* — `{type(e).__name__}: {e}`")
+
+    await _send(client, chat_id, "\n".join(lines))
+
+
 async def _handle_callback(
     client: httpx.AsyncClient,
     callback: dict,
@@ -775,9 +845,23 @@ async def _handle_callback(
 
         await _answer_callback(client, callback_id, "Unknown action")
     except Exception as e:
-        print(f"  [telegram] callback error: {type(e).__name__}: {e}")
+        import traceback
+        tb = traceback.format_exc()
+        print(f"  [telegram] callback error chat={chat_id} data={data!r}: {type(e).__name__}: {e}")
+        print(tb)
+        # Show the user something useful in the chat — toast alone is too
+        # easy to miss and gives no debugging info.
         try:
             await _answer_callback(client, callback_id, "Error")
+        except Exception:
+            pass
+        try:
+            await _send(
+                client,
+                chat_id,
+                f"⚠️ *Button failed*\n\n`{type(e).__name__}: {e}`\n\n"
+                f"_Callback data: `{data}`_",
+            )
         except Exception:
             pass
 
@@ -835,6 +919,13 @@ async def _do_handle(
         return
 
     print(f"  [telegram] chat={chat_id} user={user_id}: {text!r}")
+
+    # Self-test — exercises every layer the buttons touch so we can tell
+    # which one is broken without guessing.
+    if text == "/diag":
+        await _send_action(client, chat_id, "typing")
+        await _run_diagnostics(client, chat_id, user_id, sessions)
+        return
 
     # Direct DB-backed slash commands — fast, structured, button-laden, no LLM.
     if text == "/risk":
@@ -901,10 +992,32 @@ async def _do_handle(
         print(f"  [telegram] reply NOT DELIVERED to chat={chat_id} (sendMessage failed both Markdown + plain)")
 
 
+def _startup_sanity_check() -> list[str]:
+    """Run the same checks /diag does, at boot, and return human-readable
+    warnings. We don't bail on warnings — the bot can still answer non-AI
+    slash commands (/risk, /actions, /find) without Gemini, and the user
+    will get a clear chat error if they hit an AI path."""
+    warnings: list[str] = []
+    if not settings.gemini_api_key:
+        warnings.append("GEMINI_API_KEY missing — agent paths (button drafts, /brief, free-text chat) will fail. Set it in .env.")
+    try:
+        sample = AccountsRepo.top_at_risk(settings.default_tenant_id, limit=1)
+        if not sample:
+            warnings.append(f"DuckDB readable but tenant '{settings.default_tenant_id}' has zero customers. Run `python -m nelson.cli build-data`.")
+    except Exception as e:
+        warnings.append(f"DuckDB read failed at startup: {type(e).__name__}: {e}. Run `python -m nelson.cli build-data`.")
+    return warnings
+
+
 async def _run() -> None:
     if not settings.telegram_bot_token:
         print("  [telegram] TELEGRAM_BOT_TOKEN not set in .env", file=sys.stderr)
         sys.exit(1)
+
+    # Surface boot issues loudly. The bot will still come up so non-AI paths
+    # work, but the operator sees these in stderr immediately.
+    for w in _startup_sanity_check():
+        print(f"  [telegram] STARTUP WARNING: {w}", file=sys.stderr)
 
     allowed = set(settings.telegram_user_ids)
     sessions: dict[int, str] = {}
