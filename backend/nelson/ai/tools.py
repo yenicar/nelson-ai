@@ -6,8 +6,15 @@ tenant-scoped via a closure factory so the LLM never sees `tenant_id`.
 
 The `propose_action` tool is the only write path. Everything Nelson "does" lands
 in `pending_actions` for human approval.
+
+NOTE: this module deliberately does NOT use `from __future__ import annotations`.
+PEP 563 would stringify every parameter annotation (`name: str` becomes the
+literal string `"str"`), and the Gemini SDK's automatic_function_calling
+introspection then calls `isinstance(arg, "str")` — which raises
+`isinstance() arg 2 must be a type` because strings aren't valid type args.
+We need real type objects at runtime. Python 3.9+ syntax (`list[X]`, etc.)
+is supported natively without the future import; tools.py runs on 3.11+.
 """
-from __future__ import annotations
 
 import functools
 import json
