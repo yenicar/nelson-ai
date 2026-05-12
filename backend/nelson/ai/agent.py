@@ -135,11 +135,13 @@ def ask(
             return {"response": hit, "session_id": session_id, "cached": True}
 
     client = _client()
-    # ask() uses Gemini's automatic_function_calling which invokes tools
-    # directly through the SDK. Pass RAW tools (no _safe_tool wrapper) so
-    # the SDK's introspection sees the original signatures without any
-    # wrapper-induced isinstance() weirdness. We still log the final text.
-    tools = make_tools(tenant_id, wrap_for_logging=False)
+    # ask() uses Gemini's automatic_function_calling. We wrap tools with
+    # _safe_tool so any exception inside a tool becomes a structured
+    # `{"error": ...}` return value the model can see and reason about —
+    # otherwise Gemini just reports "I am unable to retrieve…" and the user
+    # has no idea what actually broke. The wrapper pins __signature__ and
+    # __annotations__ so the SDK's introspection sees the original types.
+    tools = make_tools(tenant_id, wrap_for_logging=True)
     config = types.GenerateContentConfig(
         system_instruction=system_prompt(settings.default_tenant_name),
         tools=tools,
