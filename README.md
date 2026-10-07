@@ -37,7 +37,7 @@ Both surfaces share session memory and the same `pending_actions` queue.
 | Layer | Technology |
 |---|---|
 | Backend | FastAPI · DuckDB · Pydantic · Python 3.11+ |
-| AI | Google Gemini 2.5 Flash · multi-step function-calling · streaming over SSE |
+| AI | Google Gemini 3 Flash · multi-step function-calling · streaming over SSE |
 | Frontend | Next.js 14 · React 18 · TypeScript · Tailwind CSS |
 | Data | 2,000 customers · 15 tables · ~28 MB (synthesized + repaired from two Kaggle datasets) |
 | Memory | DuckDB tables (`nelson_sessions`, `nelson_messages`) |

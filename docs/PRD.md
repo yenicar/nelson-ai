@@ -65,7 +65,7 @@ A traditional dashboard surfaces the data. A chatbot answers questions about it.
 - Repository pattern in `backend/nelson/data/repositories.py` — `AccountsRepo`, `OrdersRepo`, `TicketsRepo`, `NotesRepo`, `EmailsRepo`, `EventsRepo`, `OutcomesRepo`, `ActionsRepo`.
 
 ### 5.2 Agent core
-- **Model:** Google Gemini 2.5 Flash (configurable via `GEMINI_MODEL`).
+- **Model:** Google Gemini 3 Flash (configurable via `GEMINI_MODEL`).
 - **Two execution paths:**
   - `ask()` — synchronous, uses `automatic_function_calling`, returns final text. Used by Telegram and CLI.
   - `stream_ask()` — async generator, manual tool-call loop, streams reasoning trace + tool calls + final text over SSE. Used by the dashboard chat widget.

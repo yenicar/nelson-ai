@@ -21,7 +21,7 @@ class Settings(BaseSettings):
 
     # Gemini (Nelson's brain)
     gemini_api_key: str = ""
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-3-flash-preview"
 
     # Telegram (second surface)
     telegram_bot_token: str = ""
