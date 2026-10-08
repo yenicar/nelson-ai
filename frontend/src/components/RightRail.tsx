@@ -20,8 +20,8 @@ interface Props {
   prescriptiveTab: PrescriptiveTab;
   onPrescriptiveTabChange: (tab: PrescriptiveTab) => void;
   /** Optional refs for the parent to scroll into view from external triggers. */
-  predictiveRef?: React.RefObject<HTMLDivElement | null>;
-  prescriptiveRef?: React.RefObject<HTMLDivElement | null>;
+  predictiveRef?: React.RefObject<HTMLDivElement>;
+  prescriptiveRef?: React.RefObject<HTMLDivElement>;
   onSelect: (customerId: string) => void;
   onActionDecided: () => void;
 }
@@ -142,7 +142,7 @@ function PrescriptivePanel({
         <div className="text-[10px] uppercase tracking-wider text-white/40">Prescriptive</div>
         <div className="text-sm font-semibold flex items-center gap-1.5 mb-2">
           <Sparkles className="w-3.5 h-3.5 text-accent-400" />
-          Nelson's actions
+          Nelson&apos;s actions
         </div>
         <div className="flex items-center gap-1 text-xs">
           <TabButton active={tab === "pending"} onClick={() => onTabChange("pending")}>
@@ -158,7 +158,7 @@ function PrescriptivePanel({
       <div className="flex-1 overflow-y-auto scrollbar-thin pr-1 -mr-1 space-y-2">
         {tab === "pending" && actions.length === 0 && (
           <div className="text-xs text-white/40 italic px-1 py-2 leading-relaxed">
-            Nothing waiting on you. When Nelson drafts an action, it'll land here for approval.
+            Nothing waiting on you. When Nelson drafts an action, it&apos;ll land here for approval.
           </div>
         )}
         {tab === "pending" &&
@@ -173,7 +173,7 @@ function PrescriptivePanel({
         )}
         {tab === "decided" && !loadingDecided && decided && decided.length === 0 && (
           <div className="text-xs text-white/40 italic px-1 py-2 leading-relaxed">
-            No decisions yet. Approve or reject a pending action and it'll show here.
+            No decisions yet. Approve or reject a pending action and it&apos;ll show here.
           </div>
         )}
         {tab === "decided" &&

@@ -204,7 +204,7 @@ export function ChatWidget() {
             {messages.length === 0 && !busy && (
               <div className="space-y-3 animate-fade-in">
                 <div className="text-sm text-white/65 leading-relaxed">
-                  Hey — I'm Nelson. Ask me anything about your portfolio. You'll see
+                  Hey — I&apos;m Nelson. Ask me anything about your portfolio. You&apos;ll see
                   me work in real time below.
                 </div>
                 <div className="space-y-1.5">
