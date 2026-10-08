@@ -280,6 +280,25 @@ export function ChatWidget() {
 
 // ---------- Sub-components ----------
 
+// Gemini answers in light Markdown. Show **bold** as bold and "* " list markers as bullets
+// instead of printing the raw symbols; everything else stays plain text.
+function FormattedText({ text }: { text: string }) {
+  const lines = text.replace(/^\s*[*-]\s+/gm, "• ");
+  return (
+    <>
+      {lines.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+        part.startsWith("**") && part.endsWith("**") && part.length > 4 ? (
+          <strong key={i} className="font-semibold text-white">
+            {part.slice(2, -2)}
+          </strong>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
 function MessageBubble({
   msg,
   onActionDecided,
@@ -298,7 +317,7 @@ function MessageBubble({
     <div className="mr-6 space-y-2">
       {msg.trace && msg.trace.length > 0 && <TracePanel steps={msg.trace} live={false} />}
       <div className="glass rounded-2xl rounded-tl-sm px-4 py-2.5 text-white/90 text-sm leading-relaxed whitespace-pre-wrap">
-        {msg.content}
+        <FormattedText text={msg.content} />
       </div>
       {msg.actions?.map((a) => (
         <InlineActionCard key={a.action_id} action={a} onDecided={onActionDecided} />
